@@ -1,0 +1,581 @@
+; This is the Calva evaluation results output window.
+; TIPS: The keyboard shortcut `ctrl+alt+o o` shows and focuses this window
+;   when connected to a REPL session.
+; Please see https://calva.io/output/ for more info.
+; Happy coding! ♥️
+
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/sebastian/Documents/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
+; Using host:port 127.0.0.1:39261 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉interprete.core꞉>  ; Use `alt+enter` to evaluate
+clj꞉interprete.core꞉> 
+; Jack-in done.
+clj꞉interprete.core꞉> 
+#{FOR DATA INT = < SIN MID$ LIST REM NEXT TO INPUT CHR$ ASC <= THEN * GOTO > ON STEP AND GOSUB - EXP CLEAR LEN OR
+  RESTORE NEW / >= ? READ LET PRINT <> ATN + RETURN IF LOG END STR$}
+clj꞉interprete.core꞉> 
+(STR$
+ END
+ LOG
+ IF
+ RETURN
+ +
+ ATN
+ <>
+ PRINT
+ LET
+ READ
+ ?
+ >=
+ /
+ NEW
+ RESTORE
+ OR
+ LEN
+ CLEAR
+ EXP
+ -
+ GOSUB
+ AND
+ STEP
+ ON
+ >
+ GOTO
+ *
+ THEN
+ <=
+ ASC
+ CHR$
+ INPUT
+ TO
+ NEXT
+ REM
+ LIST
+ MID$
+ SIN
+ <
+ =
+ INT
+ DATA
+ FOR)
+clj꞉interprete.core꞉> 
+(STR$
+ END
+ LOG
+ IF
+ RETURN
+ +
+ ATN
+ <>
+ PRINT
+ LET
+ READ
+ ?
+ >=
+ /
+ NEW
+ RESTORE
+ OR
+ LEN
+ CLEAR
+ EXP
+ -
+ GOSUB
+ AND
+ STEP
+ ON
+ >
+ GOTO
+ *
+ THEN
+ <=
+ ASC
+ CHR$
+ INPUT
+ TO
+ NEXT
+ REM
+ LIST
+ MID$
+ SIN
+ <
+ =
+ INT
+ DATA
+ FOR)
+clj꞉interprete.core꞉> 
+; Syntax error compiling at (core_test.clj:5:1).
+; Unable to resolve symbol: deftest in this context
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:5:1).
+; Unable to resolve symbol: deftest in this context
+clj꞉interprete.core-test꞉> 
+nil
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/palabra-reservada?-test
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:1:7852).
+; Unable to resolve symbol: keywords in this context
+clj꞉interprete.core-test꞉> 
+(STR$
+ END
+ LOG
+ IF
+ RETURN
+ +
+ ATN
+ <>
+ PRINT
+ LET
+ READ
+ ?
+ >=
+ /
+ NEW
+ RESTORE
+ OR
+ LEN
+ CLEAR
+ EXP
+ -
+ GOSUB
+ AND
+ STEP
+ ON
+ >
+ GOTO
+ *
+ THEN
+ <=
+ ASC
+ CHR$
+ INPUT
+ TO
+ NEXT
+ REM
+ LIST
+ MID$
+ SIN
+ <
+ =
+ INT
+ DATA
+ FOR)
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:1:7852).
+; Unable to resolve symbol: keywords in this context
+clj꞉interprete.core-test꞉> 
+(STR$
+ END
+ LOG
+ IF
+ RETURN
+ +
+ ATN
+ <>
+ PRINT
+ LET
+ READ
+ ?
+ >=
+ /
+ NEW
+ RESTORE
+ OR
+ LEN
+ CLEAR
+ EXP
+ -
+ GOSUB
+ AND
+ STEP
+ ON
+ >
+ GOTO
+ *
+ THEN
+ <=
+ ASC
+ CHR$
+ INPUT
+ TO
+ NEXT
+ REM
+ LIST
+ MID$
+ SIN
+ <
+ =
+ INT
+ DATA
+ FOR)
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:1:7852).
+; Unable to resolve symbol: keywords in this context
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:1:7852).
+; Unable to resolve symbol: keywords in this context
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:1:7852).
+; Unable to resolve symbol: keywords in this context
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:1:7852).
+; Unable to resolve symbol: keywords in this context
+clj꞉interprete.core-test꞉> 
+#function[clojure.core/map/fn--5847]
+clj꞉interprete.core-test꞉> 
+(STR$
+ END
+ LOG
+ IF
+ RETURN
+ +
+ ATN
+ <>
+ PRINT
+ LET
+ READ
+ ?
+ >=
+ /
+ NEW
+ RESTORE
+ OR
+ LEN
+ CLEAR
+ EXP
+ -
+ GOSUB
+ AND
+ STEP
+ ON
+ >
+ GOTO
+ *
+ THEN
+ <=
+ ASC
+ CHR$
+ INPUT
+ TO
+ NEXT
+ REM
+ LIST
+ MID$
+ SIN
+ <
+ =
+ INT
+ DATA
+ FOR)
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:1:7852).
+; Unable to resolve symbol: keywords in this context
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:1:7852).
+; Unable to resolve symbol: keywords in this context
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:13:1).
+; Unable to resolve symbol: generate-tests in this context
+clj꞉interprete.core-test꞉> 
+(STR$
+ END
+ LOG
+ IF
+ RETURN
+ +
+ ATN
+ <>
+ PRINT
+ LET
+ READ
+ ?
+ >=
+ /
+ NEW
+ RESTORE
+ OR
+ LEN
+ CLEAR
+ EXP
+ -
+ GOSUB
+ AND
+ STEP
+ ON
+ >
+ GOTO
+ *
+ THEN
+ <=
+ ASC
+ CHR$
+ INPUT
+ TO
+ NEXT
+ REM
+ LIST
+ MID$
+ SIN
+ <
+ =
+ INT
+ DATA
+ FOR)
+clj꞉interprete.core-test꞉> 
+(STR$
+ END
+ LOG
+ IF
+ RETURN
+ +
+ ATN
+ <>
+ PRINT
+ LET
+ READ
+ ?
+ >=
+ /
+ NEW
+ RESTORE
+ OR
+ LEN
+ CLEAR
+ EXP
+ -
+ GOSUB
+ AND
+ STEP
+ ON
+ >
+ GOTO
+ *
+ THEN
+ <=
+ ASC
+ CHR$
+ INPUT
+ TO
+ NEXT
+ REM
+ LIST
+ MID$
+ SIN
+ <
+ =
+ INT
+ DATA
+ FOR)
+clj꞉interprete.core-test꞉> 
+(STR$
+ END
+ LOG
+ IF
+ RETURN
+ +
+ ATN
+ <>
+ PRINT
+ LET
+ READ
+ ?
+ >=
+ /
+ NEW
+ RESTORE
+ OR
+ LEN
+ CLEAR
+ EXP
+ -
+ GOSUB
+ AND
+ STEP
+ ON
+ >
+ GOTO
+ *
+ THEN
+ <=
+ ASC
+ CHR$
+ INPUT
+ TO
+ NEXT
+ REM
+ LIST
+ MID$
+ SIN
+ <
+ =
+ INT
+ DATA
+ FOR)
+clj꞉interprete.core-test꞉> 
+(STR$
+ END
+ LOG
+ IF
+ RETURN
+ +
+ ATN
+ <>
+ PRINT
+ LET
+ READ
+ ?
+ >=
+ /
+ NEW
+ RESTORE
+ OR
+ LEN
+ CLEAR
+ EXP
+ -
+ GOSUB
+ AND
+ STEP
+ ON
+ >
+ GOTO
+ *
+ THEN
+ <=
+ ASC
+ CHR$
+ INPUT
+ TO
+ NEXT
+ REM
+ LIST
+ MID$
+ SIN
+ <
+ =
+ INT
+ DATA
+ FOR)
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:13:1).
+; Unable to resolve symbol: generate-tests in this context
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/generate-tests
+clj꞉interprete.core-test꞉> 
+#function[clojure.core/map/fn--5847]
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:12:3).
+; Unable to resolve symbol: lst in this context
+clj꞉interprete.core-test꞉> 
+#function[clojure.core/map/fn--5847]
+clj꞉interprete.core-test꞉> 
+#function[clojure.core/map/fn--5847]
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/generate-tests
+clj꞉interprete.core-test꞉> 
+((clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? STR$)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? END)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? LOG)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? IF)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? RETURN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? +)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? ATN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? <>)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? PRINT)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? LET)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? READ)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? ?)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? >=)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? /)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? NEW)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? RESTORE)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? OR)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? LEN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? CLEAR)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? EXP)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? -)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? GOSUB)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? AND)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? STEP)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? ON)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? >)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? GOTO)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? *)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? THEN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? <=)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? ASC)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? CHR$)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? INPUT)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? TO)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? NEXT)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? REM)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? LIST)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? MID$)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? SIN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? <)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? =)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? INT)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? DATA)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? FOR))))
+clj꞉interprete.core-test꞉> 
+((clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? STR$)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? END)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? LOG)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? IF)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? RETURN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? +)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? ATN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? <>)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? PRINT)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? LET)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? READ)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? ?)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? >=)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? /)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? NEW)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? RESTORE)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? OR)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? LEN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? CLEAR)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? EXP)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? -)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? GOSUB)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? AND)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? STEP)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? ON)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? >)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? GOTO)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? *)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? THEN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? <=)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? ASC)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? CHR$)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? INPUT)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? TO)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? NEXT)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? REM)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? LIST)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? MID$)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? SIN)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? <)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? =)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? INT)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? DATA)))
+ (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? FOR))))
+clj꞉interprete.core-test꞉> 

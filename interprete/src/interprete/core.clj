@@ -656,7 +656,9 @@
 ; false
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn palabra-reservada? [x]
-)
+  (let [palabras-reservadas '(STR$ END LOG IF RETURN + ATN <> PRINT LET READ ? >= / NEW RESTORE OR LEN CLEAR EXP - GOSUB AND STEP ON > GOTO * THEN <= ASC CHR$ INPUT TO NEXT REM LIST MID$ SIN < = INT DATA FOR)]
+    (if (some #(= % x) palabras-reservadas) true false)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; operador?: predicado para determinar si un identificador es un
@@ -814,7 +816,7 @@
 ; user=> (buscar-lineas-restantes [(list '(10 (PRINT X) (PRINT Y)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [25 0] [] [] [] 0 {}])
 ; nil
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn buscar-lineas-restantes []
+(defn buscar-lineas-restantes [amb]
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
