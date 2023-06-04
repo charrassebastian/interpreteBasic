@@ -25,8 +25,8 @@
 (declare evaluar)                         ; COMPLETAR
 (declare aplicar)                         ; COMPLETAR
 
-(declare palabra-reservada?)              ; IMPLEMENTAR
-(declare operador?)                       ; IMPLEMENTAR
+(declare palabra-reservada?)              ; IMPLEMENTAR - hecho
+(declare operador?)                       ; IMPLEMENTAR - hecho
 (declare anular-invalidos)                ; IMPLEMENTAR
 (declare cargar-linea)                    ; IMPLEMENTAR
 (declare expandir-nexts)                  ; IMPLEMENTAR
@@ -656,9 +656,8 @@
 ; false
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn palabra-reservada? [x]
-  (let [palabras-reservadas '(STR$ END LOG IF RETURN + ATN <> PRINT LET READ ? >= / NEW RESTORE OR LEN CLEAR EXP - GOSUB AND STEP ON > GOTO * THEN <= ASC CHR$ INPUT TO NEXT REM LIST MID$ SIN < = INT DATA FOR)]
+  (let [palabras-reservadas '(STR$ END LOG IF RETURN ATN PRINT LET READ ? NEW RESTORE LEN CLEAR EXP GOSUB STEP ON GOTO THEN ASC CHR$ INPUT TO NEXT REM LIST MID$ SIN INT DATA FOR)]
     (if (some #(= % x) palabras-reservadas) true false)))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; operador?: predicado para determinar si un identificador es un
@@ -671,7 +670,8 @@
 ; false
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn operador? [x]
-)
+  (let [operadores '(+ - * / = <> < <= > >= AND OR)]
+    (if (some #(= % x) operadores) true false)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; anular-invalidos: recibe una lista de simbolos y la retorna con
@@ -680,7 +680,8 @@
 ; (IF X nil * Y < 12 THEN LET nil X = 0)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn anular-invalidos [sentencia]
-)
+  (map (fn [e] (if (or (palabra-reservada? e) (operador? e)) e nil)) sentencia))
+;; falta aceptar numeros validos y tambien variables como X y Y
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; cargar-linea: recibe una linea de codigo y un ambiente y retorna
