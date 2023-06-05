@@ -78,3 +78,21 @@
     (clojure.test/is (clojure.core/= true (variable-string? 'X$)))
     (clojure.test/is (clojure.core/= false (variable-string? 'X)))
     (clojure.test/is (clojure.core/= false (variable-string? 'X%)))))
+
+(deftest precedencia-tests
+  (testing "precedencia"
+    (clojure.test/is (clojure.core/= 1 (precedencia 'OR)))
+    (clojure.test/is (clojure.core/= 2 (precedencia 'AND)))
+    (clojure.test/is (clojure.core/= 3 (precedencia 'NOT)))
+    (clojure.test/is (clojure.core/= 4 (precedencia '<>)))
+    (clojure.test/is (clojure.core/= 4 (precedencia '<)))
+    (clojure.test/is (clojure.core/= 4 (precedencia '<=)))
+    (clojure.test/is (clojure.core/= 4 (precedencia '>)))
+    (clojure.test/is (clojure.core/= 4 (precedencia '>=)))
+    (clojure.test/is (clojure.core/= 4 (precedencia '=)))
+    (clojure.test/is (clojure.core/= 5 (precedencia '+)))
+    (clojure.test/is (clojure.core/= 5 (precedencia '-)))
+    (clojure.test/is (clojure.core/= 6 (precedencia '*)))
+    (clojure.test/is (clojure.core/= 6 (precedencia '/)))
+    (clojure.test/is (clojure.core/= 7 (precedencia '-u)))
+    (clojure.test/is (clojure.core/= 8 (precedencia 'MID$)))))

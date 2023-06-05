@@ -27,13 +27,13 @@
 
 (declare palabra-reservada?)              ; IMPLEMENTAR - hecho
 (declare operador?)                       ; IMPLEMENTAR - hecho
-(declare anular-invalidos)                ; IMPLEMENTAR
+(declare anular-invalidos)                ; IMPLEMENTAR - implementado parcialmente
 (declare cargar-linea)                    ; IMPLEMENTAR
 (declare expandir-nexts)                  ; IMPLEMENTAR
 (declare dar-error)                       ; IMPLEMENTAR
-(declare variable-float?)                 ; IMPLEMENTAR
-(declare variable-integer?)               ; IMPLEMENTAR
-(declare variable-string?)                ; IMPLEMENTAR
+(declare variable-float?)                 ; IMPLEMENTAR - hecho
+(declare variable-integer?)               ; IMPLEMENTAR - hecho
+(declare variable-string?)                ; IMPLEMENTAR - hecho
 (declare contar-sentencias)               ; IMPLEMENTAR
 (declare buscar-lineas-restantes)         ; IMPLEMENTAR
 (declare continuar-linea)                 ; IMPLEMENTAR
@@ -908,7 +908,8 @@
 ; 8
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn precedencia [token]
-)
+  (let [jerarquia {'OR 1, 'AND 2, 'NOT 3, '<> 4, '< 4, '<= 4, '> 4, '>= 4, '= 4, '+ 5, '- 5, '* 6, '/ 6, '-u 7, 'MID$ 8}]
+    (jerarquia token)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; aridad: recibe un token y retorna el valor de su aridad, por
