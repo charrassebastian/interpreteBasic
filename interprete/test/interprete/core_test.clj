@@ -61,6 +61,18 @@
   (testing "anular-invalidos"
     (clojure.test/is (clojure.core/= '(IF X nil * Y < 12 THEN LET nil X = 0) (anular-invalidos '(IF X & * Y < 12 THEN LET ! X = 0))))))
 
+(deftest variable-float?-tests
+  (testing "variable-float?"
+    (clojure.test/is (clojure.core/= true (variable-float? 'X)))
+    (clojure.test/is (clojure.core/= false (variable-float? 'X%)))
+    (clojure.test/is (clojure.core/= false (variable-float? 'X$)))))
+
+(deftest variable-integer?-tests
+  (testing "variable-integer?"
+    (clojure.test/is (clojure.core/= true (variable-integer? 'X%)))
+    (clojure.test/is (clojure.core/= false (variable-integer? 'X)))
+    (clojure.test/is (clojure.core/= false (variable-integer? 'X$)))))
+
 (deftest variable-string?-tests
   (testing "variable-string?"
     (clojure.test/is (clojure.core/= true (variable-string? 'X$)))
