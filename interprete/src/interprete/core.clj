@@ -41,9 +41,9 @@
 (declare ejecutar-asignacion)             ; IMPLEMENTAR
 (declare preprocesar-expresion)           ; IMPLEMENTAR
 (declare desambiguar)                     ; IMPLEMENTAR
-(declare precedencia)                     ; IMPLEMENTAR
+(declare precedencia)                     ; IMPLEMENTAR - hecho
 (declare aridad)                          ; IMPLEMENTAR
-(declare eliminar-cero-decimal)           ; IMPLEMENTAR
+(declare eliminar-cero-decimal)           ; IMPLEMENTAR - hecho
 (declare eliminar-cero-entero)            ; IMPLEMENTAR
 
 (defn -main
@@ -714,7 +714,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; dar-error: recibe un error (codigo o mensaje) y el puntero de 
-; programa, muestra el error correspondiente y retorna nil, por
+; programa, muestra el error correspondiente {'OR 1, 'AND 2, '* 6, '-u 7, 'MID$ 8}y retorna nil, por
 ; ejemplo:
 ; user=> (dar-error 16 [:ejecucion-inmediata 4])
 ;
