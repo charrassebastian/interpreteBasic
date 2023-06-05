@@ -10,7 +10,7 @@
 ;   - See https://calva.io/connect-sequences/
 ; 
 ; Starting Jack-in Terminal: pushd /home/sebastian/Documents/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
-; Using host:port 127.0.0.1:45197 ...
+; Using host:port 127.0.0.1:34223 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -25,4 +25,37 @@ nil
 clj꞉interprete.core꞉>  ; Use `alt+enter` to evaluate
 clj꞉interprete.core꞉> 
 ; Jack-in done.
+clj꞉interprete.core꞉> 
+"X"
+clj꞉interprete.core-test꞉> 
+"X$"
+clj꞉interprete.core꞉> 
+"X"
+clj꞉interprete.core꞉> 
+"X$"
+clj꞉interprete.core꞉> 
+(\X \$)
+clj꞉interprete.core꞉> 
+\$
+clj꞉interprete.core꞉> 
+; Syntax error compiling at (core.clj:772:11).
+; Unable to resolve symbol: x in this context
+clj꞉interprete.core꞉> 
+#'interprete.core/variable-string?
+clj꞉interprete.core꞉> 
+X$
+clj꞉interprete.core꞉> 
+; Execution error (ClassCastException) at interprete.core/variable-string? (form-init11857156919263277617.clj:773).
+; class java.lang.String cannot be cast to class clojure.lang.IFn (java.lang.String is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+clj꞉interprete.core꞉> 
+; Execution error (ClassCastException) at interprete.core/variable-string? (form-init11857156919263277617.clj:773).
+; class java.lang.String cannot be cast to class clojure.lang.IFn (java.lang.String is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+clj꞉interprete.core꞉> 
+#'interprete.core/variable-string?
+clj꞉interprete.core꞉> 
+true
+clj꞉interprete.core꞉> 
+false
+clj꞉interprete.core꞉> 
+false
 clj꞉interprete.core꞉> 
