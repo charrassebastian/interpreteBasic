@@ -65,3 +65,9 @@ clj꞉interprete.core꞉> 
 clj꞉interprete.core꞉> 
 {= 4, < 4, MID$ 8, <= 4, * 6, NOT 3, > 4, -u 7, AND 2, - 5, OR 1, / 6, >= 4, <> 4, + 5}
 clj꞉interprete.core꞉> 
+1.0
+clj꞉interprete.core꞉> 
+1.0
+clj꞉interprete.core꞉> 
+1.5
+clj꞉interprete.core꞉> 

@@ -96,3 +96,10 @@
     (clojure.test/is (clojure.core/= 6 (precedencia '/)))
     (clojure.test/is (clojure.core/= 7 (precedencia '-u)))
     (clojure.test/is (clojure.core/= 8 (precedencia 'MID$)))))
+
+(deftest eliminar-cero-decimal-tests
+  (testing "eliminar-cero-decimal"
+    (clojure.test/is (clojure.core/= 1.5 (eliminar-cero-decimal 1.5)))
+    (clojure.test/is (clojure.core/= 1.5 (eliminar-cero-decimal 1.50)))
+    (clojure.test/is (clojure.core/= 1 (eliminar-cero-decimal 1.0)))
+    (clojure.test/is (clojure.core/= 'A (eliminar-cero-decimal 'A)))))
