@@ -9,8 +9,9 @@
 ; You can make Calva auto-select this.
 ;   - See https://calva.io/connect-sequences/
 ; 
-; Starting Jack-in Terminal: pushd /home/sebastian/Documents/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
-; Using host:port 127.0.0.1:34223 ...
+; Starting Jack-in Terminal: pushd /home/sebastian/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
+
+; Using host:port 127.0.0.1:34157 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -26,48 +27,6 @@ clj꞉interprete.core꞉>  ; Use `alt+enter` to evaluate
 clj꞉interprete.core꞉> 
 ; Jack-in done.
 clj꞉interprete.core꞉> 
-"X"
-clj꞉interprete.core-test꞉> 
-"X$"
+3
 clj꞉interprete.core꞉> 
-"X"
-clj꞉interprete.core꞉> 
-"X$"
-clj꞉interprete.core꞉> 
-(\X \$)
-clj꞉interprete.core꞉> 
-\$
-clj꞉interprete.core꞉> 
-; Syntax error compiling at (core.clj:772:11).
-; Unable to resolve symbol: x in this context
-clj꞉interprete.core꞉> 
-#'interprete.core/variable-string?
-clj꞉interprete.core꞉> 
-X$
-clj꞉interprete.core꞉> 
-; Execution error (ClassCastException) at interprete.core/variable-string? (form-init11857156919263277617.clj:773).
-; class java.lang.String cannot be cast to class clojure.lang.IFn (java.lang.String is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
-clj꞉interprete.core꞉> 
-; Execution error (ClassCastException) at interprete.core/variable-string? (form-init11857156919263277617.clj:773).
-; class java.lang.String cannot be cast to class clojure.lang.IFn (java.lang.String is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
-clj꞉interprete.core꞉> 
-#'interprete.core/variable-string?
-clj꞉interprete.core꞉> 
-true
-clj꞉interprete.core꞉> 
-false
-clj꞉interprete.core꞉> 
-false
-clj꞉interprete.core꞉> 
-{OR 1, AND 2, * 6, -u 7, MID$ 8}
-clj꞉interprete.core꞉> 
-{= 4, < 4, MID$ 8, <= 4, * 6, NOT 3, > 4, -u 7, AND 2, - 5, OR 1, / 6, >= 4, <> 4, + 5}
-clj꞉interprete.core꞉> 
-{= 4, < 4, MID$ 8, <= 4, * 6, NOT 3, > 4, -u 7, AND 2, - 5, OR 1, / 6, >= 4, <> 4, + 5}
-clj꞉interprete.core꞉> 
-1.0
-clj꞉interprete.core꞉> 
-1.0
-clj꞉interprete.core꞉> 
-1.5
-clj꞉interprete.core꞉> 
+; nREPL Connection was closed

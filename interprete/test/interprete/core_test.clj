@@ -7,6 +7,11 @@
 
 (deftest palabra-reservada?-test
   (testing "palabra-reservada?"
+    (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'ENV)))
+    (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'LOAD)))
+    (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'SAVE)))
+    (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'RUN)))
+    (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'EXIT)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'STR$)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'END)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'LOG)))
@@ -16,7 +21,6 @@
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'PRINT)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'LET)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'READ)))
-    (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? '?)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'NEW)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'RESTORE)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'LEN)))
@@ -39,6 +43,8 @@
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'INT)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'DATA)))
     (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'FOR)))
+    (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'AND)))
+    (clojure.test/is (clojure.core/= true (interprete.core/palabra-reservada? 'OR)))
     (clojure.test/is (clojure.core/= false (interprete.core/palabra-reservada? 'SPACE)))))
 
 (deftest operador?-tests
@@ -65,19 +71,22 @@
   (testing "variable-float?"
     (clojure.test/is (clojure.core/= true (variable-float? 'X)))
     (clojure.test/is (clojure.core/= false (variable-float? 'X%)))
-    (clojure.test/is (clojure.core/= false (variable-float? 'X$)))))
+    (clojure.test/is (clojure.core/= false (variable-float? 'X$)))
+    (clojure.test/is (clojure.core/= true (variable-float? 'X1)))))
 
 (deftest variable-integer?-tests
   (testing "variable-integer?"
     (clojure.test/is (clojure.core/= true (variable-integer? 'X%)))
     (clojure.test/is (clojure.core/= false (variable-integer? 'X)))
-    (clojure.test/is (clojure.core/= false (variable-integer? 'X$)))))
+    (clojure.test/is (clojure.core/= false (variable-integer? 'X$)))
+    (clojure.test/is (clojure.core/= false (variable-integer? 'X1)))))
 
 (deftest variable-string?-tests
   (testing "variable-string?"
     (clojure.test/is (clojure.core/= true (variable-string? 'X$)))
     (clojure.test/is (clojure.core/= false (variable-string? 'X)))
-    (clojure.test/is (clojure.core/= false (variable-string? 'X%)))))
+    (clojure.test/is (clojure.core/= false (variable-string? 'X%)))
+    (clojure.test/is (clojure.core/= false (variable-string? 'X1)))))
 
 (deftest precedencia-tests
   (testing "precedencia"
@@ -103,3 +112,23 @@
     (clojure.test/is (clojure.core/= 1.5 (eliminar-cero-decimal 1.50)))
     (clojure.test/is (clojure.core/= 1 (eliminar-cero-decimal 1.0)))
     (clojure.test/is (clojure.core/= 'A (eliminar-cero-decimal 'A)))))
+
+(deftest eliminar-cero-entero-tests
+  (testing "eliminar-cero-entero"
+    (clojure.test/is (clojure.core/= nil (eliminar-cero-entero nil)))
+    (clojure.test/is (clojure.core/= "A" (eliminar-cero-entero 'A)))
+    (clojure.test/is (clojure.core/= " 0" (eliminar-cero-entero 0)))
+    (clojure.test/is (clojure.core/= " 1.5" (eliminar-cero-entero 1.5)))
+    (clojure.test/is (clojure.core/= " 1" (eliminar-cero-entero 1)))
+    (clojure.test/is (clojure.core/= "-1" (eliminar-cero-entero -1)))
+    (clojure.test/is (clojure.core/= "-1.5" (eliminar-cero-entero -1.5)))
+    (clojure.test/is (clojure.core/= " .5" (eliminar-cero-entero 0.5)))
+    (clojure.test/is (clojure.core/= "-.5" (eliminar-cero-entero -0.5)))))
+
+(deftest aridad-tests
+  (testing "aridad"
+    (clojure.test/is (clojure.core/= 0 (aridad 'THEN)))
+    (clojure.test/is (clojure.core/= 1 (aridad 'SIN)))
+    (clojure.test/is (clojure.core/= 2 (aridad '*)))
+    (clojure.test/is (clojure.core/= 2 (aridad 'MID$)))
+    (clojure.test/is (clojure.core/= 3 (aridad 'MID3$)))))
