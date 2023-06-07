@@ -30,7 +30,7 @@
 (declare anular-invalidos)                ; IMPLEMENTAR - hecho
 (declare cargar-linea)                    ; IMPLEMENTAR - hecho
 (declare expandir-nexts)                  ; IMPLEMENTAR
-(declare dar-error)                       ; IMPLEMENTAR
+(declare dar-error)                       ; IMPLEMENTAR - hecho
 (declare variable-float?)                 ; IMPLEMENTAR - hecho
 (declare variable-integer?)               ; IMPLEMENTAR - hecho
 (declare variable-string?)                ; IMPLEMENTAR - hecho
@@ -46,7 +46,9 @@
 (declare eliminar-cero-decimal)           ; IMPLEMENTAR - hecho
 (declare eliminar-cero-entero)            ; IMPLEMENTAR - hecho
 
+;; funciones auxiliares
 (declare nombre-variable-valido?)
+(declare generar-msg-error)
 
 (defn -main
   [& args]
@@ -704,6 +706,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn expandir-nexts [n])
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; genera un mensage de error usado por dar-error
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn generar-msg-error [cod prog-ptrs]
+  (let [main-msg (if (string? cod) cod (buscar-mensaje cod)),
+        location (if (number? (first prog-ptrs)) (str " IN " (first prog-ptrs)) "")]
+    (str main-msg location)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; dar-error: recibe un error (codigo o mensaje) y el puntero de 
 ; programa, muestra el error correspondiente {'OR 1, 'AND 2, '* 6, '-u 7, 'MID$ 8}y retorna nil, por
@@ -721,7 +731,8 @@
 ;
 ; ?ERROR DISK FULL IN 100nil
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn dar-error [cod prog-ptrs])
+(defn dar-error [cod prog-ptrs] 
+  (print (generar-msg-error cod prog-ptrs)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Verifica que el argumento sea un nombre de variale valido

@@ -85,3 +85,47 @@ clj꞉interprete.core꞉> 
 clj꞉interprete.core꞉> 
 ()
 clj꞉interprete.core꞉> 
+#function[interprete.core/dar-error]
+clj꞉interprete.core꞉> 
+#'interprete.core/dar-error
+clj꞉interprete.core꞉> 
+"?SYNTAX  ERROR"
+nil
+clj꞉interprete.core꞉> 
+"?SYNTAX  ERROR"
+nil
+clj꞉interprete.core꞉> 
+(dar-error 16 [:ejecucion-inmediata 4]
+           )
+"?SYNTAX  ERROR"
+nil
+clj꞉interprete.core꞉> 
+; Syntax error compiling at (core.clj:728:5).
+; Unable to resolve symbol: printn in this context
+clj꞉interprete.core꞉> 
+#'interprete.core/dar-error
+clj꞉interprete.core꞉>
+; Syntax error (ClassNotFoundException) compiling at (output.calva-repl:1:7853).
+; clj꞉interprete.core꞉>
+clj꞉interprete.core꞉> 
+?SYNTAX  ERRORnil
+clj꞉interprete.core꞉> 
+clj꞉interprete.core꞉> 
+(dar-error 16 [:ejecucion-inmediata 4])
+?SYNTAX  ERRORnil
+clj꞉interprete.core꞉> 
+#'interprete.core/generar-msg-error
+clj꞉interprete.core꞉> 
+#'interprete.core/dar-error
+clj꞉interprete.core꞉> 
+?SYNTAX  ERRORnil
+clj꞉interprete.core꞉> 
+(dar-error 16 [:ejecucion-inmediata 4])
+?SYNTAX  ERRORnil
+clj꞉interprete.core꞉> 
+#'interprete.core/dar-error
+clj꞉interprete.core꞉> 
+#'interprete.core/generar-msg-error
+clj꞉interprete.core꞉> 
+"?ERROR DISK FULL IN 100"
+clj꞉interprete.core꞉> 

@@ -156,3 +156,10 @@
            (cargar-linea '(15 (X = X + 1)) ['((10 (PRINT X)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))
     (is (= ['((10 (PRINT X)) (15 (X = X - 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
            (cargar-linea '(15 (X = X - 1)) ['((10 (PRINT X)) (15 (X = X + 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
+
+(deftest generar-msg-error-tests
+  (testing "generar-msg-error"
+    (is (= "?SYNTAX  ERROR" (generar-msg-error 16 [:ejecucion-inmediata 4])))
+    (is (= "?ERROR DISK FULL" (generar-msg-error "?ERROR DISK FULL" [:ejecucion-inmediata 4])))
+    (is (= "?SYNTAX  ERROR IN 100" (generar-msg-error 16 [100 3])))
+    (is (= "?ERROR DISK FULL IN 100" (generar-msg-error "?ERROR DISK FULL" [100 3])))))
