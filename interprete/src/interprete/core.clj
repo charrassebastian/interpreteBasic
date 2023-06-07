@@ -704,7 +704,15 @@
 ; user=> (expandir-nexts n)
 ; ((PRINT 1) (NEXT A) (NEXT B))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn expandir-nexts [n])
+(defn expandir-nexts 
+  ([n] (expandir-nexts () n))
+  ([acum pendientes]
+   (cond
+     (= 0 (count pendientes)) (reverse acum)
+     (= 'NEXT (ffirst pendientes)) (if (< 3 (count (first pendientes)))
+                                     (expandir-nexts (conj acum (take 2 (first pendientes))) (conj (rest pendientes) (conj (rest (rest (rest (first pendientes)))) 'NEXT)))
+                                     (expandir-nexts (conj acum (first pendientes)) (rest pendientes)))
+     :else (expandir-nexts (conj acum (first pendientes)) (rest pendientes)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; genera un mensage de error usado por dar-error

@@ -163,3 +163,10 @@
     (is (= "?ERROR DISK FULL" (generar-msg-error "?ERROR DISK FULL" [:ejecucion-inmediata 4])))
     (is (= "?SYNTAX  ERROR IN 100" (generar-msg-error 16 [100 3])))
     (is (= "?ERROR DISK FULL IN 100" (generar-msg-error "?ERROR DISK FULL" [100 3])))))
+
+(deftest expandir-nexts-tests
+  (testing "expandir-nexts"
+    (let [n '((PRINT X) (NEXT A) (PRINT Y))]
+      (is (= '((PRINT X) (NEXT A) (PRINT Y)) (expandir-nexts n))))
+    (let [n (list '(PRINT 1) (list 'NEXT 'A (symbol ",") 'B))]
+      (is (= '((PRINT 1) (NEXT A) (NEXT B)) (expandir-nexts n))))))
