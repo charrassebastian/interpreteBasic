@@ -132,3 +132,12 @@
     (clojure.test/is (clojure.core/= 2 (aridad '*)))
     (clojure.test/is (clojure.core/= 2 (aridad 'MID$)))
     (clojure.test/is (clojure.core/= 3 (aridad 'MID3$)))))
+
+(deftest nombre-variable-valido?-tests
+  (testing "nombre-variable-valido?"
+    (is (= true (nombre-variable-valido? "X")))
+    (is (= true (nombre-variable-valido? "X%")))
+    (is (= true (nombre-variable-valido? "X$")))
+    (is (= true (nombre-variable-valido? "X1")))
+    (is (= false (nombre-variable-valido? "X!")))
+    (is (= false (nombre-variable-valido? "X!A")))))

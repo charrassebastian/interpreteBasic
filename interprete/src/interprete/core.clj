@@ -46,7 +46,7 @@
 (declare eliminar-cero-decimal)           ; IMPLEMENTAR - hecho
 (declare eliminar-cero-entero)            ; IMPLEMENTAR - hecho
 
-(declare todas-letras?)
+(declare nombre-variable-valido?)
 
 (defn -main
   [& args]
@@ -713,11 +713,18 @@
 (defn dar-error [cod prog-ptrs])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Verifica que todos los caracteres del argumento sean letras 
-; mayusculas
+; Verifica que el argumento sea un nombre de variale valido
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn nombre-variable-valido? [v]
-  (= (count v) (count (first (re-seq #"[A-Z][A-Z0-9]*" v)))))
+  (if (= 1 (count v)) 
+    (Character/isUpperCase (first v))
+    (and (= (dec (count v)) (count (first (re-seq #"[A-Z][A-Z0-9]*" (apply str (butlast v))))))
+         (or (Character/isUpperCase (last v))
+             (Character/isDigit (last v))
+             (= \% (last v))
+             (= \$ (last v))))))
+
+(nombre-variable-valido? "X!")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-float?: predicado para determinar si un identificador
@@ -731,9 +738,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn variable-float? [x]
   (let [v (name x)]
-    (and (not= (last v) \$) (not= (last v) \%) (nombre-variable-valido? v))))
-
-
+    (and (not= \% (last v)) (not= \$ (last v))(nombre-variable-valido? v))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-integer?: predicado para determinar si un identificador
@@ -747,7 +752,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn variable-integer? [x]
   (let [v (name x)]
-    (and (= (last v) \%) (nombre-variable-valido? (apply str (butlast v))))))
+    (and (= (last v) \%) (nombre-variable-valido? v))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-string?: predicado para determinar si un identificador
@@ -761,7 +766,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn variable-string? [x]
   (let [v (name x)]
-    (and (= (last v) \$) (nombre-variable-valido? (apply str (butlast v))))))
+    (and (= (last v) \$) (nombre-variable-valido? v))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; contar-sentencias: recibe un numero de linea y un ambiente y
@@ -922,32 +927,32 @@
                   :ENV 0,
                   :ASC 0,
                   :CHR$ 0,
-                  :<= 0,
+                  :<= 2,
                   :THEN 0,
                   :* 2,
-                  :GOTO 0,
+                  :GOTO 1,
                   :ON 0,
-                  :> 0,
+                  :> 2,
                   :STEP 0,
-                  :AND 0,
+                  :AND 2,
                   :EXP 0,
                   :GOSUB 0,
                   :RUN 0,
-                  :- 0,
+                  :- 2,
                   :CLEAR 0,
-                  :LEN 0,
-                  :OR 0,
+                  :LEN 1,
+                  :OR 2,
                   :RESTORE 0,
                   :NEW 0,
-                  :/ 0,
-                  :>= 0,
+                  :/ 2,
+                  :>= 2,
                   :READ 0,
                   :LET 0,
-                  :<> 0,
+                  :<> 2,
                   :ATN 0,
                   :PRINT 0,
-                  :IF 0,
-                  :+ 0,
+                  :IF 1,
+                  :+ 2,
                   :RETURN 0,
                   :EXIT 0,
                   :LOG 0,
@@ -957,9 +962,9 @@
                   :DATA 0,
                   :INT 0,
                   :FOR 0,
-                  := 0,
+                  := 2,
                   :LOAD 0,
-                  :< 0,
+                  :< 2,
                   :SIN 1,
                   :LIST 0,
                   :MID$ 2,
