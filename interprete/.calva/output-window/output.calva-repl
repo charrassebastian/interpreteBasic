@@ -53,3 +53,35 @@ clj꞉interprete.core꞉> 
 clj꞉interprete.core꞉> 
 false
 clj꞉interprete.core꞉> 
+#'interprete.core/cargar-linea
+clj꞉interprete.core꞉> 
+#'interprete.core/cargar-linea
+clj꞉interprete.core꞉> 
+[(10 (PRINT X)) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+clj꞉interprete.core꞉> 
+#'interprete.core/cargar-linea
+clj꞉interprete.core꞉> 
+[((10 (PRINT X))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+clj꞉interprete.core꞉> 
+#'interprete.core/cargar-linea
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/cargar-linea
+clj꞉interprete.core꞉> 
+[((10 (PRINT X)) (15 (PRINT X))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+clj꞉interprete.core꞉> 
+()
+clj꞉interprete.core꞉> 
+#'interprete.core/cargar-linea
+clj꞉interprete.core꞉> 
+[((15 (X = X - 1))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/cargar-linea
+clj꞉interprete.core꞉> 
+[((15 (X = X - 1))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+clj꞉interprete.core꞉> 
+()
+clj꞉interprete.core꞉> 

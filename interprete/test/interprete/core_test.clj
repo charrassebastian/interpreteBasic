@@ -141,3 +141,18 @@
     (is (= true (nombre-variable-valido? "X1")))
     (is (= false (nombre-variable-valido? "X!")))
     (is (= false (nombre-variable-valido? "X!A")))))
+
+(deftest cargar-linea-tests
+  (testing "cargar-linea"
+    (is (= ['((10 (PRINT X))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+           (cargar-linea '(10 (PRINT X)) [() [:ejecucion-inmediata 0] [] [] [] 0 {}])))
+    (is (= ['((10 (PRINT X)) (15 (PRINT X))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+           (cargar-linea '(10 (PRINT X)) ['((15 (PRINT X))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))
+    (is (= ['((15 (X = X - 1))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+           (cargar-linea '(15 (X = X - 1)) ['((15 (X = X + 1))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))
+    (is (= ['((10 (PRINT X)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+           (cargar-linea '(20 (X = 100)) ['((10 (PRINT X))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))
+    (is (= ['((10 (PRINT X)) (15 (X = X + 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+           (cargar-linea '(15 (X = X + 1)) ['((10 (PRINT X)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))
+    (is (= ['((10 (PRINT X)) (15 (X = X - 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+           (cargar-linea '(15 (X = X - 1)) ['((10 (PRINT X)) (15 (X = X + 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))))

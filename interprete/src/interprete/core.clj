@@ -28,7 +28,7 @@
 (declare palabra-reservada?)              ; IMPLEMENTAR - hecho
 (declare operador?)                       ; IMPLEMENTAR - hecho
 (declare anular-invalidos)                ; IMPLEMENTAR - hecho
-(declare cargar-linea)                    ; IMPLEMENTAR
+(declare cargar-linea)                    ; IMPLEMENTAR - hecho
 (declare expandir-nexts)                  ; IMPLEMENTAR
 (declare dar-error)                       ; IMPLEMENTAR
 (declare variable-float?)                 ; IMPLEMENTAR - hecho
@@ -678,7 +678,18 @@
 ; user=> (cargar-linea '(15 (X = X - 1)) ['((10 (PRINT X)) (15 (X = X + 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}])
 ; [((10 (PRINT X)) (15 (X = X - 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn cargar-linea [linea amb])
+(defn cargar-linea
+  ([linea amb] (cargar-linea linea amb () (first amb)))
+  ([linea amb vistas pendientes]
+   (let [primera-pendiente (first pendientes),
+         numero-primera-linea-pendiente (first primera-pendiente),
+         numero-linea-nueva (first linea)]
+     (cond
+       (or (= 0 (count pendientes)) (< numero-linea-nueva numero-primera-linea-pendiente)) (assoc amb 0 (concat vistas (conj pendientes linea)))
+       (= numero-linea-nueva numero-primera-linea-pendiente) (assoc amb 0 (concat vistas (conj (rest pendientes) linea)))
+       :else (let [vistas (conj vistas primera-pendiente),
+                   pendientes (rest pendientes)]
+               (cargar-linea linea amb vistas pendientes))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; expandir-nexts: recibe una lista de sentencias y la devuelve con
@@ -716,7 +727,7 @@
 ; Verifica que el argumento sea un nombre de variale valido
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn nombre-variable-valido? [v]
-  (if (= 1 (count v)) 
+  (if (= 1 (count v))
     (Character/isUpperCase (first v))
     (and (= (dec (count v)) (count (first (re-seq #"[A-Z][A-Z0-9]*" (apply str (butlast v))))))
          (or (Character/isUpperCase (last v))
@@ -738,7 +749,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn variable-float? [x]
   (let [v (name x)]
-    (and (not= \% (last v)) (not= \$ (last v))(nombre-variable-valido? v))))
+    (and (not= \% (last v)) (not= \$ (last v)) (nombre-variable-valido? v))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-integer?: predicado para determinar si un identificador
@@ -852,6 +863,14 @@
 ; user=> (ejecutar-asignacion '(X$ = X$ + " MUNDO") ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X$ "HOLA"}])
 ; [((10 (PRINT X))) [10 1] [] [] [] 0 {X$ "HOLA MUNDO"}]
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; usa la forma identificador = <expresion>
+;; por lo que deberia poder implemntar una asignacion del tipo 
+;; identificador = <numero> sin mayores complicaciones
+;; sin embargo un X = X + 1 ya seria mas complejo
+;; como implementar este segundo caso, haciendo caso a los
+;; ordenes de precedencia y mostrando los errores apropiados?
+
 (defn ejecutar-asignacion [sentencia amb])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
