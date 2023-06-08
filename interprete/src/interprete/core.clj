@@ -34,21 +34,22 @@
 (declare variable-float?)                 ; IMPLEMENTAR - hecho
 (declare variable-integer?)               ; IMPLEMENTAR - hecho
 (declare variable-string?)                ; IMPLEMENTAR - hecho
-(declare contar-sentencias)               ; IMPLEMENTAR
+(declare contar-sentencias)               ; IMPLEMENTAR - hecho
 (declare buscar-lineas-restantes)         ; IMPLEMENTAR
 (declare continuar-linea)                 ; IMPLEMENTAR
 (declare extraer-data)                    ; IMPLEMENTAR
 (declare ejecutar-asignacion)             ; IMPLEMENTAR
-(declare preprocesar-expresion)           ; IMPLEMENTAR
+(declare preprocesar-expresion)           ; IMPLEMENTAR - hecho
 (declare desambiguar)                     ; IMPLEMENTAR - hecho
 (declare precedencia)                     ; IMPLEMENTAR - hecho
-(declare aridad)                          ; IMPLEMENTAR - en proceso
+(declare aridad)                          ; IMPLEMENTAR - hecho
 (declare eliminar-cero-decimal)           ; IMPLEMENTAR - hecho
 (declare eliminar-cero-entero)            ; IMPLEMENTAR - hecho
 
 ;; funciones auxiliares
 (declare nombre-variable-valido?)
 (declare generar-msg-error)
+(declare contar-sentencias-aux)
 
 (defn -main
   [& args]
@@ -715,7 +716,7 @@
      :else (expandir-nexts (conj acum (first pendientes)) (rest pendientes)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; genera un mensage de error usado por dar-error
+; generar-msg-error genera un mensage de error usadopor dar-error
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn generar-msg-error [cod prog-ptrs]
   (let [main-msg (if (string? cod) cod (buscar-mensaje cod)),
@@ -743,7 +744,8 @@
   (print (generar-msg-error cod prog-ptrs)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Verifica que el argumento sea un nombre de variale valido
+; nombre-variable-valido?: Verifica que el argumento sea un 
+; nombre de variale valido
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn nombre-variable-valido? [v]
   (if (= 1 (count v))
@@ -809,7 +811,15 @@
 ; user=> (contar-sentencias 20 [(list '(10 (PRINT X) (PRINT Y)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [10 1] [] [] [] 0 {}])
 ; 2
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn contar-sentencias [nro-linea amb])
+
+(defn contar-sentencias-aux [nro-linea pendientes]
+  (cond
+    (= 0 (count pendientes)) 0
+    (= nro-linea (ffirst pendientes)) (count (expandir-nexts (rest (first pendientes))))
+    :else (recur nro-linea (rest pendientes))))
+
+(defn contar-sentencias [nro-linea amb]
+  (contar-sentencias-aux nro-linea (first amb)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; buscar-lineas-restantes: recibe un ambiente y retorna la
@@ -845,6 +855,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn buscar-lineas-restantes [amb])
 
+; primero hacer drop wihle numero de linea sea distinto de la actual
+; luego hacer un take last del rest de la primera linea no eliminada (o sea la actual)
+; devolver el resultado de ese take last junto con el rest de lo no eliminado
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; continuar-linea: implementa la sentencia RETURN, retornando una
 ; dupla (un vector) con un resultado (usado luego por
@@ -858,6 +872,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn continuar-linea [amb])
 
+['((10 (PRINT X)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 3] [] [] [] 0 {}]
+; no tiene donde volver, por lo que genera un error: ?RETURN WITHOUT GOSUB ERROR IN 20 y devuelve [nil [((10 (PRINT X)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 3] [] [] [] 0 {}]]
+
+['((10 (PRINT X)) (15 (GOSUB 100) (X = X + 1)) (20 (NEXT I , J))) [20 3] [[15 2]] [] [] 0 {}]
+[:omitir-restante ['((10 (PRINT X)) (15 (GOSUB 100) (X = X + 1)) (20 (NEXT I , J))) [15 1] [] [] [] 0 {}]]
+;puede ser en la misma linea o en la posterior (depende de si quedan mas de 0 sentencias o no)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; extraer-data: recibe la representación intermedia de un programa
 ; y retorna una lista con todos los valores embebidos en las
@@ -868,6 +889,11 @@
 ; ("HOLA" "MUNDO" 10 20)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn extraer-data [prg])
+(list '(10 (PRINT X) (REM ESTE NO) (DATA 30)) '(20 (DATA HOLA)) (list 100 (list 'DATA 'MUNDO (symbol ",") 10 (symbol ",") 20)))
+
+'((10 (PRINT X) (REM ESTE NO) (DATA 30)) (20 (DATA HOLA)) (100 (DATA MUNDO , 10 , 20)))
+; el primer data es parte de un comentario 
+; solo retorno los datos de las sentencias data no comentadas
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; ejecutar-asignacion: recibe una asignacion y un ambiente, y
@@ -890,6 +916,8 @@
 ;; como implementar este segundo caso, haciendo caso a los
 ;; ordenes de precedencia y mostrando los errores apropiados?
 
+; primero hacer patio de maniobras de Dijkstra y luego usar calcular-rpn
+
 (defn ejecutar-asignacion [sentencia amb])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -901,7 +929,21 @@
 ; user=> (preprocesar-expresion '(X + . / Y% * Z) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5 Y% 2}])
 ; (5 + 0 / 2 * 0)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn preprocesar-expresion [expr amb])
+(defn preprocesar-expresion [expr amb]
+  (map 
+   (fn [e] 
+     (cond
+       (= '. e) 0
+       (and (nombre-variable-valido? (name e)) (contains? (last amb) e)) (get (last amb) e)
+       (nombre-variable-valido? (name e)) (cond
+                                     (variable-float? e) 0
+                                     (variable-integer? e) 0
+                                     (variable-string? e) "")
+       :else e))
+   expr))
+
+; segundo hacer que reemplace por cadena vacia las variables 
+; de tipo cadena, por 0 los numeros enteros y por 0.0 a los numeros float
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; desambiguar: recibe un expresion y la retorna sin los + unarios,
@@ -967,56 +1009,31 @@
 ; 3
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn aridad [token]
-  (let [aridades {:INPUT 9,
-                  :NEXT 0,
-                  :TO 1,
-                  :ENV 0,
-                  :ASC 1,
+  (let [aridades {:ASC 1,
                   :CHR$ 1,
                   :<= 2,
-                  :THEN 0,
                   :* 2,
-                  :GOTO 1,
-                  :ON 1,
                   :> 2,
-                  :STEP 1,
                   :AND 2,
                   :EXP 1,
-                  :GOSUB 1,
-                  :RUN 0,
                   :- 2,
-                  :CLEAR 0,
                   :LEN 1,
                   :OR 2,
-                  :RESTORE 0,
-                  :NEW 0,
                   :/ 2,
                   :>= 2,
-                  :READ 0,
-                  :LET 1,
                   :<> 2,
                   :ATN 1,
-                  :PRINT 1,
-                  :IF 1,
                   :+ 2,
-                  :RETURN 0,
-                  :EXIT 0,
                   :LOG 1,
-                  :SAVE 1,
-                  :END 0,
                   :STR$ 1,
-                  :DATA 1,
                   :INT 1,
-                  :FOR 1,
                   := 2,
-                  :LOAD 1,
                   :< 2,
                   :SIN 1,
-                  :LIST 0,
                   :MID$ 2,
-                  :MID3$ 3,
-                  :REM 1}]
-    ((keyword (name token)) aridades)))
+                  :MID3$ 3},
+        valor ((keyword (name token)) aridades)]
+      (if (nil? valor) 0 valor)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; eliminar-cero-decimal: recibe un numero y lo retorna sin ceros

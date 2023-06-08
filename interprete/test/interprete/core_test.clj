@@ -128,10 +128,28 @@
 (deftest aridad-tests
   (testing "aridad"
     (is (= 0 (aridad 'THEN)))
+    (is (= 1 (aridad 'ATN)))
+    (is (= 1 (aridad 'INT)))
     (is (= 1 (aridad 'SIN)))
-    (is (= 2 (aridad '*)))
+    (is (= 1 (aridad 'EXP)))
+    (is (= 1 (aridad 'LOG)))
     (is (= 2 (aridad 'MID$)))
-    (is (= 3 (aridad 'MID3$)))))
+    (is (= 3 (aridad 'MID3$)))
+    (is (= 1 (aridad 'ASC)))
+    (is (= 1 (aridad 'CHR$)))
+    (is (= 1 (aridad 'STR$)))
+    (is (= 2 (aridad '+)))
+    (is (= 2 (aridad '-)))
+    (is (= 2 (aridad '*)))
+    (is (= 2 (aridad '/)))
+    (is (= 2 (aridad '=)))
+    (is (= 2 (aridad '<>)))
+    (is (= 2 (aridad '<)))
+    (is (= 2 (aridad '<=)))
+    (is (= 2 (aridad '>)))
+    (is (= 2 (aridad '>=)))
+    (is (= 2 (aridad 'AND)))
+    (is (= 2 (aridad 'OR)))))
 
 (deftest nombre-variable-valido?-tests
   (testing "nombre-variable-valido?"
@@ -177,3 +195,14 @@
     (is (= (list 'MID$ (symbol "(") 1 (symbol ",") 2 (symbol ")")) (desambiguar (list 'MID$ (symbol "(") 1 (symbol ",") 2 (symbol ")")))))
     (is (= (list 'MID3$ (symbol "(") 1 (symbol ",") 2 (symbol ",") 3 (symbol ")")) (desambiguar (list 'MID$ (symbol "(") 1 (symbol ",") 2 (symbol ",") 3 (symbol ")")))))
     (is (= (list 'MID3$ (symbol "(") 1 (symbol ",") '-u 2 '+ 'K (symbol ",") 3 (symbol ")")) (desambiguar (list 'MID$ (symbol "(") 1 (symbol ",") '- 2 '+ 'K (symbol ",") 3 (symbol ")")))))))
+
+(deftest contar-sentencias-tests
+  (testing "contar-sentencias"
+    (is (= 2 (contar-sentencias 10 [(list '(10 (PRINT X) (PRINT Y)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [10 1] [] [] [] 0 {}])))
+    (is (= 1 (contar-sentencias 15 [(list '(10 (PRINT X) (PRINT Y)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [10 1] [] [] [] 0 {}])))
+    (is (= 2 (contar-sentencias 20 [(list '(10 (PRINT X) (PRINT Y)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [10 1] [] [] [] 0 {}])))))
+
+(deftest preprocesar-expresion-tests
+  (testing "preprocesar-expresion"
+    (is (= '("HOLA" + " MUNDO" + "") (preprocesar-expresion '(X$ + " MUNDO" + Z$) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X$ "HOLA"}])))
+    (is (= '(5 + 0 / 2 * 0) (preprocesar-expresion '(X + . / Y% * Z) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5 Y% 2}])))))
