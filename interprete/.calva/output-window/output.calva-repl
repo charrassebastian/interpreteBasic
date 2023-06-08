@@ -30,34 +30,34 @@ clj꞉interprete.core꞉> 
 clj꞉interprete.core-test꞉> 
 false
 clj꞉interprete.core꞉> 
-#'interprete.core/expandir-nexts
+#'expandir-nexts
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-#'interprete.core/expandir-nexts
+#'expandir-nexts
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-#'interprete.core/expandir-nexts
+#'expandir-nexts
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-#'interprete.core/expandir-nexts
+#'expandir-nexts
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-#'interprete.core/expandir-nexts
+#'expandir-nexts
 clj꞉interprete.core꞉> 
 true
 clj꞉interprete.core꞉> 
-#'interprete.core/expandir-nexts
+#'expandir-nexts
 clj꞉interprete.core꞉> 
 ; Syntax error compiling at (core.clj:721:7).
 ; Unable to resolve symbol: is in this context
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-#'interprete.core/expandir-nexts
+#'expandir-nexts
 clj꞉interprete.core꞉> 
 true
 clj꞉interprete.core꞉> 
@@ -67,3 +67,54 @@ clj꞉interprete.core꞉> 
 clj꞉interprete.core꞉> 
 ((PRINT 1) (NEXT A) (NEXT B))
 clj꞉interprete.core꞉> 
+#'desambiguar
+clj꞉interprete.core꞉> 
+#'desambiguar
+clj꞉interprete.core꞉> 
+(-u 2 * (-u 3 + 5 - (2 / 7)))
+clj꞉interprete.core-test꞉> 
+#'desambiguar
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+; Syntax error compiling at (core_test.clj:190:1).
+; Unable to resolve symbol: -u in this context
+clj꞉interprete.core-test꞉> 
+(-u 2 * (-u 3 + 5 - (2 / 7)))
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:186:47).
+; Unable to resolve symbol: desambiguar in this context
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/desambiguar
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:195:1).
+; Unable to resolve symbol: deftest in this context
+clj꞉interprete.core-test꞉> 
+(-u 2 * ( -u 3 + 5 - ( 2 / 7 ) ))
+clj꞉interprete.core-test꞉> 
+(-u 2 * (-u 3 + 5 - (2 / 7)))
+clj꞉interprete.core-test꞉> 
+false
+clj꞉interprete.core-test꞉> 
+(MID$ (1 2))
+clj꞉interprete.core-test꞉> 
+(MID$ (1 (quote 2)))
+clj꞉interprete.core-test꞉> 
+true
+clj꞉interprete.core-test꞉> 
+true
+clj꞉interprete.core-test꞉> 
+false
+clj꞉interprete.core-test꞉> 
+true
+clj꞉interprete.core-test꞉> 
+false
+clj꞉interprete.core-test꞉> 
+false
+clj꞉interprete.core-test꞉> 
+(-u 2 * ( -u 3 + 5 - ( + 2 / 7 ) ))
+clj꞉interprete.core-test꞉> 
+true
+clj꞉interprete.core-test꞉> 
+true
+clj꞉interprete.core-test꞉> 

@@ -29,7 +29,7 @@
 (declare operador?)                       ; IMPLEMENTAR - hecho
 (declare anular-invalidos)                ; IMPLEMENTAR - hecho
 (declare cargar-linea)                    ; IMPLEMENTAR - hecho
-(declare expandir-nexts)                  ; IMPLEMENTAR
+(declare expandir-nexts)                  ; IMPLEMENTAR - hecho
 (declare dar-error)                       ; IMPLEMENTAR - hecho
 (declare variable-float?)                 ; IMPLEMENTAR - hecho
 (declare variable-integer?)               ; IMPLEMENTAR - hecho
@@ -40,7 +40,7 @@
 (declare extraer-data)                    ; IMPLEMENTAR
 (declare ejecutar-asignacion)             ; IMPLEMENTAR
 (declare preprocesar-expresion)           ; IMPLEMENTAR
-(declare desambiguar)                     ; IMPLEMENTAR
+(declare desambiguar)                     ; IMPLEMENTAR - hecho
 (declare precedencia)                     ; IMPLEMENTAR - hecho
 (declare aridad)                          ; IMPLEMENTAR - en proceso
 (declare eliminar-cero-decimal)           ; IMPLEMENTAR - hecho
@@ -916,7 +916,16 @@
 ; user=> (desambiguar (list 'MID$ (symbol "(") 1 (symbol ",") '- 2 '+ 'K (symbol ",") 3 (symbol ")")))
 ; (MID3$ ( 1 , -u 2 + K , 3 ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn desambiguar [expr])
+(defn desambiguar
+  ([expr] (desambiguar () expr false))
+  ([acum pendiente anterior-fue-operando?]
+   (cond
+     (= 0 (count pendiente)) (reverse acum)
+     (number? (first pendiente)) (desambiguar (conj acum (first pendiente)) (rest pendiente) true)
+     (and (= '- (first pendiente)) (not anterior-fue-operando?)) (desambiguar (conj acum '-u) (rest pendiente) false)
+     (and (= '+ (first pendiente)) (not anterior-fue-operando?)) (desambiguar acum (rest pendiente) false)
+     (and (= 'MID$ (first pendiente)) (= 2 (count (filter #(= (symbol ",") %) (rest pendiente))))) (desambiguar (conj acum 'MID3$) (rest pendiente) false)
+     :else (desambiguar (conj acum (first pendiente)) (rest pendiente) false))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; precedencia: recibe un token y retorna el valor de su
