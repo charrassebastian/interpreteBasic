@@ -36,7 +36,7 @@
 (declare variable-string?)                ; IMPLEMENTAR - hecho
 (declare contar-sentencias)               ; IMPLEMENTAR - hecho
 (declare buscar-lineas-restantes)         ; IMPLEMENTAR - hecho
-(declare continuar-linea)                 ; IMPLEMENTAR
+(declare continuar-linea)                 ; IMPLEMENTAR - implementando
 (declare extraer-data)                    ; IMPLEMENTAR
 (declare ejecutar-asignacion)             ; IMPLEMENTAR
 (declare preprocesar-expresion)           ; IMPLEMENTAR - hecho
@@ -757,8 +757,6 @@
              (= \% (last v))
              (= \$ (last v))))))
 
-(nombre-variable-valido? "X!")
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-float?: predicado para determinar si un identificador
 ; es una variable de punto flotante, por ejemplo:
@@ -940,9 +938,14 @@
 ;; como implementar este segundo caso, haciendo caso a los
 ;; ordenes de precedencia y mostrando los errores apropiados?
 
-; primero hacer patio de maniobras de Dijkstra y luego usar calcular-rpn
 
-(defn ejecutar-asignacion [sentencia amb])
+; primero hacer patio de maniobras de Dijkstra y luego usar calcular-rpn
+; en vez de hacerlo manual creo que puedo usar calcular-expresion
+
+(defn ejecutar-asignacion [sentencia amb]
+  (assoc amb 6 (assoc (last amb) (first sentencia) (calcular-expresion (drop 2 sentencia) amb))))
+
+; (= ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5}] (ejecutar-asignacion '(X = 5) ['((10 (PRINT X))) [10 1] [] [] [] 0 {}]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; preprocesar-expresion: recibe una expresion y la retorna con
@@ -958,6 +961,7 @@
    (fn [e] 
      (cond
        (= '. e) 0
+       (number? e) e
        (and (nombre-variable-valido? (name e)) (contains? (last amb) e)) (get (last amb) e)
        (nombre-variable-valido? (name e)) (cond
                                      (variable-float? e) 0
