@@ -51,6 +51,8 @@
 (declare generar-msg-error)
 (declare contar-sentencias-aux)
 (declare expandir-solo-nexts-primera-linea)
+(declare extraer-data-sentencia)
+(declare extraer-data-linea)
 
 (defn -main
   [& args]
