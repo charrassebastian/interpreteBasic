@@ -50,6 +50,7 @@
 (declare nombre-variable-valido?)
 (declare generar-msg-error)
 (declare contar-sentencias-aux)
+(declare expandir-solo-nexts-primera-linea)
 
 (defn -main
   [& args]
@@ -822,6 +823,19 @@
   (contar-sentencias-aux nro-linea (first amb)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; expandir-solo-nexts-primera-linea: devuelve una lista con la
+; primera linea con los nexts expandidos y las demas lineas sin
+; expandir sus nexts
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn expandir-solo-nexts-primera-linea [l]
+  (if (empty? l)
+    ()
+    (let [primera-linea-expandida (conj (as-> (nfirst l) res
+                                          (expandir-nexts res))
+                                        (ffirst l))] 
+      (conj (rest l) primera-linea-expandida))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; buscar-lineas-restantes: recibe un ambiente y retorna la
 ; representacion intermedia del programa a partir del puntero de
 ; programa (que indica la linea y cuantas sentencias de la misma
@@ -853,15 +867,6 @@
 ; user=> (buscar-lineas-restantes [(list '(10 (PRINT X) (PRINT Y)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [25 0] [] [] [] 0 {}])
 ; nil
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn expandir-solo-nexts-primera-linea [l]
-  (if (empty? l)
-    ()
-    (let [primera-linea-expandida (conj (as-> (nfirst l) res
-                                          (expandir-nexts res))
-                                        (ffirst l))] 
-      (conj (rest l) primera-linea-expandida))))
-(expandir-solo-nexts-primera-linea (list '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))))
 (defn buscar-lineas-restantes 
   ([amb] (buscar-lineas-restantes (first amb) (first (fnext amb)) (second (fnext amb))))
   ([lineas nro-linea nro-sentencias-restantes]

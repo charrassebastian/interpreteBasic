@@ -358,3 +358,24 @@ clj꞉interprete.core꞉> 
 clj꞉interprete.core꞉> 
 true
 clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+; Syntax error compiling at (core.clj:838:1).
+; Unable to resolve symbol: deftest in this context
+clj꞉interprete.core꞉> 
+true
+clj꞉interprete.core꞉> 
+((10 (PRINT Y)) (20 (PRINT X) (NEXT X , Y)))
+clj꞉interprete.core꞉> 
+(10 (PRINT Y) (NEXT X) (NEXT Y))
+clj꞉interprete.core꞉> 
+(20 (PRINT X) (NEXT X , Y))
+clj꞉interprete.core꞉> 
+(20 (PRINT X) (NEXT X , Y))
+clj꞉interprete.core꞉> 
+((10 (PRINT Y) (NEXT X , Y)) (20 (PRINT X) (NEXT X , Y)))
+clj꞉interprete.core꞉> 
+(20 (PRINT X) (NEXT X , Y))
+clj꞉interprete.core꞉> 
+true
+clj꞉interprete.core꞉> 
