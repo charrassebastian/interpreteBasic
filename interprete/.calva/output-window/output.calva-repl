@@ -10,7 +10,7 @@
 ;   - See https://calva.io/connect-sequences/
 ; 
 ; Starting Jack-in Terminal: pushd /home/sebastian/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
-; Using host:port 127.0.0.1:41231 ...
+; Using host:port 127.0.0.1:42635 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -26,95 +26,335 @@ clj꞉interprete.core꞉>  ; Use `alt+enter` to evaluate
 clj꞉interprete.core꞉> 
 ; Jack-in done.
 clj꞉interprete.core꞉> 
-#'interprete.core-test/expandir-nexts
+; Syntax error compiling at (core_test.clj:252:1).
+; Unable to resolve symbol: list in this context
 clj꞉interprete.core-test꞉> 
-false
+; Syntax error compiling at (core_test.clj:1:7853).
+; Unable to resolve symbol: list in this context
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:252:1).
+; Unable to resolve symbol: list in this context
+clj꞉interprete.core-test꞉> 
+nil
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+#'interprete.core/buscar-lineas-restantes
 clj꞉interprete.core꞉> 
-#'expandir-nexts
+#'interprete.core/buscar-lineas-restantes
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-#'expandir-nexts
+#'interprete.core/buscar-lineas-restantes
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-#'expandir-nexts
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+(nil)
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+; Execution error (ArityException) at cider.nrepl.middleware.debug/apply-instrumented-maybe (debug.clj:525).
+; Wrong number of args (4) passed to: interprete.core/eval8102/buscar-lineas-restantes--8103
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-#'expandir-nexts
+#'interprete.core/buscar-lineas-restantes
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-#'expandir-nexts
+#'interprete.core/buscar-lineas-restantes
 clj꞉interprete.core꞉> 
-true
+()
 clj꞉interprete.core꞉> 
-#'expandir-nexts
+#'interprete.core/buscar-lineas-restantes
 clj꞉interprete.core꞉> 
-; Syntax error compiling at (core.clj:721:7).
-; Unable to resolve symbol: is in this context
-clj꞉interprete.core꞉> 
-QUIT
-clj꞉interprete.core꞉> 
-#'expandir-nexts
-clj꞉interprete.core꞉> 
-true
-clj꞉interprete.core꞉> 
-true
-clj꞉interprete.core꞉> 
-((PRINT X) (NEXT A) (PRINT Y))
-clj꞉interprete.core꞉> 
-((PRINT 1) (NEXT A) (NEXT B))
-clj꞉interprete.core꞉> 
-#'desambiguar
-clj꞉interprete.core꞉> 
-#'desambiguar
-clj꞉interprete.core꞉> 
-(-u 2 * (-u 3 + 5 - (2 / 7)))
-clj꞉interprete.core-test꞉> 
-#'desambiguar
+nil
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
-; Syntax error compiling at (core_test.clj:190:1).
-; Unable to resolve symbol: -u in this context
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+; Execution error (ClassCastException) at interprete.core/eval8253$buscar-lineas-restantes$fn (form-init15520190389293366087.clj:862).
+; class clojure.lang.PersistentList$EmptyList cannot be cast to class clojure.lang.IFn (clojure.lang.PersistentList$EmptyList and clojure.lang.IFn are in unnamed module of loader 'app')
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+3
+clj꞉interprete.core꞉> 
+(2 3)
+clj꞉interprete.core꞉> 
+nil
+clj꞉interprete.core꞉> 
+(3)
+clj꞉interprete.core꞉> 
+#function[clojure.core/-]
+clj꞉interprete.core꞉> 
+nil
+clj꞉interprete.core꞉> 
+-1
+clj꞉interprete.core꞉> 
+0
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+; Execution error (ClassCastException) at interprete.core/eval8320$buscar-lineas-restantes$fn (form-init15520190389293366087.clj:862).
+; class clojure.lang.PersistentList$EmptyList cannot be cast to class clojure.lang.IFn (clojure.lang.PersistentList$EmptyList and clojure.lang.IFn are in unnamed module of loader 'app')
+clj꞉interprete.core꞉> 
+(-3 -2 -1)
+clj꞉interprete.core꞉> 
+; Execution error (IllegalArgumentException) at interprete.core/eval8338$fn (form-init15520190389293366087.clj:871).
+; Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core꞉> 
+(20 (PRINT X) (NEXT K L))
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+; Execution error (IllegalArgumentException) at interprete.core/eval8352$fn (form-init15520190389293366087.clj:871).
+; Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core꞉> 
+; Execution error (IllegalArgumentException) at interprete.core/eval8358$fn (form-init15520190389293366087.clj:871).
+; Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core꞉> 
+(NEXT K L)
+clj꞉interprete.core꞉> 
+; Execution error (IllegalArgumentException) at interprete.core/eval8364$fn (form-init15520190389293366087.clj:872).
+; Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core꞉> 
+; Error printing return value (UnsupportedOperationException) at clojure.lang.RT/countFrom (RT.java:667).
+; count not supported on this type: Symbol
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+; Execution error (IllegalArgumentException) at interprete.core/eval8385 (form-init15520190389293366087.clj:871).
+; Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core꞉> 
+; java.lang.IllegalArgumentException: Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core꞉> 
+; Execution error (IllegalArgumentException) at cider.nrepl.middleware.debug/pr-short (debug.clj:188).
+; Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core꞉> 
+; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
+; Don't know how to create ISeq from: clojure.lang.Symbol
+clj꞉interprete.core꞉> 
+; Execution error (IllegalArgumentException) at interprete.core/expandir-nexts (core.clj:713).
+; Don't know how to create ISeq from: clojure.lang.Symbol
+clj꞉interprete.core꞉> 
+; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
+; Don't know how to create ISeq from: clojure.lang.Symbol
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+(PRINT X)
+clj꞉interprete.core꞉> 
+; Execution error (IllegalArgumentException) at interprete.core/expandir-nexts (form-init15520190389293366087.clj:713).
+; Don't know how to create ISeq from: clojure.lang.Symbol
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-nexts
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-nexts
+clj꞉interprete.core꞉> 
+((PRINT X))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+(20 (PRINT X) (NEXT K L))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)) (20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+nil
+clj꞉interprete.core꞉> 
+; Syntax error compiling at (core.clj:874:15).
+; Unable to resolve symbol: l in this context
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+; Syntax error compiling at (core.clj:1:7853).
+; Unable to resolve symbol: res in this context
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K L)))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K , L)))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K , L)))
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+((20))
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+; Syntax error compiling at (core.clj:874:9).
+; Unable to resolve symbol: l in this context
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K , L)))
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K) (NEXT L)))
+clj꞉interprete.core꞉> 
+((20 (PRINT X) (NEXT K) (NEXT L)))
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+; Execution error (ClassCastException) at interprete.core/buscar-lineas-restantes (form-init15520190389293366087.clj:870).
+; class java.lang.Long cannot be cast to class clojure.lang.IFn (java.lang.Long is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+; Execution error (ClassCastException) at interprete.core/buscar-lineas-restantes (form-init15520190389293366087.clj:874).
+; class java.lang.Long cannot be cast to class clojure.lang.IFn (java.lang.Long is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+; Execution error (ClassCastException) at interprete.core/buscar-lineas-restantes (form-init15520190389293366087.clj:876).
+; class java.lang.Long cannot be cast to class clojure.lang.IFn (java.lang.Long is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+()
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+()
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+()
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+; Execution error (ClassCastException) at interprete.core/buscar-lineas-restantes (form-init15520190389293366087.clj:876).
+; class java.lang.Long cannot be cast to class clojure.lang.IFn (java.lang.Long is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+()
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+; Execution error (ClassCastException) at interprete.core/eval8613$buscar-lineas-restantes (form-init15520190389293366087.clj:877).
+; class java.lang.Long cannot be cast to class clojure.lang.IFn (java.lang.Long is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+clj꞉interprete.core꞉> 
+; Syntax error compiling at (core.clj:867:3).
+; Unable to resolve symbol: lineas in this context
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+((25))
+clj꞉interprete.core꞉> 
+((20))
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+[((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 0] [] [] [] 0 {}]
 clj꞉interprete.core-test꞉> 
-(-u 2 * (-u 3 + 5 - (2 / 7)))
-clj꞉interprete.core-test꞉> 
-; Syntax error compiling at (core_test.clj:186:47).
-; Unable to resolve symbol: desambiguar in this context
-clj꞉interprete.core-test꞉> 
-#'interprete.core-test/desambiguar
-clj꞉interprete.core-test꞉> 
-; Syntax error compiling at (core_test.clj:195:1).
-; Unable to resolve symbol: deftest in this context
-clj꞉interprete.core-test꞉> 
-(-u 2 * ( -u 3 + 5 - ( 2 / 7 ) ))
-clj꞉interprete.core-test꞉> 
-(-u 2 * (-u 3 + 5 - (2 / 7)))
-clj꞉interprete.core-test꞉> 
-false
-clj꞉interprete.core-test꞉> 
-(MID$ (1 2))
-clj꞉interprete.core-test꞉> 
-(MID$ (1 (quote 2)))
-clj꞉interprete.core-test꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+((15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core꞉> 
+(15 (X = X + 1))
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+((15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/expandir-solo-nexts-primera-linea
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+((15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+(((20 (next i , j))) (15 (x = x + 1)) (20 (next i , j)))
+clj꞉interprete.core꞉> 
+(((20 (NEXT I , J))) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+(((20 (NEXT I , J))) (20 (NEXT I , J)))
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+(((X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
+((15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core꞉> 
 true
-clj꞉interprete.core-test꞉> 
+clj꞉interprete.core꞉> 
+#'interprete.core/buscar-lineas-restantes
+clj꞉interprete.core꞉> 
 true
-clj꞉interprete.core-test꞉> 
-false
-clj꞉interprete.core-test꞉> 
-true
-clj꞉interprete.core-test꞉> 
-false
-clj꞉interprete.core-test꞉> 
-false
-clj꞉interprete.core-test꞉> 
-(-u 2 * ( -u 3 + 5 - ( + 2 / 7 ) ))
-clj꞉interprete.core-test꞉> 
-true
-clj꞉interprete.core-test꞉> 
-true
-clj꞉interprete.core-test꞉> 
+clj꞉interprete.core꞉> 

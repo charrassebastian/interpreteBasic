@@ -35,7 +35,7 @@
 (declare variable-integer?)               ; IMPLEMENTAR - hecho
 (declare variable-string?)                ; IMPLEMENTAR - hecho
 (declare contar-sentencias)               ; IMPLEMENTAR - hecho
-(declare buscar-lineas-restantes)         ; IMPLEMENTAR
+(declare buscar-lineas-restantes)         ; IMPLEMENTAR - hecho
 (declare continuar-linea)                 ; IMPLEMENTAR
 (declare extraer-data)                    ; IMPLEMENTAR
 (declare ejecutar-asignacion)             ; IMPLEMENTAR
@@ -853,11 +853,30 @@
 ; user=> (buscar-lineas-restantes [(list '(10 (PRINT X) (PRINT Y)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [25 0] [] [] [] 0 {}])
 ; nil
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn buscar-lineas-restantes [amb])
 
-; primero hacer drop wihle numero de linea sea distinto de la actual
-; luego hacer un take last del rest de la primera linea no eliminada (o sea la actual)
-; devolver el resultado de ese take last junto con el rest de lo no eliminado
+(defn expandir-solo-nexts-primera-linea [l]
+  (if (empty? l)
+    ()
+    (let [primera-linea-expandida (conj (as-> (nfirst l) res
+                                          (expandir-nexts res))
+                                        (ffirst l))] 
+      (conj (rest l) primera-linea-expandida))))
+(expandir-solo-nexts-primera-linea (list '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))))
+(defn buscar-lineas-restantes 
+  ([amb] (buscar-lineas-restantes (first amb) (first (fnext amb)) (second (fnext amb))))
+  ([lineas nro-linea nro-sentencias-restantes]
+   (if (keyword? nro-linea)
+     nil
+     (let [lineas-restantes (drop-while #(not= (first %) nro-linea) lineas)]
+       (if (empty? lineas-restantes)
+         nil
+         (as-> lineas-restantes l
+           (expandir-solo-nexts-primera-linea l)
+           (let [pendientes-primera-linea-restante (conj (take-last (max nro-sentencias-restantes 0) (nfirst l)) (ffirst l))]
+             (if (nil? pendientes-primera-linea-restante)
+               (rest l)
+               (conj (rest l) pendientes-primera-linea-restante)))
+           (if (empty? l) (list (list nro-linea)) l)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; continuar-linea: implementa la sentencia RETURN, retornando una
