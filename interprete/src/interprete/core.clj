@@ -36,7 +36,7 @@
 (declare variable-string?)                ; IMPLEMENTAR - hecho
 (declare contar-sentencias)               ; IMPLEMENTAR - hecho
 (declare buscar-lineas-restantes)         ; IMPLEMENTAR - hecho
-(declare continuar-linea)                 ; IMPLEMENTAR
+(declare continuar-linea)                 ; IMPLEMENTAR - implementando
 (declare extraer-data)                    ; IMPLEMENTAR - hecho
 (declare ejecutar-asignacion)             ; IMPLEMENTAR - implementando
 (declare preprocesar-expresion)           ; IMPLEMENTAR - hecho
@@ -892,14 +892,14 @@
 ; user=> (continuar-linea [(list '(10 (PRINT X)) '(15 (GOSUB 100) (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [20 3] [[15 2]] [] [] 0 {}])
 ; [:omitir-restante [((10 (PRINT X)) (15 (GOSUB 100) (X = X + 1)) (20 (NEXT I , J))) [15 1] [] [] [] 0 {}]]
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn continuar-linea [amb])
-
-['((10 (PRINT X)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 3] [] [] [] 0 {}]
-; no tiene donde volver, por lo que genera un error: ?RETURN WITHOUT GOSUB ERROR IN 20 y devuelve [nil [((10 (PRINT X)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 3] [] [] [] 0 {}]]
-
-['((10 (PRINT X)) (15 (GOSUB 100) (X = X + 1)) (20 (NEXT I , J))) [20 3] [[15 2]] [] [] 0 {}]
-[:omitir-restante ['((10 (PRINT X)) (15 (GOSUB 100) (X = X + 1)) (20 (NEXT I , J))) [15 1] [] [] [] 0 {}]]
-;puede ser en la misma linea o en la posterior (depende de si quedan mas de 0 sentencias o no)
+(defn continuar-linea [amb] 
+  (if (empty? (amb 2))
+    (vector (dar-error 22 (amb 1)) amb)
+    (if (> (second (first (amb 2))) 1)
+      (let [amb-con-puntero-actualizado (assoc amb 1 (vector (ffirst (amb 2)) (dec (second (first (amb 2))))))
+            amb-completamente-actualizado (assoc amb-con-puntero-actualizado 2 (into [] (rest (amb-con-puntero-actualizado 2))))]
+        (vector :omitir-restante amb-completamente-actualizado))
+      nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; recibe una sentencia DATA y retorna sus valores embebidos
