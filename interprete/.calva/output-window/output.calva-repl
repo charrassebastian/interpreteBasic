@@ -41,3 +41,44 @@ clj꞉interprete.core꞉> 
 clj꞉interprete.core꞉> 
 QUIT
 clj꞉interprete.core꞉> 
+#'interprete.core-test/extraer-data-linea
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core.clj:920:23).
+; Unable to resolve symbol: extraer-data-linea in this context
+clj꞉interprete.core꞉> 
+nil
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data-linea
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data
+clj꞉interprete.core꞉> 
+; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
+; Don't know how to create ISeq from: clojure.lang.Symbol
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data-linea
+clj꞉interprete.core꞉> 
+; Execution error (IllegalArgumentException) at interprete.core/eval8117$extraer-data-linea$fn (form-init13428759584697533862.clj:906).
+; Don't know how to create ISeq from: clojure.lang.Symbol
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data-sentencia
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data-linea
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data-sentencia
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data-linea
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data-linea
+clj꞉interprete.core꞉> 
+#'interprete.core/extraer-data-sentencia
+clj꞉interprete.core꞉> 
+QUIT
+clj꞉interprete.core꞉> 

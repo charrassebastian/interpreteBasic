@@ -36,9 +36,9 @@
 (declare variable-string?)                ; IMPLEMENTAR - hecho
 (declare contar-sentencias)               ; IMPLEMENTAR - hecho
 (declare buscar-lineas-restantes)         ; IMPLEMENTAR - hecho
-(declare continuar-linea)                 ; IMPLEMENTAR - implementando
-(declare extraer-data)                    ; IMPLEMENTAR
-(declare ejecutar-asignacion)             ; IMPLEMENTAR
+(declare continuar-linea)                 ; IMPLEMENTAR
+(declare extraer-data)                    ; IMPLEMENTAR - hecho
+(declare ejecutar-asignacion)             ; IMPLEMENTAR - implementando
 (declare preprocesar-expresion)           ; IMPLEMENTAR - hecho
 (declare desambiguar)                     ; IMPLEMENTAR - hecho
 (declare precedencia)                     ; IMPLEMENTAR - hecho
@@ -901,6 +901,24 @@
 [:omitir-restante ['((10 (PRINT X)) (15 (GOSUB 100) (X = X + 1)) (20 (NEXT I , J))) [15 1] [] [] [] 0 {}]]
 ;puede ser en la misma linea o en la posterior (depende de si quedan mas de 0 sentencias o no)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; recibe una sentencia DATA y retorna sus valores embebidos
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn extraer-data-sentencia [sentencia]
+  (map #(if (symbol? %) (name %) %) 
+       (filter #(not= (symbol ",") %) (rest sentencia))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; recibe una linea y retorna los valores embebidos en las 
+; sentencias DATA
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn extraer-data-linea [linea]
+  (reduce #(if (= 'DATA (first %2)) 
+             (concat %1 (extraer-data-sentencia %2))
+             %1)
+          ()
+          (take-while #(not= (first %) 'REM) (rest linea))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; extraer-data: recibe la representación intermedia de un programa
 ; y retorna una lista con todos los valores embebidos en las
@@ -910,12 +928,8 @@
 ; user=> (extraer-data (list '(10 (PRINT X) (REM ESTE NO) (DATA 30)) '(20 (DATA HOLA)) (list 100 (list 'DATA 'MUNDO (symbol ",") 10 (symbol ",") 20))))
 ; ("HOLA" "MUNDO" 10 20)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn extraer-data [prg])
-(list '(10 (PRINT X) (REM ESTE NO) (DATA 30)) '(20 (DATA HOLA)) (list 100 (list 'DATA 'MUNDO (symbol ",") 10 (symbol ",") 20)))
-
-'((10 (PRINT X) (REM ESTE NO) (DATA 30)) (20 (DATA HOLA)) (100 (DATA MUNDO , 10 , 20)))
-; el primer data es parte de un comentario 
-; solo retorno los datos de las sentencias data no comentadas
+(defn extraer-data [prg]
+  (reduce #(concat %1 (extraer-data-linea %2)) () prg))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; ejecutar-asignacion: recibe una asignacion y un ambiente, y

@@ -230,19 +230,25 @@
     (is (= '((20)) (buscar-lineas-restantes [(list '(10 (PRINT X) (PRINT Y)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [20 -1] [] [] [] 0 {}])))
     (is (nil? (buscar-lineas-restantes [(list '(10 (PRINT X) (PRINT Y)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [25 0] [] [] [] 0 {}])))))
 
-; user=> (ejecutar-asignacion '(X = 5) ['((10 (PRINT X))) [10 1] [] [] [] 0 {}])
-; [((10 (PRINT X))) [10 1] [] [] [] 0 {X 5}]
-; user=> (ejecutar-asignacion '(X = 5) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 2}])
-; [((10 (PRINT X))) [10 1] [] [] [] 0 {X 5}]
-
-; user=> (ejecutar-asignacion '(X = X + 1) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 2}])
-; [((10 (PRINT X))) [10 1] [] [] [] 0 {X 3}]
-
-; user=> (ejecutar-asignacion '(X$ = X$ + " MUNDO") ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X$ "HOLA"}])
-; [((10 (PRINT X))) [10 1] [] [] [] 0 {X$ "HOLA MUNDO"}]
 (deftest ejecutar-asignacion-tests
   (testing "ejecutar-asignacion"
     (is (= ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5}] (ejecutar-asignacion '(X = 5) ['((10 (PRINT X))) [10 1] [] [] [] 0 {}])))
     (is (= ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5}] (ejecutar-asignacion '(X = 5) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 2}])))
     (is (= ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 3}] (ejecutar-asignacion '(X = X + 1) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 2}])))
     (is (= ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X$ "HOLA MUNDO"}] (ejecutar-asignacion '(X$ = X$ + " MUNDO") ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X$ "HOLA"}])))))
+
+(deftest extraer-data-sentencia-tests
+  (testing "extraer-data-sentencia"
+    (is (= '(1 2 3) (extraer-data-sentencia (list 'DATA 1 (symbol ",") 2 (symbol ",") 3))))
+    (is (= '(1 "HOLA" 3) (extraer-data-sentencia (list 'DATA 1 (symbol ",") 'HOLA (symbol ",") 3))))))
+
+(deftest extraer-data-linea-tests
+  (testing "extraer-data-linea"
+    (is (= '() (extraer-data-linea '(10 (PRINT X) (PRINT X)))))
+    (is (= '() (extraer-data-linea '(10 (PRINT X) (REM ESTE NO) (DATA 1)))))
+    (is (= '(1 2 "HOLA") (extraer-data-linea (list 10 (list 'DATA 1 (symbol ",") 2) '(DATA HOLA)))))))
+
+(deftest extraer-data-tests
+  (testing "extraer-data"
+    (is (= () (extraer-data '(()))))
+    (is (= '("HOLA" "MUNDO" 10 20) (extraer-data (list '(10 (PRINT X) (REM ESTE NO) (DATA 30)) '(20 (DATA HOLA)) (list 100 (list 'DATA 'MUNDO (symbol ",") 10 (symbol ",") 20))))))))
