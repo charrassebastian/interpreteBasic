@@ -23,7 +23,7 @@
 (declare desambiguar-comas)               ; NO TOCAR
 
 (declare evaluar)                         ; COMPLETAR
-(declare aplicar)                         ; COMPLETAR
+(declare aplicar)                         ; COMPLETAR - hecho
 
 (declare palabra-reservada?)              ; IMPLEMENTAR - hecho
 (declare operador?)                       ; IMPLEMENTAR - hecho
@@ -593,7 +593,7 @@
         (do (dar-error 16 (amb 1)) [nil amb]))))  ; Syntax error
   )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; aplicar: aplica un operador a sus operandos y retorna el valor
 ; resultante (si ocurre un error, muestra un mensaje y retorna
 ; nil)
@@ -606,7 +606,14 @@
        -u (- operando)
        LEN (count operando)
        STR$ (if (not (number? operando)) (dar-error 163 nro-linea) (eliminar-cero-entero operando)) ; Type mismatch error
-       CHR$ (if (or (< operando 0) (> operando 255)) (dar-error 53 nro-linea) (str (char operando)))))) ; Illegal quantity error
+       CHR$ (if (or (< operando 0) (> operando 255)) (dar-error 53 nro-linea) (str (char operando))) ; Illegal quantity error
+       ; desde aqui fui completando
+       INT (if (not (number? operando)) (dar-error 163 nro-linea) (int operando))
+       SIN (if (not (number? operando)) (dar-error 163 nro-linea) (. Math sin operando))
+       EXP (if (not (number? operando)) (dar-error 163 nro-linea) (. Math exp operando))
+       LOG (if (not (number? operando)) (dar-error 163 nro-linea) (. Math log operando))
+       ASC (if (not (string? operando)) (dar-error 163 nro-linea) (int (get operando 0)))
+       ATN (if (not (number? operando)) (dar-error 163 nro-linea) (. Math atan operando)))))
   ([operador operando1 operando2 nro-linea]
    (if (or (nil? operando1) (nil? operando2))
      (dar-error 16 nro-linea)  ; Syntax error
@@ -622,7 +629,16 @@
        AND (let [op1 (+ 0 operando1), op2 (+ 0 operando2)] (if (and (not= op1 0) (not= op2 0)) -1 0))
        MID$ (if (< operando2 1)
               (dar-error 53 nro-linea)  ; Illegal quantity error
-              (let [ini (dec operando2)] (if (>= ini (count operando1)) "" (subs operando1 ini)))))))
+              (let [ini (dec operando2)] (if (>= ini (count operando1)) "" (subs operando1 ini))))
+       ; desde aqui fui completando
+       * (* operando1 operando2) 
+       <> (if (not= operando1 operando2) -1 0)
+       < (if (< operando1 operando2) -1 0)
+       <= (if (<= operando1 operando2) -1 0)
+       > (if (> operando1 operando2) -1 0)
+       >= (if (>= operando1 operando2) -1 0)
+       OR (let [op1 (+ 0 operando1), op2 (+ 0 operando2)] (if (or (not= op1 0) (not= op2 0)) -1 0))
+       )))
   ([operador operando1 operando2 operando3 nro-linea]
    (if (or (nil? operando1) (nil? operando2) (nil? operando3)) (dar-error 16 nro-linea)  ; Syntax error
        (case operador
@@ -632,7 +648,6 @@
                    (>= ini tam) ""
                    (>= fin tam) (subs operando1 ini tam)
                    :else (subs operando1 ini fin)))))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; A PARTIR DE ESTE PUNTO HAY QUE IMPLEMENTAR LAS FUNCIONES DADAS ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -719,7 +734,7 @@
      :else (expandir-nexts (conj acum (first pendientes)) (rest pendientes)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; generar-msg-error genera un mensage de error usadopor dar-error
+; generar-msg-error genera un mensage de error que usa dar-error
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn generar-msg-error [cod prog-ptrs]
   (let [main-msg (if (string? cod) cod (buscar-mensaje cod)),
