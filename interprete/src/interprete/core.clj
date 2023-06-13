@@ -590,23 +590,27 @@
       ; desde aqui empece a completar
       DATA [:omitir-restante amb]
       END [:sin-errores amb] ; [(prog-mem)  [prog-ptrs]  [gosub-return-stack]  [for-next-stack]  [data-mem]  data-ptr  {var-mem}]
-      ;; READ (let [data-ptr-viejo (get amb 5) 
-      ;;            amb-con-ptr-nuevo (assoc amb 5 (inc data-ptr-viejo))
-      ;;            data-mem (get amb 4)
-      ;;            var-mem-viejo (get amb 6)
-      ;;            var-mem-nuevo (assoc var-mem-viejo (next sentencia) (get data-mem data-ptr-viejo))
-      ;;            amb-nuevo (assoc amb-con-ptr-nuevo 6 var-mem-nuevo)]
-      ;;        (:sin-errores nuevo-amb))
       ; READ actualiza la variable en el ambiente, aumenta el puntero
-      ; y si no hay mas datos, mostrar el ?OUT OF DATA ERROR
+      ; y si no hay mas datos, muestra el ?OUT OF DATA ERROR
+      READ (let [data-ptr-viejo (get amb 5)
+                 amb-con-ptr-nuevo (assoc amb 5 (inc data-ptr-viejo))
+                 data-mem (get amb 4)
+                 var-mem-viejo (get amb 6)
+                 dato-leido (get data-mem data-ptr-viejo)
+                 var-mem-nuevo (assoc var-mem-viejo (next sentencia) dato-leido)
+                 amb-nuevo (assoc amb-con-ptr-nuevo 6 var-mem-nuevo)]
+             (if (nil? dato-leido)
+               (:error-parcial amb)
+               (:sin-errores amb-nuevo)))
       ; hasta aqui
       (if (= (second sentencia) '=)
         (let [resu (ejecutar-asignacion sentencia amb)]
           (if (nil? resu)
             [nil amb]
             [:sin-errores resu]))
-        (do (dar-error 16 (amb 1)) [nil amb]))))  ; Syntax error
+        (do (dar-error 16 (amb 1)) [nil amb]))))  ; Syntaxerror
   )
+(get [1] 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; aplicar: aplica un operador a sus operandos y retorna el valor
