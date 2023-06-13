@@ -347,13 +347,51 @@
         (is (= -1 (aplicar 'OR 0 3 1))))
       (testing "debe retornar 0 si sus dos valores son falsos"
         (is (= 0 (aplicar 'OR 0 0 1)))))
-    (testing "MID$")
-    (testing "MID3$")
-    (testing "<>")
-    (testing "<")
-    (testing "<=")
-    (testing ">")
-    (testing ">=")
+    (testing "<>"
+      (testing "debe retornar 0 si dos cadenas son iguales"
+        (is (= 0 (aplicar '<> "HOLA" "HOLA" 1))))
+      (testing "debe retornar 0 si dos numeros son iguales"
+        (is (= 0 (aplicar '<> 2 2 1))))
+      (testing "debe retornar -1 si dos cadenas son distintas"
+        (is (= -1 (aplicar '<> "HOLA" "CHAU" 1))))
+      (testing "debe retornar -1 si dos numeros son distintos"
+        (is (= -1 (aplicar '<> 3 2 1)))))
+    (testing "<"
+      (testing "debe retornar nil si al menos uno de sus argumentos es una cadena"
+        (is (nil? (aplicar '< "HOLA" 2 1))))
+      (testing "debe retornar -1 si el primer numero es menor que el segundo"
+        (is (= -1 (aplicar '< 1 2 1))))
+      (testing "debe retornar 0 si el primer numero es igual que el segundo"
+        (is (= 0 (aplicar '< 2 2 1))))
+      (testing "debe retornar 0 si el primer numero es mayor que el segundo"
+        (is (= 0 (aplicar '< 2 1 1)))))
+    (testing "<="
+      (testing "debe retornar nil si al menos uno de sus argumentos es una cadena"
+        (is (nil? (aplicar '<= "HOLA" 2 1))))
+      (testing "debe retornar -1 si el primer numero es menor que el segundo"
+        (is (= -1 (aplicar '<= 1 2 1))))
+      (testing "debe retornar -1 si el primer numero es igual que el segundo"
+        (is (= -1 (aplicar '<= 2 2 1))))
+      (testing "debe retornar 0 si el primer numero es mayor que el segundo"
+        (is (= 0 (aplicar '<= 2 1 1)))))
+    (testing ">"
+      (testing "debe retornar nil si al menos uno de sus argumentos es una cadena"
+        (is (nil? (aplicar '> "HOLA" 2 1))))
+      (testing "debe retornar 0 si el primer numero es menor que el segundo"
+        (is (= 0 (aplicar '> 1 2 1))))
+      (testing "debe retornar 0 si el primer numero es igual que el segundo"
+        (is (= 0 (aplicar '> 2 2 1))))
+      (testing "debe retornar -1 si el primer numero es mayor que el segundo"
+        (is (= -1 (aplicar '> 2 1 1)))))
+    (testing ">="
+      (testing "debe retornar nil si al menos uno de sus argumentos es una cadena"
+        (is (nil? (aplicar '>= "HOLA" 2 1))))
+      (testing "debe retornar 0 si el primer numero es menor que el segundo"
+        (is (= 0 (aplicar '>= 1 2 1))))
+      (testing "debe retornar -1 si el primer numero es igual que el segundo"
+        (is (= -1 (aplicar '>= 2 2 1))))
+      (testing "debe retornar -1 si el primer numero es mayor que el segundo"
+        (is (= -1 (aplicar '>= 2 1 1)))))
     (testing "="
       (testing "debe retornar -1 si dos cadenas son iguales"
         (is (= -1 (aplicar '= "HOLA" "HOLA" 1))))
@@ -362,4 +400,6 @@
       (testing "debe retornar 0 si dos cadenas son distintas"
         (is (= 0 (aplicar '= "HOLA" "CHAU" 1))))
       (testing "debe retornar 0 si dos numeros son distintos"
-        (is (= 0 (aplicar '= 3 2 1)))))))
+        (is (= 0 (aplicar '= 3 2 1)))))
+    (testing "MID$")
+    (testing "MID3$")))
