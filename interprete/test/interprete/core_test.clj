@@ -1,6 +1,6 @@
 (ns interprete.core-test
   (:require [clojure.test :refer :all]
-            [interprete.core :refer :all]))
+            [interprete.main :refer :all]))
 
 ;;(defn generate-operador?-tests [lst]
 ;;  (map (fn [kw] `(is (= true (operador? '~kw)))) lst))
@@ -141,6 +141,7 @@
     (is (= 1 (aridad 'STR$)))
     (is (= 1 (aridad 'LEN)))
     (is (= 2 (aridad '+)))
+    (is (= 1 (aridad '-u)))
     (is (= 2 (aridad '-)))
     (is (= 2 (aridad '*)))
     (is (= 2 (aridad '/)))

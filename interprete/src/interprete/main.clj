@@ -1,4 +1,4 @@
-(ns interprete.core
+(ns interprete.main
   (:gen-class))
 
 (declare driver-loop)                     ; NO TOCAR
@@ -22,7 +22,7 @@
 (declare imprimir)                        ; NO TOCAR
 (declare desambiguar-comas)               ; NO TOCAR
 
-(declare evaluar)                         ; COMPLETAR
+(declare evaluar)                         ; COMPLETAR - hecho
 (declare aplicar)                         ; COMPLETAR - hecho
 
 (declare spy)
@@ -590,7 +590,7 @@
       ; desde aqui empece a completar
       DATA [:omitir-restante amb]
       END [:sin-errores amb] ; [(prog-mem)  [prog-ptrs]  [gosub-return-stack]  [for-next-stack]  [data-mem]  data-ptr  {var-mem}]
-      ; READ actualiza la variable en el ambiente, aumenta el puntero
+      ; READ: actualiza la variable en el ambiente, aumenta el puntero
       ; y si no hay mas datos, muestra el ?OUT OF DATA ERROR
       READ (let [data-ptr-viejo (get amb 5)
                  amb-con-ptr-nuevo (assoc amb 5 (inc data-ptr-viejo))
@@ -600,8 +600,30 @@
                  var-mem-nuevo (assoc var-mem-viejo (next sentencia) dato-leido)
                  amb-nuevo (assoc amb-con-ptr-nuevo 6 var-mem-nuevo)]
              (if (nil? dato-leido)
-               (:error-parcial amb)
-               (:sin-errores amb-nuevo)))
+               [:error-parcial amb]
+               [:sin-errores amb-nuevo]))
+      ; RESTORE: reinicia los datos embebidos, devolviendo un
+      ; vector con dos elementos, :sin-errores y el ambiente
+      ; con el data-ptr = 0
+      RESTORE [:sin-errores (assoc amb 5 0)]
+      ; CLEAR: borra todas las variables, devolviendo un
+      ; vector con dos elementos, :sin-errores y el ambiente
+      ; con var-mem vacio
+      CLEAR [:sin-errores (assoc amb 6 {})]
+      ; LIST: muestra el listado de sentencias del programa, 
+      ; devuelve un vector con dos elementos, :sin-errores y el
+      ; ambiente
+      LIST (do (prn (get amb 1)) (flush) [:sin-errores amb])
+      ; LET/=: hace la asignacion de un valor a una variable,
+      ; devuelve un vector con dos elementos, :sin-errores y el
+      ; ambiente actualizado
+      LET (let [valor-expresion (calcular-expresion (drop 3 sentencia) amb)
+                  var-mem-viejo (get amb 6)
+                  var-mem-nuevo (assoc var-mem-viejo (fnext sentencia) valor-expresion)
+                  amb-nuevo (assoc amb 6 var-mem-nuevo)]
+              (if (or (not= '= (nth sentencia 2)) (nil? valor-expresion)) 
+                [:error-parcial amb]
+                [:sin-errores amb-nuevo]))
       ; hasta aqui
       (if (= (second sentencia) '=)
         (let [resu (ejecutar-asignacion sentencia amb)]
@@ -610,7 +632,6 @@
             [:sin-errores resu]))
         (do (dar-error 16 (amb 1)) [nil amb]))))  ; Syntaxerror
   )
-(get [1] 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; aplicar: aplica un operador a sus operandos y retorna el valor
@@ -1093,6 +1114,7 @@
                     :> 2,
                     :AND 2,
                     :EXP 1,
+                    :-u 1,
                     :- 2,
                     :LEN 1,
                     :OR 2,
