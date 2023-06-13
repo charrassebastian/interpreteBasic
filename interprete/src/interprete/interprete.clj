@@ -1,4 +1,4 @@
-(ns interprete.main
+(ns interprete.interprete
   (:gen-class))
 
 (declare driver-loop)                     ; NO TOCAR
@@ -780,12 +780,20 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; generar-msg-error genera un mensage de error que usa dar-error
+; en prog-ptrs puede recibir un vector con dos posiciones
+; representando el nro-linea y cant-sentencias-restantes,
+; o un numero que represente el nro-linea
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn generar-msg-error [cod prog-ptrs]
   (let [main-msg (if (string? cod) cod (buscar-mensaje cod)),
-        location (if (number? (first prog-ptrs)) (str " IN " (first prog-ptrs)) "")]
+        location (if (vector? prog-ptrs)
+                   (if (number? (first prog-ptrs))
+                     (str " IN " (first prog-ptrs))
+                     "")
+                   (if (number? prog-ptrs)
+                     (str " IN " prog-ptrs)
+                     ""))]
     (str main-msg location)))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; dar-error: recibe un error (codigo o mensaje) y el puntero de 
 ; programa, muestra el error correspondiente {'OR 1, 'AND 2, '* 6, '-u 7, 'MID$ 8}y retorna nil, por

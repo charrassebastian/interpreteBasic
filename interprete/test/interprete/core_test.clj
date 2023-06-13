@@ -1,6 +1,6 @@
 (ns interprete.core-test
   (:require [clojure.test :refer :all]
-            [interprete.main :refer :all]))
+            [interprete.interprete :refer :all]))
 
 ;;(defn generate-operador?-tests [lst]
 ;;  (map (fn [kw] `(is (= true (operador? '~kw)))) lst))
@@ -183,7 +183,8 @@
     (is (= "?SYNTAX  ERROR" (generar-msg-error 16 [:ejecucion-inmediata 4])))
     (is (= "?ERROR DISK FULL" (generar-msg-error "?ERROR DISK FULL" [:ejecucion-inmediata 4])))
     (is (= "?SYNTAX  ERROR IN 100" (generar-msg-error 16 [100 3])))
-    (is (= "?ERROR DISK FULL IN 100" (generar-msg-error "?ERROR DISK FULL" [100 3])))))
+    (is (= "?ERROR DISK FULL IN 100" (generar-msg-error "?ERROR DISK FULL" [100 3])))
+    (is (= "?ERROR DISK FULL IN 100" (generar-msg-error "?ERROR DISK FULL" 100)))))
 
 (deftest expandir-nexts-tests
   (testing "expandir-nexts"
@@ -262,6 +263,103 @@
     (is (= [:omitir-restante [(list '(10 (PRINT X)) '(15 (GOSUB 100) (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [15 1] [] [] [] 0 {}]] (continuar-linea [(list '(10 (PRINT X)) '(15 (GOSUB 100) (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [20 3] [[15 2]] [] [] 0 {}])))
     (is (= [:omitir-restante [(list '(10 (PRINT X)) '(15 (GOSUB 100) (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [15 1] [[20 1]] [] [] 0 {}]] (continuar-linea [(list '(10 (PRINT X)) '(15 (GOSUB 100) (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [20 3] [[15 2] [20 1]] [] [] 0 {}])))))
 
-;(deftest borrar
-  ;(testing "borrar"
-    ;(is (= 5 (calcular-rpn '(5) 1)))))
+(deftest aplicar-tests
+  (testing "aplicar"
+    (testing "-u"
+      (testing "debe retornar el numero negativo"
+        (is (= -2 (aplicar '-u 2 1)))))
+    (testing "LEN"
+      (testing "debe retornar la longitud de una cadena"
+        (is (= 4 (aplicar 'LEN "HOLA" 1)))))
+    (testing "STR$"
+      (testing "debe retornar nil si no se le pasa un numero"
+        (is (nil? (aplicar 'STR$ "HOLA" 1))))
+      (testing "debe retornar un numero convertido en cadena"
+        (is (= " 3" (aplicar 'STR$ 3 1)))))
+    (testing "CHR$"
+      (testing "debe retornar nil si el numero es menor a 0"
+        (is (nil? (aplicar 'CHR$ -1 1))))
+      (testing "debe retornar nil si el numero es mayor a 255"
+        (is (nil? (aplicar 'CHR$ 256 1))))
+      (testing "debe retornar el caracter de un codigo ASCII dado"
+        (is (= "A" (aplicar 'CHR$ 65 1)))))
+    (testing "INT"
+      (testing "debe retornar la parte entera de un numero"
+        (is (= 3 (aplicar 'INT 3.4 1))))
+      (testing "debe retornar nil si no se le pasa un numero"
+        (is (nil? (aplicar 'INT "HOLA" 1)))))
+    (testing "SIN"
+      (testing "debe retornar nil si no se le pasa un numero"
+        (is (nil? (aplicar 'SIN "HOLA" 1))))
+      (testing "debe retornar el seno de un numero"
+        (is (= (. Math sin 1) (aplicar 'SIN 1 1)))))
+    (testing "LOG"
+      (testing "debe retornar nil si no se le pasa un numero"
+        (is (nil? (aplicar 'LOG "HOLA" 1))))
+      (testing "debe retornar el logaritmo natural del argumento"
+        (is (= (. Math log 3) (aplicar 'LOG 3 1)))))
+    (testing "EXP"
+      (testing "debe retornar nil si no se le pasa un numero"
+        (is (nil? (aplicar 'EXP "HOLA" 1))))
+      (testing "debe retornar la constante E elevada al argumento"
+        (is (= (. Math exp 2) (aplicar 'EXP 2 1)))))
+    (testing "ASC"
+      (testing "debe retornar nil si no se le pasa una cadena de caracteres"
+        (is (nil? (aplicar 'ASC 1 1))))
+      (testing "debe retornar el numero ASCII del primer caracter de la inicial de una cadena"
+        (is (= 72 (aplicar 'ASC "HOLA" 1)))))
+    (testing "ATN"
+      (testing "debe retornar nil si no se le pasa un numero"
+        (is (nil? (aplicar 'ATN "HOLA" 1))))
+      (testing "debe retornar la arcotangente de un numoer"
+        (is (= (. Math atan 3) (aplicar 'ATN 3 1)))))
+    (testing "+"
+      (testing "debe retornar la suma de dos numeros"
+        (is (= 5 (aplicar '+ 2 3 1))))
+      (testing "debe concatenar dos cadenas"
+        (is (= "HOLA MUNDO" (aplicar '+ "HOLA" " MUNDO" 1)))))
+    (testing "-"
+      (testing "debe retornar la resta de dos numeros"
+        (is (= 4 (aplicar '- 6 2 1)))))
+    (testing "*"
+      (testing "debe retornar la multiplicacion de dos numeros"
+        (is (= 6 (aplicar '* 2 3 1)))))
+    (testing "/"
+      (testing "debe retornar nil si el divisor es 0"
+        (is (= nil (aplicar '/ 2 0 1))))
+      (testing "debe retornar la division de dos numeros"
+        (is (= 3 (aplicar '/ 6 2 1)))))
+    (testing "AND"
+      (testing "debe retornar -1 si sus dos valores son verdaderos"
+        (is (= -1 (aplicar 'AND 2 3 1))))
+      (testing "debe retornar 0 si su primer valor es falso"
+        (is (= 0 (aplicar 'AND 0 3 1))))
+      (testing "debe retornar 0 si su segundo valor es falso"
+        (is (= 0 (aplicar 'AND 3 0 1))))
+      (testing "debe retornar 0 si sus dos valores son falsos"
+        (is (= 0 (aplicar 'AND 0 0 1)))))
+    (testing "OR"
+      (testing "debe retornar -1 si sus dos valores son verdaderos"
+        (is (= -1 (aplicar 'OR 2 3 1))))
+      (testing "debe retornar -1 si su primer valor es verdadero"
+        (is (= -1 (aplicar 'OR 3 0 1))))
+      (testing "debe retornar -1 si su segundo valor es verdadero"
+        (is (= -1 (aplicar 'OR 0 3 1))))
+      (testing "debe retornar 0 si sus dos valores son falsos"
+        (is (= 0 (aplicar 'OR 0 0 1)))))
+    (testing "MID$")
+    (testing "MID3$")
+    (testing "<>")
+    (testing "<")
+    (testing "<=")
+    (testing ">")
+    (testing ">=")
+    (testing "="
+      (testing "debe retornar -1 si dos cadenas son iguales"
+        (is (= -1 (aplicar '= "HOLA" "HOLA" 1))))
+      (testing "debe retornar -1 si dos numeros son iguales"
+        (is (= -1 (aplicar '= 2 2 1))))
+      (testing "debe retornar 0 si dos cadenas son distintas"
+        (is (= 0 (aplicar '= "HOLA" "CHAU" 1))))
+      (testing "debe retornar 0 si dos numeros son distintos"
+        (is (= 0 (aplicar '= 3 2 1)))))))
