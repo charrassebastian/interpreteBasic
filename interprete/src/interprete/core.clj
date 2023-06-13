@@ -25,6 +25,8 @@
 (declare evaluar)                         ; COMPLETAR
 (declare aplicar)                         ; COMPLETAR - hecho
 
+(declare spy)
+
 (declare palabra-reservada?)              ; IMPLEMENTAR - hecho
 (declare operador?)                       ; IMPLEMENTAR - hecho
 (declare anular-invalidos)                ; IMPLEMENTAR - hecho
@@ -36,9 +38,9 @@
 (declare variable-string?)                ; IMPLEMENTAR - hecho
 (declare contar-sentencias)               ; IMPLEMENTAR - hecho
 (declare buscar-lineas-restantes)         ; IMPLEMENTAR - hecho
-(declare continuar-linea)                 ; IMPLEMENTAR - implementando
+(declare continuar-linea)                 ; IMPLEMENTAR - hecho
 (declare extraer-data)                    ; IMPLEMENTAR - hecho
-(declare ejecutar-asignacion)             ; IMPLEMENTAR - implementando
+(declare ejecutar-asignacion)             ; IMPLEMENTAR - hecho
 (declare preprocesar-expresion)           ; IMPLEMENTAR - hecho
 (declare desambiguar)                     ; IMPLEMENTAR - hecho
 (declare precedencia)                     ; IMPLEMENTAR - hecho
@@ -585,6 +587,19 @@
       NEXT (if (<= (count (next sentencia)) 1)
              (retornar-al-for amb (fnext sentencia))
              (do (dar-error 16 (amb 1)) [nil amb]))  ; Syntax error
+      ; desde aqui empece a completar
+      DATA [:omitir-restante amb]
+      END [:sin-errores amb] ; [(prog-mem)  [prog-ptrs]  [gosub-return-stack]  [for-next-stack]  [data-mem]  data-ptr  {var-mem}]
+      ;; READ (let [data-ptr-viejo (get amb 5) 
+      ;;            amb-con-ptr-nuevo (assoc amb 5 (inc data-ptr-viejo))
+      ;;            data-mem (get amb 4)
+      ;;            var-mem-viejo (get amb 6)
+      ;;            var-mem-nuevo (assoc var-mem-viejo (next sentencia) (get data-mem data-ptr-viejo))
+      ;;            amb-nuevo (assoc amb-con-ptr-nuevo 6 var-mem-nuevo)]
+      ;;        (:sin-errores nuevo-amb))
+      ; READ actualiza la variable en el ambiente, aumenta el puntero
+      ; y si no hay mas datos, mostrar el ?OUT OF DATA ERROR
+      ; hasta aqui
       (if (= (second sentencia) '=)
         (let [resu (ejecutar-asignacion sentencia amb)]
           (if (nil? resu)
@@ -648,6 +663,11 @@
                    (>= ini tam) ""
                    (>= fin tam) (subs operando1 ini tam)
                    :else (subs operando1 ini fin)))))))
+
+(defn spy
+  ([x] (do (prn x) x))
+  ([msg x] (do (print msg) (print ": ") (prn x) x)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; A PARTIR DE ESTE PUNTO HAY QUE IMPLEMENTAR LAS FUNCIONES DADAS ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -912,11 +932,11 @@
 (defn continuar-linea [amb] 
   (if (empty? (amb 2))
     (vector (dar-error 22 (amb 1)) amb)
-    (if (> (second (first (amb 2))) 1)
-      (let [amb-con-puntero-actualizado (assoc amb 1 (vector (ffirst (amb 2)) (dec (second (first (amb 2))))))
+    (let [amb-con-puntero-actualizado (assoc amb 1 (vector (ffirst (amb 2)) (dec (second (first (amb 2))))))
             amb-completamente-actualizado (assoc amb-con-puntero-actualizado 2 (into [] (rest (amb-con-puntero-actualizado 2))))]
-        (vector :omitir-restante amb-completamente-actualizado))
-      nil)))
+        (vector :omitir-restante amb-completamente-actualizado))))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; recibe una sentencia DATA y retorna sus valores embebidos
@@ -1018,15 +1038,7 @@
 ; (MID3$ ( 1 , -u 2 + K , 3 ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn desambiguar
-  ([expr] (desambiguar () expr false))
-  ([acum pendiente anterior-fue-operando?]
-   (cond
-     (= 0 (count pendiente)) (reverse acum)
-     (number? (first pendiente)) (desambiguar (conj acum (first pendiente)) (rest pendiente) true)
-     (and (= '- (first pendiente)) (not anterior-fue-operando?)) (desambiguar (conj acum '-u) (rest pendiente) false)
-     (and (= '+ (first pendiente)) (not anterior-fue-operando?)) (desambiguar acum (rest pendiente) false)
-     (and (= 'MID$ (first pendiente)) (= 2 (count (filter #(= (symbol ",") %) (rest pendiente))))) (desambiguar (conj acum 'MID3$) (rest pendiente) false)
-     :else (desambiguar (conj acum (first pendiente)) (rest pendiente) false))))
+  [expr] (desambiguar-comas (desambiguar-mas-menos (desambiguar-mid expr))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; precedencia: recibe un token y retorna el valor de su
@@ -1068,31 +1080,33 @@
 ; 3
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn aridad [token]
-  (let [aridades {:ASC 1,
-                  :CHR$ 1,
-                  :<= 2,
-                  :* 2,
-                  :> 2,
-                  :AND 2,
-                  :EXP 1,
-                  :- 2,
-                  :LEN 1,
-                  :OR 2,
-                  :/ 2,
-                  :>= 2,
-                  :<> 2,
-                  :ATN 1,
-                  :+ 2,
-                  :LOG 1,
-                  :STR$ 1,
-                  :INT 1,
-                  := 2,
-                  :< 2,
-                  :SIN 1,
-                  :MID$ 2,
-                  :MID3$ 3},
-        valor ((keyword (name token)) aridades)]
-      (if (nil? valor) 0 valor)))
+  (if (not (symbol? token))
+    0
+    (let [aridades {:ASC 1,
+                    :CHR$ 1,
+                    :<= 2,
+                    :* 2,
+                    :> 2,
+                    :AND 2,
+                    :EXP 1,
+                    :- 2,
+                    :LEN 1,
+                    :OR 2,
+                    :/ 2,
+                    :>= 2,
+                    :<> 2,
+                    :ATN 1,
+                    :+ 2,
+                    :LOG 1,
+                    :STR$ 1,
+                    :INT 1,
+                    := 2,
+                    :< 2,
+                    :SIN 1,
+                    :MID$ 2,
+                    :MID3$ 3},
+          valor ((keyword (name token)) aridades)]
+      (if (nil? valor) 0 valor))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; eliminar-cero-decimal: recibe un numero y lo retorna sin ceros
