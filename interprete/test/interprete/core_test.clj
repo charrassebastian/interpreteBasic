@@ -401,5 +401,15 @@
         (is (= 0 (aplicar '= "HOLA" "CHAU" 1))))
       (testing "debe retornar 0 si dos numeros son distintos"
         (is (= 0 (aplicar '= 3 2 1)))))
-    (testing "MID$")
-    (testing "MID3$")))
+    (testing "MID$"
+      (testing "debe retornar nil si el numero de caracter es menor a 1"
+        (is (nil? (aplicar 'MID$ "HOLA" 0 1))))
+      (testing "debe retornar una subcadena desde el numero de caracter indicado"
+        (is (= "OLA" (aplicar 'MID$ "HOLA" 2 1)))))
+    (testing "MID3$"
+      (testing "debe retornar nil si el numero de caracter inicial es menor a 1"
+        (is (nil? (aplicar 'MID3$ "HOLA" 0 1 1))))
+      (testing "debe retornar nil si el numero de caracteres a retornar es menor a 0"
+        (is (nil? (aplicar 'MID3$ "HOLA" 1 -1 1))))
+      (testing "debe retornal una subcadena desde el numero de caracter inicial indicado y con la cantidad de caracteres indicada"
+        (is (= "OL" (aplicar 'MID3$ "HOLA" 2 2 1)))))))
