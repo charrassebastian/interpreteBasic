@@ -210,7 +210,8 @@
 (deftest preprocesar-expresion-tests
   (testing "preprocesar-expresion"
     (is (= '("HOLA" + " MUNDO" + "") (preprocesar-expresion '(X$ + " MUNDO" + Z$) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X$ "HOLA"}])))
-    (is (= '(5 + 0 / 2 * 0) (preprocesar-expresion '(X + . / Y% * Z) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5 Y% 2}])))))
+    (is (= '(5 + 0 / 2 * 0) (preprocesar-expresion '(X + . / Y% * Z) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5 Y% 2}])))
+    (is (= '(PRINT) (preprocesar-expresion '(PRINT) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5 Y% 2}])))))
 
 (deftest expandir-solo-nexts-primera-linea-tests
   (testing "expandir-solo-nexts-primera-linea-tests"
@@ -413,3 +414,46 @@
         (is (nil? (aplicar 'MID3$ "HOLA" 1 -1 1))))
       (testing "debe retornal una subcadena desde el numero de caracter inicial indicado y con la cantidad de caracteres indicada"
         (is (= "OL" (aplicar 'MID3$ "HOLA" 2 2 1)))))))
+
+(deftest evaluar-tests
+  (testing "evaluar"
+    (testing "DATA"
+      (testing "debe retornar una dupla con :omitir-restante y el ambiente"
+        (is (= [:omitir-restante ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+               (evaluar '(DATA 10) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
+    (testing "END"
+      (testing "debe retornar una dupla con :sin-errores y el ambiente"
+        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+               (evaluar '(END) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
+    (testing "READ"
+      (testing "debe retornar una dupla con :error-parcial y el ambiente si no hay mas datos"
+        (is (= [:error-parcial ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+               (evaluar '(READ X) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))
+      (testing "debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado"
+        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [10] 1 '{X 10}]]
+               (evaluar '(READ X) ['() [:ejecucion-inmediata 0] [] [] [10] 0 '{X 4}])))))
+    (testing "RESTORE"
+      (testing "debe retornar una dupla con :sin-errores y el ambiente con data-ptr = 0"
+        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [10 20 30 40] 0 '{X 30}]]
+               (evaluar '(RESTORE) ['() [:ejecucion-inmediata 0] [] [] [10 20 30 40] 3 '{X 30}])))))
+    (testing "CLEAR"
+      (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem vacio"
+        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{}]]
+               (evaluar '(CLEAR) ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 30, Y 40}])))))
+    (testing "LIST"
+      (testing "debe retornar una dupla con :sin-errores y el ambiente"
+        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+               (evaluar '(LIST) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
+    (testing "LET"
+      (testing "debe retornar una dupla con :error-parcial y el ambiente si la sentencia no tiene como tercer elemento un simbolo ="
+        (is (= [:error-parcial ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+               (evaluar '(LET X 4) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
+    (testing "debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada"
+      (is (= [:error-parcial ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+             (evaluar '(LET X = PRINT) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))
+    (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable no existia"
+      (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}]]
+             (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))))
+    (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable ya existia"
+      (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}]]
+             (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 4}]))))

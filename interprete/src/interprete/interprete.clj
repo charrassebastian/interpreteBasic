@@ -597,7 +597,7 @@
                  data-mem (get amb 4)
                  var-mem-viejo (get amb 6)
                  dato-leido (get data-mem data-ptr-viejo)
-                 var-mem-nuevo (assoc var-mem-viejo (next sentencia) dato-leido)
+                 var-mem-nuevo (assoc var-mem-viejo (fnext sentencia) dato-leido)
                  amb-nuevo (assoc amb-con-ptr-nuevo 6 var-mem-nuevo)]
              (if (nil? dato-leido)
                [:error-parcial amb]
@@ -621,7 +621,7 @@
                   var-mem-viejo (get amb 6)
                   var-mem-nuevo (assoc var-mem-viejo (fnext sentencia) valor-expresion)
                   amb-nuevo (assoc amb 6 var-mem-nuevo)]
-              (if (or (not= '= (nth sentencia 2)) (nil? valor-expresion)) 
+              (if (or (not= '= (nth sentencia 2)) (and (not (number? valor-expresion)) (not (string? valor-expresion)))) 
                 [:error-parcial amb]
                 [:sin-errores amb-nuevo]))
       ; hasta aqui
@@ -1057,7 +1057,7 @@
        (= '. e) 0
        (number? e) e
        (and (nombre-variable-valido? (name e)) (contains? (last amb) e)) (get (last amb) e)
-       (nombre-variable-valido? (name e)) (cond
+       (and (not (operador? e)) (not (palabra-reservada? e)) (nombre-variable-valido? (name e))) (cond
                                      (variable-float? e) 0
                                      (variable-integer? e) 0
                                      (variable-string? e) "")

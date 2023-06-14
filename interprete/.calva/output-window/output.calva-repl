@@ -82,3 +82,881 @@ clj꞉interprete.core-test꞉> 
 ; Running all project tests…
 ; 240 tests finished, all passing 👍, ns: 1, vars: 25
 clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; 241 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:421):
+; evaluar DATA debe retornar una dupla con :omitir-restante y el ambiente
+; expected:
+[:omitir-restante [() [:ejecucian-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:omitir-restante [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; 241 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; 241 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:425):
+; evaluar END debe retornar una dupla con :sin-errores y el ambiente
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:omitir-restante [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; 242 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; 242 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; 243 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:432):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 10}]]
+
+; actual:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 4}]]
+
+; 244 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:432):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 0 {X 10}]]
+
+; actual:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 4}]]
+
+; 244 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:432):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 10}]]
+
+; actual:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 4}]]
+
+; 244 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:432):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 10}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 4, (X) 10}]]
+
+; 244 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:432):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 10}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 4, (X) 10}]]
+
+; 244 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:432):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 10}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 4, (X) 10}]]
+
+; 244 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+false
+clj꞉interprete.core-test꞉> 
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 4, (X) 10}]]
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:432):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 10}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 4, (X) 10}]]
+
+; 244 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:432):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 10}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 4, (X) 10}]]
+
+; 244 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+; ERROR in interprete.core-test/evaluar-tests (interprete.clj:433):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; error: java.lang.ClassCastException: class clojure.lang.PersistentList cannot be cast to class clojure.lang.IFn (clojure.lang.PersistentList and clojure.lang.IFn are in unnamed module of loader 'app') (interprete.clj:433)
+; expected:
+(=
+ [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [10] 1 '{X 10}]]
+ (evaluar '(READ X) ['() [:ejecucion-inmediata 0] [] [] [10] 0 '{X 4}]))
+
+; 244 tests finished, problems found. 😭 errors: 1, failures: 0, ns: 1, vars: 26
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:432):
+; evaluar READ debe retornar una dupla con :sin-errores y el ambiente con el puntero actualizado
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 10}]]
+
+; actual:
+[(READ X)
+ X
+ :sin-errores
+ [() [:ejecucion-inmediata 0] [] [] [10] 1 {X 10}]]
+
+; 244 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; 244 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; 245 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:440):
+; evaluar CLEARj debe retornar una dupla con :sin-errores y el ambiente con var-mem vacio
+; expected:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 30, Y 40}]]
+
+; 246 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; 246 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; 247 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; 247 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; 247 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:448):
+; evaluar LET debe retornar una dupla con :error-parcial y el ambiente si la sentencia no tiene como tercer elemento un simbolo =
+; expected:
+[:error-parcial [(LET X 4) [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 4}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 2, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 4}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 4}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 4}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+?SYNTAX  ERROR[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[nil [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+?SYNTAX  ERROR[nil [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+clj꞉interprete.core-test꞉> 
+#'interprete.interprete/evaluar
+clj꞉interprete.interprete꞉> 
+QUIT
+clj꞉interprete.interprete꞉> 
+QUIT
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+; No tests found. 😱, ns: 0, vars: 0
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+; Evaluating file: core_test.clj
+; Running all project tests…
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/sebastian/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
+; Using host:port 127.0.0.1:34851 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉interprete.interprete꞉> 
+clj꞉interprete.interprete꞉> 
+; Jack-in done.
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+(=
+ [:error-parcial ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+ (evaluar
+  '(LET X = PRINT)
+  ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))
+
+; actual:
+(not
+ (=
+  [:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+  [:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]))
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+?SYNTAX  ERROR IN 1nil
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+; Syntax error compiling at (core_test.clj:454:7).
+; Unable to resolve symbol: X in this context
+; Evaluation of file core_test.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+
+FAIL in () (core_test.clj:457)
+debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable ya existia
+expected: [:sin-errore [() [:ejecucion-inmediata 0] [] [] [] 0 {X 5}]]
+  actual: [:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 5}]]
+false
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 2}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; 250 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+valor para llamar a calcular-rpn: (5)
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+valor para llamar a calcular-rpn: (5)
+valor para llamar a calcular-rpn: (5)
+valor para llamar a calcular-rpn: (2 1 +)
+valor para llamar a calcular-rpn: ("HOLA" " MUNDO" +)
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+valor para llamar a calcular-rpn: (nil)
+valor para llamar a calcular-rpn: (0 0)
+?SYNTAX  ERRORvalor para llamar a calcular-rpn: (5)
+; 250 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+valor para llamar a calcular-rpn: (5)
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+valor para llamar a calcular-rpn: (5)
+valor para llamar a calcular-rpn: (5)
+valor para llamar a calcular-rpn: (2 1 +)
+valor para llamar a calcular-rpn: ("HOLA" " MUNDO" +)
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+valor para llamar a calcular-rpn: (nil)
+valor para llamar a calcular-rpn: (0)
+valor para llamar a calcular-rpn: (5)
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+#'interprete.interprete/calcular-expresion
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+
+ERROR in () (debug.clj:141)
+debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable ya existia
+expected: (= [:sin-errores [(quote ()) [:ejecucion-inmediata 0] [] [] [] 0 (quote {X 5})]] (evaluar (quote (LET X = 5)) [(quote ()) [:ejecucion-inmediata 0] [] [] [] 0 (quote {X 4})]))
+  actual: java.lang.NullPointerException: Cannot invoke "java.lang.Thread.stop()"
+ at cider.nrepl.middleware.debug$abort_BANG_.invokeStatic (debug.clj:141)
+    cider.nrepl.middleware.debug$abort_BANG_.invoke (debug.clj:134)
+    cider.nrepl.middleware.debug$read_debug_command.invokeStatic (debug.clj:389)
+    cider.nrepl.middleware.debug$read_debug_command.invoke (debug.clj:314)
+    cider.nrepl.middleware.debug$break.invokeStatic (debug.clj:519)
+    cider.nrepl.middleware.debug$break.invoke (debug.clj:497)
+    interprete.interprete$eval31654$preprocesar_expresion__31655.invoke (core_test.clj:1054)
+    clojure.lang.AFn.applyToHelper (AFn.java:156)
+    clojure.lang.AFn.applyTo (AFn.java:144)
+    clojure.core$apply.invokeStatic (core.clj:665)
+    clojure.core$apply.invoke (core.clj:660)
+    cider.nrepl.middleware.debug$apply_instrumented_maybe.invokeStatic (debug.clj:525)
+    cider.nrepl.middleware.debug$apply_instrumented_maybe.invoke (debug.clj:521)
+    interprete.interprete$eval29445$calcular_expresion__29446.invoke (form-init1179906509777541500.clj:355)
+    interprete.interprete$evaluar.invokeStatic (interprete.clj:620)
+    interprete.interprete$evaluar.invoke (interprete.clj:513)
+    interprete.core_test$eval31645.invokeStatic (core_test.clj:458)
+    interprete.core_test$eval31645.invoke (core_test.clj:456)
+    clojure.lang.Compiler.eval (Compiler.java:7176)
+    clojure.lang.Compiler.load (Compiler.java:7635)
+    interprete.core_test$eval29452.invokeStatic (form-init1179906509777541500.clj:1)
+    interprete.core_test$eval29452.invoke (form-init1179906509777541500.clj:1)
+    clojure.lang.Compiler.eval (Compiler.java:7176)
+    clojure.lang.Compiler.eval (Compiler.java:7131)
+    clojure.core$eval.invokeStatic (core.clj:3214)
+    clojure.core$eval.invoke (core.clj:3210)
+    nrepl.middleware.interruptible_eval$evaluate$fn__1530$fn__1531.invoke (interruptible_eval.clj:87)
+    clojure.lang.AFn.applyToHelper (AFn.java:152)
+    clojure.lang.AFn.applyTo (AFn.java:144)
+    clojure.core$apply.invokeStatic (core.clj:665)
+    clojure.core$with_bindings_STAR_.invokeStatic (core.clj:1973)
+    clojure.core$with_bindings_STAR_.doInvoke (core.clj:1973)
+    clojure.lang.RestFn.invoke (RestFn.java:425)
+    nrepl.middleware.interruptible_eval$evaluate$fn__1530.invoke (interruptible_eval.clj:87)
+    clojure.main$repl$read_eval_print__9068$fn__9071.invoke (main.clj:414)
+    clojure.main$repl$read_eval_print__9068.invoke (main.clj:414)
+    clojure.main$repl$fn__9077.invoke (main.clj:435)
+    clojure.main$repl.invokeStatic (main.clj:435)
+    clojure.main$repl.doInvoke (main.clj:345)
+    clojure.lang.RestFn.invoke (RestFn.java:1523)
+    nrepl.middleware.interruptible_eval$evaluate.invokeStatic (interruptible_eval.clj:84)
+    nrepl.middleware.interruptible_eval$evaluate.invoke (interruptible_eval.clj:56)
+    nrepl.middleware.interruptible_eval$interruptible_eval$fn__1563$fn__1567.invoke (interruptible_eval.clj:152)
+    clojure.lang.AFn.run (AFn.java:22)
+    nrepl.middleware.session$session_exec$main_loop__1632$fn__1636.invoke (session.clj:218)
+    nrepl.middleware.session$session_exec$main_loop__1632.invoke (session.clj:217)
+    clojure.lang.AFn.run (AFn.java:22)
+    java.lang.Thread.run (Thread.java:833)
+nil
+clj꞉interprete.core-test꞉> 
+#'interprete.interprete/calcular-expresion
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+expresion a calcular: ()
+expresion a calcular: (PRINT)
+expresion a calcular: (5)
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+expresion a calcular: (5)
+resultado: 5
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+expresion a calcular: ()
+resultado: nil
+expresion a calcular: (PRINT)
+resultado: 0
+expresion a calcular: (5)
+resultado: 5
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; 250 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:451):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]
+
+; 250 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; 250 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+RESTORE
+clj꞉interprete.core-test꞉> 
+PRINT
+clj꞉interprete.core-test꞉> 
+PRINT
+clj꞉interprete.core-test꞉> 
+PRINT
+clj꞉interprete.core-test꞉> 
+[:ejecucion-inmediata 0]
+clj꞉interprete.core-test꞉> 
+PRINT
+clj꞉interprete.core-test꞉> 
+PRINT
+clj꞉interprete.core-test꞉> 
+0
+clj꞉interprete.core-test꞉> 
+PRINT
+clj꞉interprete.core-test꞉> 
+0
+clj꞉interprete.core-test꞉> 
+0
+clj꞉interprete.core-test꞉> 
+(0)
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+(0)
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/preprocesar-expresion-tests (core_test.clj:214):
+; preprocesar-expresion
+; expected:
+(PRINT)
+
+; actual:
+(0)
+
+; 251 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+(0)
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/preprocesar-expresion-tests (core_test.clj:214):
+; preprocesar-expresion
+; expected:
+(PRINT)
+
+; actual:
+(0)
+
+; 251 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+(0)
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/preprocesar-expresion-tests (core_test.clj:214):
+; preprocesar-expresion
+; expected:
+(PRINT)
+
+; actual:
+(0)
+
+; 251 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/sebastian/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
+; Using host:port 127.0.0.1:35861 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉interprete.interprete꞉> 
+clj꞉interprete.interprete꞉> 
+; Jack-in done.
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/preprocesar-expresion-tests (core_test.clj:214):
+; preprocesar-expresion
+; expected:
+(=
+ '(PRINT)
+ (preprocesar-expresion
+  '(PRINT)
+  ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5, Y% 2}]))
+
+; actual:
+(not (= (PRINT) (0)))
+
+; 251 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+#'interprete.interprete/preprocesar-expresion
+clj꞉interprete.interprete꞉> 
+QUIT
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+(0)
+clj꞉interprete.core-test꞉> 
+#'interprete.interprete/preprocesar-expresion
+clj꞉interprete.interprete꞉> 
+QUIT
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/preprocesar-expresion-tests (core_test.clj:214):
+; preprocesar-expresion
+; expected:
+(PRINT)
+
+; actual:
+(0)
+
+; 251 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:452):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 0}]]
+
+; FAIL in interprete.core-test/preprocesar-expresion-tests (core_test.clj:214):
+; preprocesar-expresion
+; expected:
+(PRINT)
+
+; actual:
+(0)
+
+; 251 tests finished, problems found. 😭 errors: 0, failures: 2, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:452):
+; evaluar debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada
+; expected:
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+
+; actual:
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X PRINT}]]
+
+; 251 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+true
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1[:ejecucion-inmediata 0]
+; 251 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
