@@ -176,7 +176,9 @@
     (is (= ['((10 (PRINT X)) (15 (X = X + 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
            (cargar-linea '(15 (X = X + 1)) ['((10 (PRINT X)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))
     (is (= ['((10 (PRINT X)) (15 (X = X - 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
-           (cargar-linea '(15 (X = X - 1)) ['((10 (PRINT X)) (15 (X = X + 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
+           (cargar-linea '(15 (X = X - 1)) ['((10 (PRINT X)) (15 (X = X + 1)) (20 (X = 100))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))
+    (is (= ['((10 (LET X = 1)) (20 (PRINT X)) (30 (END))) [:ejecucion-inmediata 0] [] [] [] 0 {}]
+           (cargar-linea '(30 (END)) ['((10 (LET X = 1)) (20 (PRINT X))) [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
 
 (deftest generar-msg-error-tests
   (testing "generar-msg-error"

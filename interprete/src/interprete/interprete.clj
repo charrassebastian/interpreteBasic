@@ -613,7 +613,18 @@
       ; LIST: muestra el listado de sentencias del programa, 
       ; devuelve un vector con dos elementos, :sin-errores y el
       ; ambiente
-      LIST (do (prn (get amb 1)) (flush) [:sin-errores amb])
+      
+      ; LIST (do (prn (get amb 0)) (flush) [:sin-errores amb])
+      LIST (do (run! println
+                     (map (partial apply str) 
+                          (map butlast 
+                               (map rest 
+                                    (map str 
+                                         (map #(conj (fnext %) (first %)) 
+                                              (get amb 0))))))) 
+               (flush) 
+               [:sin-errores amb])
+      
       ; LET/=: hace la asignacion de un valor a una variable,
       ; devuelve un vector con dos elementos, :sin-errores y el
       ; ambiente actualizado
@@ -761,8 +772,8 @@
          numero-primera-linea-pendiente (first primera-pendiente),
          numero-linea-nueva (first linea)]
      (cond
-       (or (= 0 (count pendientes)) (< numero-linea-nueva numero-primera-linea-pendiente)) (assoc amb 0 (concat vistas (conj pendientes linea)))
-       (= numero-linea-nueva numero-primera-linea-pendiente) (assoc amb 0 (concat vistas (conj (rest pendientes) linea)))
+       (or (= 0 (count pendientes)) (< numero-linea-nueva numero-primera-linea-pendiente)) (assoc amb 0 (concat (reverse vistas) (conj pendientes linea)))
+       (= numero-linea-nueva numero-primera-linea-pendiente) (assoc amb 0 (concat (reverse vistas) (conj (rest pendientes) linea)))
        :else (let [vistas (conj vistas primera-pendiente),
                    pendientes (rest pendientes)]
                (cargar-linea linea amb vistas pendientes))))))
