@@ -405,10 +405,14 @@
 ; (1 2 +)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn shunting-yard [tokens]
+  (spy "tokens recibidos por shunting-yard" tokens)
   (remove #(= % (symbol ","))
           (flatten
            (reduce
             (fn [[rpn pila] token]
+              (spy "rpn" rpn)
+              (spy "pila" pila)
+              (spy "token" token)
               (let [op-mas? #(and (some? (precedencia %)) (>= (precedencia %) (precedencia token)))
                     no-abre-paren? #(not= (str %) "(")]
                 (cond

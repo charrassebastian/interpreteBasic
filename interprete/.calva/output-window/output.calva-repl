@@ -450,3 +450,511 @@ ocurrio el primer error?: false
 valor-expresion: 5
 ; 267 tests finished, all passing 👍, ns: 1, vars: 26
 clj꞉interprete.interprete꞉> 
+sentencia: (LET X = ( LEN "HOLA" ))
+tokens para calcular-rpn: ("HOLA" LEN)
+argumento para eliminar-cero-decimal: "HOLA"
+token por aplicar: LEN
+operando: "HOLA"
+operador: LEN
+operando nulo?: false
+argumento para eliminar-cero-decimal: 4
+ocurrio el primer error?: false
+valor-expresion: 4
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 4}]]
+clj꞉interprete.core-test꞉> 
+sentencia: (LET X = MID$ ( MID$ ) "HOLA" , 2 ) , 2 ))
+; Execution error (StackOverflowError) at interprete.interprete/desambiguar-mid (interprete.clj:381).
+; null
+clj꞉interprete.core-test꞉> 
+sentencia: (LET X = MID$ ( MID$ "HOLA" , 2 ) , 2 ))
+; Execution error (StackOverflowError) at interprete.interprete/desambiguar-mid (interprete.clj:381).
+; null
+clj꞉interprete.core-test꞉> 
+sentencia: (LET X = MID$ ( MID$ ( "HOLA" , 2 ) , 2 ))
+tokens para calcular-rpn: ("HOLA" 2 2 MID$ MID$)
+argumento para eliminar-cero-decimal: "HOLA"
+argumento para eliminar-cero-decimal: 2
+argumento para eliminar-cero-decimal: 2
+operador: MID$
+?TYPE MISMATCH  ERRORvalor-expresion: nil
+[:error-parcial [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+clj꞉interprete.core-test꞉> 
+(LET 0 = MID$ ( MID$ ( "HOLA" , 2 ) , 2 ))
+clj꞉interprete.core-test꞉> 
+(MID$ ( MID$ ( "HOLA" , 2 ) , 2 ))
+clj꞉interprete.core-test꞉> 
+(MID$ ( MID$ ( "HOLA" , 2 ) , 2 ))
+clj꞉interprete.core-test꞉> 
+("HOLA" 2 2 MID$ MID$)
+clj꞉interprete.core-test꞉> 
+#'interprete.interprete/shunting-yard
+clj꞉interprete.interprete꞉> 
+QUIT
+clj꞉interprete.core-test꞉> 
+nil
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+tokens recibidos por shunting-yard: (MID$ ( MID$ ( "HOLA" , 2 ) , 2 ))
+rpn: []
+pila: ()
+token: MID$
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: []
+pila: (MID$)
+token: (
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: []
+pila: (( MID$)
+token: MID$
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: []
+pila: (MID$ ( MID$)
+token: (
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: []
+pila: (( MID$ ( MID$)
+token: "HOLA"
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: ["HOLA"]
+pila: (( MID$ ( MID$)
+token: ,
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: ["HOLA" ,]
+pila: (( MID$ ( MID$)
+token: 2
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: ["HOLA" , 2]
+pila: (( MID$ ( MID$)
+token: )
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: ["HOLA" , 2]
+pila: (MID$ ( MID$)
+token: ,
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: ["HOLA" , 2 ,]
+pila: (MID$ ( MID$)
+token: 2
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+rpn: ["HOLA" , 2 , 2]
+pila: (MID$ ( MID$)
+token: )
+op-mas?: #function[interprete.interprete/shunting-yard/fn--17313/op-mas?--17317]
+("HOLA" 2 2 MID$ MID$)
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+tokens recibidos por shunting-yard: (MID$ ( MID$ ( "HOLA" , 2 ) , 2 ))
+rpn: []
+pila: ()
+token: MID$
+rpn: []
+pila: (MID$)
+token: (
+rpn: []
+pila: (( MID$)
+token: MID$
+rpn: []
+pila: (MID$ ( MID$)
+token: (
+rpn: []
+pila: (( MID$ ( MID$)
+token: "HOLA"
+rpn: ["HOLA"]
+pila: (( MID$ ( MID$)
+token: ,
+rpn: ["HOLA" ,]
+pila: (( MID$ ( MID$)
+token: 2
+rpn: ["HOLA" , 2]
+pila: (( MID$ ( MID$)
+token: )
+rpn: ["HOLA" , 2]
+pila: (MID$ ( MID$)
+token: ,
+rpn: ["HOLA" , 2 ,]
+pila: (MID$ ( MID$)
+token: 2
+rpn: ["HOLA" , 2 , 2]
+pila: (MID$ ( MID$)
+token: )
+("HOLA" 2 2 MID$ MID$)
+clj꞉interprete.core-test꞉> 
+(MID$ ( MID$ ( "HOLA" , 2 ) , 2 ))
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+tokens recibidos por shunting-yard: (MID$ ( MID$ ( "HOLA" , 2 ) , 2 ))
+rpn: []
+pila: []
+token: MID$
+rpn: []
+pila: (MID$)
+token: (
+rpn: []
+pila: (( MID$)
+token: MID$
+rpn: []
+pila: (MID$ ( MID$)
+token: (
+rpn: []
+pila: (( MID$ ( MID$)
+token: "HOLA"
+rpn: ["HOLA"]
+pila: (( MID$ ( MID$)
+token: ,
+rpn: ["HOLA" ,]
+pila: (( MID$ ( MID$)
+token: 2
+rpn: ["HOLA" , 2]
+pila: (( MID$ ( MID$)
+token: )
+rpn: ["HOLA" , 2]
+pila: (MID$ ( MID$)
+token: ,
+rpn: ["HOLA" , 2 ,]
+pila: (MID$ ( MID$)
+token: 2
+rpn: ["HOLA" , 2 , 2]
+pila: (MID$ ( MID$)
+token: )
+("HOLA" 2 2 MID$ MID$)
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+tokens recibidos por shunting-yard: (MID$ ( MID$ ( "HOLA" , 2 ) , 2 ))
+rpn: []
+pila: ()
+token: MID$
+rpn: []
+pila: (MID$)
+token: (
+rpn: []
+pila: (( MID$)
+token: MID$
+rpn: []
+pila: (MID$ ( MID$)
+token: (
+rpn: []
+pila: (( MID$ ( MID$)
+token: "HOLA"
+rpn: ["HOLA"]
+pila: (( MID$ ( MID$)
+token: ,
+rpn: ["HOLA" ,]
+pila: (( MID$ ( MID$)
+token: 2
+rpn: ["HOLA" , 2]
+pila: (( MID$ ( MID$)
+token: )
+rpn: ["HOLA" , 2]
+pila: (MID$ ( MID$)
+token: ,
+rpn: ["HOLA" , 2 ,]
+pila: (MID$ ( MID$)
+token: 2
+rpn: ["HOLA" , 2 , 2]
+pila: (MID$ ( MID$)
+token: )
+("HOLA" 2 2 MID$ MID$)
+clj꞉interprete.core-test꞉> 
+tokens recibidos por shunting-yard: (MID$ ( "HOLA" , 2 ))
+rpn: []
+pila: ()
+token: MID$
+rpn: []
+pila: (MID$)
+token: (
+rpn: []
+pila: (( MID$)
+token: "HOLA"
+rpn: ["HOLA"]
+pila: (( MID$)
+token: ,
+rpn: ["HOLA" ,]
+pila: (( MID$)
+token: 2
+rpn: ["HOLA" , 2]
+pila: (( MID$)
+token: )
+("HOLA" 2 MID$)
+clj꞉interprete.core-test꞉> 
+sentencia: (PRINT LEN ( "HOLA" ))
+tokens recibidos por shunting-yard: (LEN)
+rpn: []
+pila: ()
+token: LEN
+tokens para calcular-rpn: (LEN)
+token por aplicar: LEN
+operando: nil
+operador: LEN
+operando nulo?: true
+?SYNTAX  ERRORargumento para eliminar-cero-decimal: nil
+ocurrio el primer error?: false
+[nil [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+clj꞉interprete.core-test꞉> 
+; Connecting using "undefined" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Connecting using "undefined" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Aborting connect, error determining connect sequence.
+; Aborting connect, error determining connect sequence.
+; Connecting using "undefined" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Aborting connect, error determining connect sequence.
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Connecting ...
+; Reading port file: file:///home/sebastian/Projects/interpreteBasic/interprete/.nrepl-port ...
+; Using host:port localhost:34023 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉interprete.interprete꞉> 
+clj꞉interprete.interprete꞉> 
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/sebastian/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
+; nREPL Connection was closed
+; Using host:port 127.0.0.1:33121 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉interprete.interprete꞉> 
+clj꞉interprete.interprete꞉> 
+; Jack-in done.
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+tokens recibidos por shunting-yard: (5)
+rpn: []
+pila: ()
+token: 5
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+tokens recibidos por shunting-yard: (5)
+rpn: []
+pila: ()
+token: 5
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+tokens recibidos por shunting-yard: (2 + 1)
+rpn: []
+pila: ()
+token: 2
+rpn: [2]
+pila: ()
+token: +
+rpn: [2]
+pila: (+)
+token: 1
+tokens para calcular-rpn: (2 1 +)
+argumento para eliminar-cero-decimal: 2
+argumento para eliminar-cero-decimal: 1
+operador: +
+argumento para eliminar-cero-decimal: 3
+ocurrio el primer error?: false
+tokens recibidos por shunting-yard: ("HOLA" + " MUNDO")
+rpn: []
+pila: ()
+token: "HOLA"
+rpn: ["HOLA"]
+pila: ()
+token: +
+rpn: ["HOLA"]
+pila: (+)
+token: " MUNDO"
+tokens para calcular-rpn: ("HOLA" " MUNDO" +)
+argumento para eliminar-cero-decimal: "HOLA"
+argumento para eliminar-cero-decimal: " MUNDO"
+operador: +
+argumento para eliminar-cero-decimal: "HOLA MUNDO"
+ocurrio el primer error?: false
+e: IF
+e: X
+e: &
+e: *
+e: Y
+e: <
+e: 12
+e: THEN
+e: LET
+e: !
+e: X
+e: =
+e: 0
+e: PRINT
+e: 5
+e: PRINT
+e: "HOLA"
+e: LET
+e: X
+e: =
+e: LEN
+e: (
+e: "HOLA"
+e: )
+?RETURN WITHOUT GOSUB  ERROR IN 20operador: -u
+operando nulo?: false
+operador: LEN
+operando nulo?: false
+operador: STR$
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: STR$
+operando nulo?: false
+operador: CHR$
+operando nulo?: false
+?ILLEGAL QUANTITY  ERROR IN 1operador: CHR$
+operando nulo?: false
+?ILLEGAL QUANTITY  ERROR IN 1operador: CHR$
+operando nulo?: false
+operador: INT
+operando nulo?: false
+operador: INT
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: SIN
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: SIN
+operando nulo?: false
+operador: LOG
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: LOG
+operando nulo?: false
+operador: EXP
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: EXP
+operando nulo?: false
+operador: ASC
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: ASC
+operando nulo?: false
+operador: ATN
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: ATN
+operando nulo?: false
+operador: +
+operador: +
+operador: -
+operador: *
+operador: /
+?DIVISION BY ZERO  ERROR IN 1operador: /
+operador: AND
+operador: AND
+operador: AND
+operador: AND
+operador: OR
+operador: OR
+operador: OR
+operador: OR
+operador: <>
+operador: <>
+operador: <>
+operador: <>
+operador: <
+?TYPE MISMATCH  ERROR IN 1operador: <
+operador: <
+operador: <
+operador: <=
+?TYPE MISMATCH  ERROR IN 1operador: <=
+operador: <=
+operador: <=
+operador: >
+?TYPE MISMATCH  ERROR IN 1operador: >
+operador: >
+operador: >
+operador: >=
+?TYPE MISMATCH  ERROR IN 1operador: >=
+operador: >=
+operador: >=
+operador: =
+operador: =
+operador: =
+operador: =
+operador: MID$
+?ILLEGAL QUANTITY  ERROR IN 1operador: MID$
+operador: MID3$
+?ILLEGAL QUANTITY  ERROR IN 1operador: MID3$
+?ILLEGAL QUANTITY  ERROR IN 1operador: MID3$
+sentencia: (DATA 10)
+sentencia: (END)
+sentencia: (READ X)
+sentencia: (READ X)
+sentencia: (RESTORE)
+sentencia: (CLEAR)
+sentencia: (LIST)
+sentencia: (LET X 4)
+tokens recibidos por shunting-yard: (nil)
+rpn: []
+pila: ()
+token: nil
+tokens para calcular-rpn: (nil)
+argumento para eliminar-cero-decimal: nil
+ocurrio el primer error?: false
+valor-expresion: nil
+sentencia: (LET X = PRINT)
+tokens recibidos por shunting-yard: (PRINT)
+rpn: []
+pila: ()
+token: PRINT
+tokens para calcular-rpn: (PRINT)
+argumento para eliminar-cero-decimal: PRINT
+ocurrio el primer error?: false
+valor-expresion: PRINT
+sentencia: (LET X = 5)
+tokens recibidos por shunting-yard: (5)
+rpn: []
+pila: ()
+token: 5
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+valor-expresion: 5
+sentencia: (LET X = 5)
+tokens recibidos por shunting-yard: (5)
+rpn: []
+pila: ()
+token: 5
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+valor-expresion: 5
+; 267 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
