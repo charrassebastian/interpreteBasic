@@ -425,28 +425,29 @@
 ; linea indicada
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn calcular-rpn [tokens nro-linea]
+  (spy "tokens para calcular-rpn" tokens)
   (try
     (let [resu-redu
           (reduce
            (fn [pila token]
              (let [ari (aridad token),
                    resu (eliminar-cero-decimal
-                         (case ari
-                           1 (aplicar token (first pila) nro-linea)
+                         (spy "argumento para eliminar-cero-decimal" (case ari
+                           1 (aplicar (spy "token por aplicar" token) (spy "operando" (first pila)) nro-linea)
                            2 (aplicar token (second pila) (first pila) nro-linea)
                            3 (aplicar token (nth pila 2) (nth pila 1) (nth pila 0) nro-linea)
-                           token))]
+                           token)))]
                (if (nil? resu)
                  (reduced resu)
                  (cons resu (drop ari pila)))))
            [] tokens)]
-      (if (> (count resu-redu) 1)
+      (if (spy "ocurrio el primer error?" (> (count resu-redu) 1))
         (dar-error 16 nro-linea)  ; Syntax error
         (first resu-redu)))
     (catch NumberFormatException e 0)
     (catch ClassCastException e (dar-error 163 nro-linea)) ; Type mismatch error
     (catch UnsupportedOperationException e (dar-error 163 nro-linea)) ; Type mismatch error
-    (catch IllegalArgumentException e (dar-error 69 nro-linea))  ; Overflow error
+    (catch IllegalArgumentException e (dar-error 69 nro-linea))  ; Overflow error 
     (catch Exception e (dar-error 16 nro-linea)))  ; Syntax error
   )
 
@@ -511,6 +512,7 @@
 ; actualizado
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn evaluar [sentencia amb]
+  (spy "sentencia" sentencia)
   (if (or (contains? (set sentencia) nil) (and (palabra-reservada? (first sentencia)) (= (second sentencia) '=)))
     (do (dar-error 16 (amb 1)) [nil amb])  ; Syntax error  
     (case (first sentencia)
@@ -628,7 +630,7 @@
       ; LET/=: hace la asignacion de un valor a una variable,
       ; devuelve un vector con dos elementos, :sin-errores y el
       ; ambiente actualizado
-      LET (let [valor-expresion (calcular-expresion (drop 3 sentencia) amb)
+      LET (let [valor-expresion (spy "valor-expresion" (calcular-expresion (drop 3 sentencia) amb))
                   var-mem-viejo (get amb 6)
                   var-mem-nuevo (assoc var-mem-viejo (fnext sentencia) valor-expresion)
                   amb-nuevo (assoc amb 6 var-mem-nuevo)]
@@ -651,7 +653,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn aplicar
   ([operador operando nro-linea]
-   (if (nil? operando)
+   (spy "operador" operador)
+   (if (spy "operando nulo?" (nil? operando))
      (dar-error 16 nro-linea)  ; Syntax error
      (case operador
        -u (- operando)
@@ -666,6 +669,7 @@
        ASC (if (not (string? operando)) (dar-error 163 nro-linea) (int (get operando 0)))
        ATN (if (not (number? operando)) (dar-error 163 nro-linea) (. Math atan operando)))))
   ([operador operando1 operando2 nro-linea]
+   (spy "operador" operador)
    (if (or (nil? operando1) (nil? operando2))
      (dar-error 16 nro-linea)  ; Syntax error
      (case operador
@@ -701,6 +705,7 @@
        OR (let [op1 (+ 0 operando1), op2 (+ 0 operando2)] (if (or (not= op1 0) (not= op2 0)) -1 0))
        )))
   ([operador operando1 operando2 operando3 nro-linea]
+   (spy "operador" operador)
    (if (or (nil? operando1) (nil? operando2) (nil? operando3)) (dar-error 16 nro-linea)  ; Syntax error
        (case operador
          MID3$ (let [tam (count operando1), ini (dec operando2), fin (+ (dec operando2) operando3)]
@@ -751,7 +756,7 @@
 ; (IF X nil * Y < 12 THEN LET nil X = 0)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn anular-invalidos [sentencia]
-  (map (fn [e] (if (or (= "?" e) (palabra-reservada? e) (operador? e) (number? e) (variable-float? e) (variable-integer? e) (variable-string? e)) e nil)) sentencia))
+  (map (fn [e] (if (or (= "?" (spy "e" e)) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (name e)) (= ";" (name e)) (= "(" (name e)) (= ")" (name e))) e nil)) sentencia))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; cargar-linea: recibe una linea de codigo y un ambiente y retorna
@@ -1066,7 +1071,7 @@
    (fn [e] 
      (cond
        (= '. e) 0
-       (number? e) e
+       (or (string? e) (number? e)) e
        (and (nombre-variable-valido? (name e)) (contains? (last amb) e)) (get (last amb) e)
        (and (not (operador? e)) (not (palabra-reservada? e)) (nombre-variable-valido? (name e))) (cond
                                      (variable-float? e) 0
@@ -1074,9 +1079,6 @@
                                      (variable-string? e) "")
        :else e))
    expr))
-
-; segundo hacer que reemplace por cadena vacia las variables 
-; de tipo cadena, por 0 los numeros enteros y por 0.0 a los numeros float
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; desambiguar: recibe un expresion y la retorna sin los + unarios,
@@ -1092,7 +1094,7 @@
 ; (MID3$ ( 1 , -u 2 + K , 3 ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn desambiguar
-  [expr] (desambiguar-comas (desambiguar-mas-menos (desambiguar-mid expr))))
+  [expr] (seq (desambiguar-comas (desambiguar-mas-menos (desambiguar-mid expr)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; precedencia: recibe un token y retorna el valor de su
@@ -1109,7 +1111,30 @@
 ; 8
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn precedencia [token]
-  (let [jerarquia {'OR 1, 'AND 2, 'NOT 3, '<> 4, '< 4, '<= 4, '> 4, '>= 4, '= 4, '+ 5, '- 5, '* 6, '/ 6, '-u 7, 'MID$ 8}]
+  (let [jerarquia {'OR 1,
+                   'AND 2,
+                   'NOT 3,
+                   '<> 4,
+                   '< 4,
+                   '<= 4,
+                   '> 4,
+                   '>= 4,
+                   '= 4,
+                   '+ 5,
+                   '- 5,
+                   '* 6,
+                   '/ 6,
+                   '-u 7,
+                   'ATN 8,
+                   'INT 8,
+                   'SIN 8,
+                   'EXP 8,
+                   'LOG 8,
+                   'LEN 8,
+                   'MID$ 8,
+                   'ASC 8,
+                   'CHR$ 8,
+                   'STR$ 8}]
     (jerarquia token)))
 
 ;; MID$ recibe una cadena y una posicion que es desde donde la retorna, y un

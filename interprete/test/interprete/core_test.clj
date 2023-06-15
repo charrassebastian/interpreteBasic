@@ -65,7 +65,10 @@
 
 (deftest anular-invalidos-tests
   (testing "anular-invalidos"
-    (is (= '(IF X nil * Y < 12 THEN LET nil X = 0) (anular-invalidos '(IF X & * Y < 12 THEN LET ! X = 0))))))
+    (is (= '(IF X nil * Y < 12 THEN LET nil X = 0) (anular-invalidos '(IF X & * Y < 12 THEN LET ! X = 0))))
+    (is (= '(PRINT 5) (anular-invalidos '(PRINT 5))))
+    (is (= '(PRINT "HOLA") (anular-invalidos '(PRINT "HOLA"))))
+    (is (= (list 'LET 'X '= 'LEN (symbol "(") "HOLA" (symbol ")")) (anular-invalidos (list 'LET 'X '= 'LEN (symbol "(") "HOLA" (symbol ")")))))))
 
 (deftest variable-float?-tests
   (testing "variable-float?"
@@ -104,7 +107,17 @@
     (is (= 6 (precedencia '*)))
     (is (= 6 (precedencia '/)))
     (is (= 7 (precedencia '-u)))
-    (is (= 8 (precedencia 'MID$)))))
+    (is (= 8 (precedencia 'MID$)))
+    (is (= 8 (precedencia 'ATN)))
+    (is (= 8 (precedencia 'INT)))
+    (is (= 8 (precedencia 'SIN)))
+    (is (= 8 (precedencia 'EXP)))
+    (is (= 8 (precedencia 'LOG)))
+    (is (= 8 (precedencia 'LEN)))
+    (is (= 8 (precedencia 'MID$)))
+    (is (= 8 (precedencia 'ASC)))
+    (is (= 8 (precedencia 'CHR$)))
+    (is (= 8 (precedencia 'STR$)))))
 
 (deftest eliminar-cero-decimal-tests
   (testing "eliminar-cero-decimal"
@@ -213,7 +226,8 @@
   (testing "preprocesar-expresion"
     (is (= '("HOLA" + " MUNDO" + "") (preprocesar-expresion '(X$ + " MUNDO" + Z$) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X$ "HOLA"}])))
     (is (= '(5 + 0 / 2 * 0) (preprocesar-expresion '(X + . / Y% * Z) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5 Y% 2}])))
-    (is (= '(PRINT) (preprocesar-expresion '(PRINT) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5 Y% 2}])))))
+    (is (= '(PRINT) (preprocesar-expresion '(PRINT) ['((10 (PRINT X))) [10 1] [] [] [] 0 '{X 5 Y% 2}])))
+    (is (= '("HOLA ") (preprocesar-expresion '("HOLA ") ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}])))))
 
 (deftest expandir-solo-nexts-primera-linea-tests
   (testing "expandir-solo-nexts-primera-linea-tests"
@@ -259,7 +273,8 @@
   (testing "extraer-data"
     (is (= () (extraer-data '(()))))
     (is (= '("HOLA" "MUNDO" 10 20) (extraer-data (list '(10 (PRINT X) (REM ESTE NO) (DATA 30)) '(20 (DATA HOLA)) (list 100 (list 'DATA 'MUNDO (symbol ",") 10 (symbol ",") 20))))))))
-
+(type ())
+(type (extraer-data '(())))
 (deftest continuar-linea-tests
   (testing "continuar-linea"
     (is (= [nil [(list '(10 (PRINT X)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [20 3] [] [] [] 0 {}]] (continuar-linea [(list '(10 (PRINT X)) '(15 (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [20 3] [] [] [] 0 {}])))
@@ -455,7 +470,13 @@
              (evaluar '(LET X = PRINT) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))
     (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable no existia"
       (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}]]
-             (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))))
+             (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))
     (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable ya existia"
       (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}]]
-             (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 4}]))))
+             (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 4}]))))))
+
+;(evaluar (list 'LET 'X '= (symbol "(") 'LEN "HOLA" (symbol ")")) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])
+;; => [:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 4}]]
+;(evaluar (list 'LET 'X '= 'MID$ (symbol "(") 'MID$ (symbol ")") "HOLA" (symbol ",") 2 (symbol ")") (symbol ",") 2 (symbol ")")) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])
+;; => Execution error (StackOverflowError) at interprete.interprete/desambiguar-mid (interprete.clj:381).
+;;    null

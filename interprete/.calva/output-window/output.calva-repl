@@ -9,8 +9,8 @@
 ; You can make Calva auto-select this.
 ;   - See https://calva.io/connect-sequences/
 ; 
-; Starting Jack-in Terminal: pushd c:\Users\sebas\Projects\interpreteBasic\interprete & cmd.exe /d /c lein update-in :dependencies conj [nrepl,"1.0.0"] -- update-in :plugins conj [cider/cider-nrepl,"0.28.5"] -- update-in [:repl-options,:nrepl-middleware] conj '["cider.nrepl/cider-middleware"]' -- repl :headless & popd
-; Using host:port 127.0.0.1:65503 ...
+; Starting Jack-in Terminal: pushd /home/sebastian/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
+; Using host:port 127.0.0.1:34023 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -30,249 +30,423 @@ clj꞉interprete.interprete꞉> 
 true
 clj꞉interprete.interprete꞉> 
 ; Evaluating file: core_test.clj
-true
+sentencia: (LET X = ( LEN "HOLA" ))
+tokens para calcular-rpn: ("HOLA" LEN)
+argumento para eliminar-cero-decimal: "HOLA"
+token por aplicar: LEN
+operando: "HOLA"
+operador: LEN
+operando nulo?: false
+argumento para eliminar-cero-decimal: 4
+ocurrio el primer error?: false
+valor-expresion: 4
+tokens para calcular-rpn: ("HOLA" LEN)
+argumento para eliminar-cero-decimal: "HOLA"
+token por aplicar: LEN
+operando: "HOLA"
+operador: LEN
+operando nulo?: false
+argumento para eliminar-cero-decimal: 4
+ocurrio el primer error?: false
+tokens para calcular-rpn: (8 1 < 8 26 > OR)
+argumento para eliminar-cero-decimal: 8
+argumento para eliminar-cero-decimal: 1
+operador: <
+argumento para eliminar-cero-decimal: 0
+argumento para eliminar-cero-decimal: 8
+argumento para eliminar-cero-decimal: 26
+operador: >
+argumento para eliminar-cero-decimal: 0
+operador: OR
+argumento para eliminar-cero-decimal: 0
+ocurrio el primer error?: false
+0
 clj꞉interprete.core-test꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
+; Running all project tests…
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+tokens para calcular-rpn: (2 1 +)
+argumento para eliminar-cero-decimal: 2
+argumento para eliminar-cero-decimal: 1
+operador: +
+argumento para eliminar-cero-decimal: 3
+ocurrio el primer error?: false
+tokens para calcular-rpn: ("HOLA" " MUNDO" +)
+argumento para eliminar-cero-decimal: "HOLA"
+argumento para eliminar-cero-decimal: " MUNDO"
+operador: +
+argumento para eliminar-cero-decimal: "HOLA MUNDO"
+ocurrio el primer error?: false
+e: IF
+e: X
+e: &
+e: *
+e: Y
+e: <
+e: 12
+e: THEN
+e: LET
+e: !
+e: X
+e: =
+e: 0
+e: PRINT
+e: 5
+e: PRINT
+e: "HOLA"
+e: LET
+e: X
+e: =
+e: LEN
+e: (
+e: "HOLA"
+e: )
+?RETURN WITHOUT GOSUB  ERROR IN 20operador: -u
+operando nulo?: false
+operador: LEN
+operando nulo?: false
+operador: STR$
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: STR$
+operando nulo?: false
+operador: CHR$
+operando nulo?: false
+?ILLEGAL QUANTITY  ERROR IN 1operador: CHR$
+operando nulo?: false
+?ILLEGAL QUANTITY  ERROR IN 1operador: CHR$
+operando nulo?: false
+operador: INT
+operando nulo?: false
+operador: INT
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: SIN
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: SIN
+operando nulo?: false
+operador: LOG
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: LOG
+operando nulo?: false
+operador: EXP
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: EXP
+operando nulo?: false
+operador: ASC
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: ASC
+operando nulo?: false
+operador: ATN
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: ATN
+operando nulo?: false
+operador: +
+operador: +
+operador: -
+operador: *
+operador: /
+?DIVISION BY ZERO  ERROR IN 1operador: /
+operador: AND
+operador: AND
+operador: AND
+operador: AND
+operador: OR
+operador: OR
+operador: OR
+operador: OR
+operador: <>
+operador: <>
+operador: <>
+operador: <>
+operador: <
+?TYPE MISMATCH  ERROR IN 1operador: <
+operador: <
+operador: <
+operador: <=
+?TYPE MISMATCH  ERROR IN 1operador: <=
+operador: <=
+operador: <=
+operador: >
+?TYPE MISMATCH  ERROR IN 1operador: >
+operador: >
+operador: >
+operador: >=
+?TYPE MISMATCH  ERROR IN 1operador: >=
+operador: >=
+operador: >=
+operador: =
+operador: =
+operador: =
+operador: =
+operador: MID$
+?ILLEGAL QUANTITY  ERROR IN 1operador: MID$
+operador: MID3$
+?ILLEGAL QUANTITY  ERROR IN 1operador: MID3$
+?ILLEGAL QUANTITY  ERROR IN 1operador: MID3$
+sentencia: (DATA 10)
+sentencia: (END)
+sentencia: (READ X)
+sentencia: (READ X)
+sentencia: (RESTORE)
+sentencia: (CLEAR)
+sentencia: (LIST)
+sentencia: (LET X 4)
+tokens para calcular-rpn: (nil)
+argumento para eliminar-cero-decimal: nil
+ocurrio el primer error?: false
+valor-expresion: nil
+sentencia: (LET X = PRINT)
+tokens para calcular-rpn: (PRINT)
+argumento para eliminar-cero-decimal: PRINT
+ocurrio el primer error?: false
+valor-expresion: PRINT
+sentencia: (LET X = 5)
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+valor-expresion: 5
+sentencia: (LET X = 5)
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+valor-expresion: 5
+; 267 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
+sentencia: (LET X = ( LEN "HOLA" ))
+tokens para calcular-rpn: ("HOLA" LEN)
+argumento para eliminar-cero-decimal: "HOLA"
+token por aplicar: LEN
+operando: "HOLA"
+operador: LEN
+operando nulo?: false
+argumento para eliminar-cero-decimal: 4
+ocurrio el primer error?: false
+valor-expresion: 4
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 4}]]
+clj꞉interprete.core-test꞉> 
+sentencia: (LET X = ( LEN "HOLA" ))
+tokens para calcular-rpn: ("HOLA" LEN)
+argumento para eliminar-cero-decimal: "HOLA"
+token por aplicar: LEN
+operando: "HOLA"
+operador: LEN
+operando nulo?: false
+argumento para eliminar-cero-decimal: 4
+ocurrio el primer error?: false
+valor-expresion: 4
+[:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {X 4}]]
+clj꞉interprete.core-test꞉> 
 ; Evaluating file: core_test.clj
+sentencia: (LET X = ( LEN "HOLA" ))
+tokens para calcular-rpn: ("HOLA" LEN)
+argumento para eliminar-cero-decimal: "HOLA"
+token por aplicar: LEN
+operando: "HOLA"
+operador: LEN
+operando nulo?: false
+argumento para eliminar-cero-decimal: 4
+ocurrio el primer error?: false
+valor-expresion: 4
+sentencia: (LET X = MID$ ( MID$ ) "HOLA" , 2 ) , 2 ))
+; Syntax error (StackOverflowError) compiling at (core_test.clj:479:1).
+; null
+; Evaluation of file core_test.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉interprete.core-test꞉> 
+sentencia: (LET X = MID$ ( MID$ ) "HOLA" , 2 ) , 2 ))
+; Execution error (StackOverflowError) at interprete.interprete/desambiguar-mid (interprete.clj:381).
+; null
+clj꞉interprete.core-test꞉> 
+("HOLA" LEN)
+clj꞉interprete.core-test꞉> 
+tokens para calcular-rpn: ("HOLA" LEN)
+argumento para eliminar-cero-decimal: "HOLA"
+token por aplicar: LEN
+operando: "HOLA"
+operador: LEN
+operando nulo?: false
+argumento para eliminar-cero-decimal: 4
+ocurrio el primer error?: false
+4
+clj꞉interprete.core-test꞉> 
+(LEN ( "HOLA" ))
+clj꞉interprete.core-test꞉> 
 true
 clj꞉interprete.core-test꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1()
-; FAIL in interprete.core-test/cargar-linea-tests (core_test.clj:180):
-; cargar-linea
-; expected:
-(=
- ['((10 (LET X = 1)) (20 (PRINT X)) (30 (END)))
-  [:ejecucion-inmediata 0]
-  []
-  []
-  []
-  0
-  {}]
- (cargar-linea
-  '(30 (END))
-  ['((10 (LET X = 1)) (20 (PRINT X)))
-   [:ejecucion-inmediata 0]
-   []
-   []
-   []
-   0
-   {}]))
-
-; actual:
-(not
- (=
-  [((10 (LET X = 1)) (20 (PRINT X)) (30 (END)))
-   [:ejecucion-inmediata 0]
-   []
-   []
-   []
-   0
-   {}]
-  [((20 (PRINT X)) (10 (LET X = 1)) (30 (END)))
-   [:ejecucion-inmediata 0]
-   []
-   []
-   []
-   0
-   {}]))
-
-; 252 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 26
-clj꞉interprete.core-test꞉> 
-#'interprete.interprete/cargar-linea
-clj꞉interprete.interprete꞉> 
-QUIT
-clj꞉interprete.core-test꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1()
-; 252 tests finished, all passing 👍, ns: 1, vars: 26
-clj꞉interprete.interprete꞉> 
-()
-clj꞉interprete.interprete꞉> 
-10
-PRINT
-X
-nil
-clj꞉interprete.interprete꞉> 
-10
-PRINT
-X
-nil
-clj꞉interprete.interprete꞉> 
-; Syntax error compiling at (interprete.clj:618:7).
-; Unable to resolve symbol: applpy in this context
-clj꞉interprete.interprete꞉> 
-"10PRINTX"
-clj꞉interprete.interprete꞉> 
-"10 PRINT X"
-clj꞉interprete.interprete꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 252 tests finished, all passing 👍, ns: 1, vars: 26
-clj꞉interprete.interprete꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 252 tests finished, all passing 👍, ns: 1, vars: 26
-clj꞉interprete.interprete꞉> 
 ; Evaluating file: core_test.clj
-true
+sentencia: (LET X = ( LEN "HOLA" ))
+tokens para calcular-rpn: ("HOLA" LEN)
+argumento para eliminar-cero-decimal: "HOLA"
+token por aplicar: LEN
+operando: "HOLA"
+operador: LEN
+operando nulo?: false
+argumento para eliminar-cero-decimal: 4
+ocurrio el primer error?: false
+valor-expresion: 4
+sentencia: (LET X = MID$ ( MID$ ) "HOLA" , 2 ) , 2 ))
+; Syntax error (StackOverflowError) compiling at (core_test.clj:479:1).
+; null
+; Evaluation of file core_test.clj failed: class clojure.lang.Compiler$CompilerException
 clj꞉interprete.core-test꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 252 tests finished, all passing 👍, ns: 1, vars: 26
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
 clj꞉interprete.core-test꞉> 
 ; Evaluating file: interprete.clj
 true
 clj꞉interprete.interprete꞉> 
 ; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 252 tests finished, all passing 👍, ns: 1, vars: 26
-clj꞉interprete.interprete꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 252 tests finished, all passing 👍, ns: 1, vars: 26
-clj꞉interprete.interprete꞉> 
-; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
-; Don't know how to create ISeq from: java.lang.Long
-clj꞉interprete.interprete꞉> 
-; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
-; Don't know how to create ISeq from: java.lang.Long
-clj꞉interprete.interprete꞉> 
-; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
-; Don't know how to create ISeq from: java.lang.Long
-clj꞉interprete.interprete꞉> 
-; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
-; Don't know how to create ISeq from: java.lang.Long
-clj꞉interprete.interprete꞉> 
-; Syntax error compiling at (interprete.clj:517:5).
-; Unable to resolve symbol: LET in this context
-clj꞉interprete.interprete꞉> 
-; Syntax error compiling at (interprete.clj:517:5).
-; Unable to resolve symbol: LET in this context
-clj꞉interprete.interprete꞉> 
-; Syntax error compiling at (interprete.clj:517:5).
-; Unable to resolve symbol: LET in this context
-clj꞉interprete.interprete꞉> 
-; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
-; Don't know how to create ISeq from: java.lang.Long
-clj꞉interprete.interprete꞉> 
-; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
-; Don't know how to create ISeq from: java.lang.Long
-clj꞉interprete.interprete꞉> 
-; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
-; Don't know how to create ISeq from: java.lang.Long
-clj꞉interprete.interprete꞉> 
-; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
-; Don't know how to create ISeq from: java.lang.Long
-clj꞉interprete.interprete꞉> 
-; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
-; Don't know how to create ISeq from: java.lang.Long
-clj꞉interprete.interprete꞉> 
-((10 PRINT X))
-clj꞉interprete.interprete꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 252 tests finished, all passing 👍, ns: 1, vars: 26
-clj꞉interprete.interprete꞉> 
-QUIT
-clj꞉interprete.interprete꞉> 
-("10 PRINT X")
-clj꞉interprete.interprete꞉> 
-("10 PRINT X" "20 LET X = 2")
-clj꞉interprete.interprete꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 252 tests finished, all passing 👍, ns: 1, vars: 26
-clj꞉interprete.interprete꞉> 
-; Error printing return value (ClassCastException) at clojure.core/conj (core.clj:82).
-; class java.lang.String cannot be cast to class clojure.lang.IPersistentCollection (java.lang.String is in module java.base of loader 'bootstrap'; clojure.lang.IPersistentCollection is in unnamed module of loader 'app')
-clj꞉interprete.interprete꞉> 
-; Error printing return value (ClassCastException) at clojure.core/conj (core.clj:82).
-; class java.lang.String cannot be cast to class clojure.lang.IPersistentCollection (java.lang.String is in module java.base of loader 'bootstrap'; clojure.lang.IPersistentCollection is in unnamed module of loader 'app')
-clj꞉interprete.interprete꞉> 
-QUIT
-clj꞉interprete.interprete꞉> 
-("10 HOLA")
-clj꞉interprete.interprete꞉> 
-("10 HOLA")
-clj꞉interprete.interprete꞉> 
-((10 "HOLA"))
-clj꞉interprete.interprete꞉> 
-(10 HOLA)
-nil
-clj꞉interprete.interprete꞉> 
-(10 HOLA)
-nil
-clj꞉interprete.interprete꞉> 
-(10 HOLA)
-nil
-clj꞉interprete.interprete꞉> 
-((10 "HOLA"))
-clj꞉interprete.interprete꞉> 
-((10 "HOLA"))
-clj꞉interprete.interprete꞉> 
-(10 "HOLA")
-clj꞉interprete.interprete꞉> 
-(10 HOLA)
-nil
-clj꞉interprete.interprete꞉> 
-"(10 \"HOLA\")"
-clj꞉interprete.interprete꞉> 
-(10 "HOLA")
-nil
-clj꞉interprete.interprete꞉> 
-"(10 \"HOLA\")"
-clj꞉interprete.interprete꞉> 
-"10 \"HOLA\""
-clj꞉interprete.interprete꞉> 
-10 "HOLA"
-nil
-clj꞉interprete.interprete꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 252 tests finished, all passing 👍, ns: 1, vars: 26
-clj꞉interprete.interprete꞉> 
-"10 PRINT X"
-clj꞉interprete.interprete꞉> 
-((10 PRINT X) (15 PRINT X))
-clj꞉interprete.interprete꞉> 
-(10 PRINT X)
-clj꞉interprete.interprete꞉> 
-((10 PRINT X) (15 PRINT X))
-clj꞉interprete.interprete꞉> 
-("(10 PRINT X)" "(15 PRINT X)")
-clj꞉interprete.interprete꞉> 
-((\1 \0 \space \P \R \I \N \T \space \X \)) (\1 \5 \space \P \R \I \N \T \space \X \)))
-clj꞉interprete.interprete꞉> 
-((\1 \0 \space \P \R \I \N \T \space \X) (\1 \5 \space \P \R \I \N \T \space \X))
-clj꞉interprete.interprete꞉> 
-("10 PRINT X" "15 PRINT X")
-clj꞉interprete.interprete꞉> 
-10 PRINT X
-15 PRINT X
-nil
-clj꞉interprete.interprete꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 252 tests finished, all passing 👍, ns: 1, vars: 26
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+tokens para calcular-rpn: (2 1 +)
+argumento para eliminar-cero-decimal: 2
+argumento para eliminar-cero-decimal: 1
+operador: +
+argumento para eliminar-cero-decimal: 3
+ocurrio el primer error?: false
+tokens para calcular-rpn: ("HOLA" " MUNDO" +)
+argumento para eliminar-cero-decimal: "HOLA"
+argumento para eliminar-cero-decimal: " MUNDO"
+operador: +
+argumento para eliminar-cero-decimal: "HOLA MUNDO"
+ocurrio el primer error?: false
+e: IF
+e: X
+e: &
+e: *
+e: Y
+e: <
+e: 12
+e: THEN
+e: LET
+e: !
+e: X
+e: =
+e: 0
+e: PRINT
+e: 5
+e: PRINT
+e: "HOLA"
+e: LET
+e: X
+e: =
+e: LEN
+e: (
+e: "HOLA"
+e: )
+?RETURN WITHOUT GOSUB  ERROR IN 20operador: -u
+operando nulo?: false
+operador: LEN
+operando nulo?: false
+operador: STR$
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: STR$
+operando nulo?: false
+operador: CHR$
+operando nulo?: false
+?ILLEGAL QUANTITY  ERROR IN 1operador: CHR$
+operando nulo?: false
+?ILLEGAL QUANTITY  ERROR IN 1operador: CHR$
+operando nulo?: false
+operador: INT
+operando nulo?: false
+operador: INT
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: SIN
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: SIN
+operando nulo?: false
+operador: LOG
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: LOG
+operando nulo?: false
+operador: EXP
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: EXP
+operando nulo?: false
+operador: ASC
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: ASC
+operando nulo?: false
+operador: ATN
+operando nulo?: false
+?TYPE MISMATCH  ERROR IN 1operador: ATN
+operando nulo?: false
+operador: +
+operador: +
+operador: -
+operador: *
+operador: /
+?DIVISION BY ZERO  ERROR IN 1operador: /
+operador: AND
+operador: AND
+operador: AND
+operador: AND
+operador: OR
+operador: OR
+operador: OR
+operador: OR
+operador: <>
+operador: <>
+operador: <>
+operador: <>
+operador: <
+?TYPE MISMATCH  ERROR IN 1operador: <
+operador: <
+operador: <
+operador: <=
+?TYPE MISMATCH  ERROR IN 1operador: <=
+operador: <=
+operador: <=
+operador: >
+?TYPE MISMATCH  ERROR IN 1operador: >
+operador: >
+operador: >
+operador: >=
+?TYPE MISMATCH  ERROR IN 1operador: >=
+operador: >=
+operador: >=
+operador: =
+operador: =
+operador: =
+operador: =
+operador: MID$
+?ILLEGAL QUANTITY  ERROR IN 1operador: MID$
+operador: MID3$
+?ILLEGAL QUANTITY  ERROR IN 1operador: MID3$
+?ILLEGAL QUANTITY  ERROR IN 1operador: MID3$
+sentencia: (DATA 10)
+sentencia: (END)
+sentencia: (READ X)
+sentencia: (READ X)
+sentencia: (RESTORE)
+sentencia: (CLEAR)
+sentencia: (LIST)
+sentencia: (LET X 4)
+tokens para calcular-rpn: (nil)
+argumento para eliminar-cero-decimal: nil
+ocurrio el primer error?: false
+valor-expresion: nil
+sentencia: (LET X = PRINT)
+tokens para calcular-rpn: (PRINT)
+argumento para eliminar-cero-decimal: PRINT
+ocurrio el primer error?: false
+valor-expresion: PRINT
+sentencia: (LET X = 5)
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+valor-expresion: 5
+sentencia: (LET X = 5)
+tokens para calcular-rpn: (5)
+argumento para eliminar-cero-decimal: 5
+ocurrio el primer error?: false
+valor-expresion: 5
+; 267 tests finished, all passing 👍, ns: 1, vars: 26
 clj꞉interprete.interprete꞉> 
