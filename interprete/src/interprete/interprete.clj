@@ -405,14 +405,10 @@
 ; (1 2 +)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn shunting-yard [tokens]
-  (spy "tokens recibidos por shunting-yard" tokens)
   (remove #(= % (symbol ","))
           (flatten
            (reduce
             (fn [[rpn pila] token]
-              (spy "rpn" rpn)
-              (spy "pila" pila)
-              (spy "token" token)
               (let [op-mas? #(and (some? (precedencia %)) (>= (precedencia %) (precedencia token)))
                     no-abre-paren? #(not= (str %) "(")]
                 (cond
@@ -429,23 +425,22 @@
 ; linea indicada
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn calcular-rpn [tokens nro-linea]
-  (spy "tokens para calcular-rpn" tokens)
   (try
     (let [resu-redu
           (reduce
            (fn [pila token]
              (let [ari (aridad token),
                    resu (eliminar-cero-decimal
-                         (spy "argumento para eliminar-cero-decimal" (case ari
-                           1 (aplicar (spy "token por aplicar" token) (spy "operando" (first pila)) nro-linea)
+                          (case ari
+                           1 (aplicar token (first pila) nro-linea)
                            2 (aplicar token (second pila) (first pila) nro-linea)
                            3 (aplicar token (nth pila 2) (nth pila 1) (nth pila 0) nro-linea)
-                           token)))]
+                           token))]
                (if (nil? resu)
                  (reduced resu)
                  (cons resu (drop ari pila)))))
            [] tokens)]
-      (if (spy "ocurrio el primer error?" (> (count resu-redu) 1))
+      (if  (> (count resu-redu) 1)
         (dar-error 16 nro-linea)  ; Syntax error
         (first resu-redu)))
     (catch NumberFormatException e 0)
@@ -516,7 +511,6 @@
 ; actualizado
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn evaluar [sentencia amb]
-  (spy "sentencia" sentencia)
   (if (or (contains? (set sentencia) nil) (and (palabra-reservada? (first sentencia)) (= (second sentencia) '=)))
     (do (dar-error 16 (amb 1)) [nil amb])  ; Syntax error  
     (case (first sentencia)
@@ -634,7 +628,7 @@
       ; LET/=: hace la asignacion de un valor a una variable,
       ; devuelve un vector con dos elementos, :sin-errores y el
       ; ambiente actualizado
-      LET (let [valor-expresion (spy "valor-expresion" (calcular-expresion (drop 3 sentencia) amb))
+      LET (let [valor-expresion (calcular-expresion (drop 3 sentencia) amb)
                   var-mem-viejo (get amb 6)
                   var-mem-nuevo (assoc var-mem-viejo (fnext sentencia) valor-expresion)
                   amb-nuevo (assoc amb 6 var-mem-nuevo)]
@@ -657,8 +651,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn aplicar
   ([operador operando nro-linea]
-   (spy "operador" operador)
-   (if (spy "operando nulo?" (nil? operando))
+   (if (nil? operando)
      (dar-error 16 nro-linea)  ; Syntax error
      (case operador
        -u (- operando)
@@ -673,7 +666,6 @@
        ASC (if (not (string? operando)) (dar-error 163 nro-linea) (int (get operando 0)))
        ATN (if (not (number? operando)) (dar-error 163 nro-linea) (. Math atan operando)))))
   ([operador operando1 operando2 nro-linea]
-   (spy "operador" operador)
    (if (or (nil? operando1) (nil? operando2))
      (dar-error 16 nro-linea)  ; Syntax error
      (case operador
@@ -709,7 +701,6 @@
        OR (let [op1 (+ 0 operando1), op2 (+ 0 operando2)] (if (or (not= op1 0) (not= op2 0)) -1 0))
        )))
   ([operador operando1 operando2 operando3 nro-linea]
-   (spy "operador" operador)
    (if (or (nil? operando1) (nil? operando2) (nil? operando3)) (dar-error 16 nro-linea)  ; Syntax error
        (case operador
          MID3$ (let [tam (count operando1), ini (dec operando2), fin (+ (dec operando2) operando3)]
@@ -760,7 +751,7 @@
 ; (IF X nil * Y < 12 THEN LET nil X = 0)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn anular-invalidos [sentencia]
-  (map (fn [e] (if (or (= "?" (spy "e" e)) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (name e)) (= ";" (name e)) (= "(" (name e)) (= ")" (name e))) e nil)) sentencia))
+  (map (fn [e] (if (or (= "?" e) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (name e)) (= ";" (name e)) (= "(" (name e)) (= ")" (name e))) e nil)) sentencia))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; cargar-linea: recibe una linea de codigo y un ambiente y retorna
