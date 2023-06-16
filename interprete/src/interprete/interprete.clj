@@ -751,7 +751,7 @@
 ; (IF X nil * Y < 12 THEN LET nil X = 0)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn anular-invalidos [sentencia]
-  (map (fn [e] (if (or (= "?" e) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (name e)) (= ";" (name e)) (= "(" (name e)) (= ")" (name e))) e nil)) sentencia))
+  (map (fn [e] (if (or (= "?" e) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (name e)) (= ";" (name e)) (= "." (name e)) (= "(" (name e)) (= ")" (name e))) e nil)) sentencia))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; cargar-linea: recibe una linea de codigo y un ambiente y retorna

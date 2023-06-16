@@ -67,6 +67,7 @@
   (testing "anular-invalidos"
     (is (= '(IF X nil * Y < 12 THEN LET nil X = 0) (anular-invalidos '(IF X & * Y < 12 THEN LET ! X = 0))))
     (is (= '(PRINT 5) (anular-invalidos '(PRINT 5))))
+    (is (= '(LET P = .) (anular-invalidos '(LET P = .))))
     (is (= '(PRINT "HOLA") (anular-invalidos '(PRINT "HOLA"))))
     (is (= (list 'LET 'X '= 'LEN (symbol "(") "HOLA" (symbol ")")) (anular-invalidos (list 'LET 'X '= 'LEN (symbol "(") "HOLA" (symbol ")")))))))
 
@@ -464,16 +465,19 @@
     (testing "LET"
       (testing "debe retornar una dupla con :error-parcial y el ambiente si la sentencia no tiene como tercer elemento un simbolo ="
         (is (= [:error-parcial ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
-               (evaluar '(LET X 4) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
-    (testing "debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada"
-      (is (= [:error-parcial ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
-             (evaluar '(LET X = PRINT) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))
-    (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable no existia"
-      (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}]]
-             (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))
-    (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable ya existia"
-      (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}]]
-             (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 4}]))))))
+               (evaluar '(LET X 4) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))
+      (testing "debe retornar una dupla con :error-parcial y el ambiente si la expresion esta mal formada"
+        (is (= [:error-parcial ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+               (evaluar '(LET X = PRINT) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))
+      (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable no existia"
+        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}]]
+               (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))))
+      (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado si la variable ya existia"
+        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}]]
+               (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 4}]))))
+      (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado con valor 0 para la variable nueva si es igual a ."
+        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{P 0}]]
+               (evaluar '(LET P = .) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))))
 
 (deftest flatten-primer-nivel-tests
   (testing "flatten-primer-nivel"
