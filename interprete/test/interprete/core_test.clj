@@ -477,7 +477,11 @@
                (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 4}]))))
       (testing "debe retornar una dupla con :sin-errores y el ambiente con var-mem actualizado con valor 0 para la variable nueva si es igual a ."
         (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{P 0}]]
-               (evaluar '(LET P = .) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))))
+               (evaluar '(LET P = .) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
+    (testing "PRINT"
+      (testing "debe retornar una dupla con :sin-errores y el ambiente si no se le pasan argumentos"
+        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+               (evaluar '(PRINT) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))))
 
 (deftest flatten-primer-nivel-tests
   (testing "flatten-primer-nivel"

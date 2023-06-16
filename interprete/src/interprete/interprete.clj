@@ -1062,18 +1062,20 @@
 ; (5 + 0 / 2 * 0)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn preprocesar-expresion [expr amb]
-  (map 
-   (fn [e] 
-     (cond
-       (= '. e) 0
-       (or (string? e) (number? e)) e
-       (and (nombre-variable-valido? (name e)) (contains? (last amb) e)) (get (last amb) e)
-       (and (not (operador? e)) (not (palabra-reservada? e)) (nombre-variable-valido? (name e))) (cond
-                                     (variable-float? e) 0
-                                     (variable-integer? e) 0
-                                     (variable-string? e) "")
-       :else e))
-   expr))
+  (if (= '(nil) expr)
+    nil
+    (map
+     (fn [e]
+       (cond
+         (= '. e) 0
+         (or (string? e) (number? e)) e
+         (and (nombre-variable-valido? (name e)) (contains? (last amb) e)) (get (last amb) e)
+         (and (not (operador? e)) (not (palabra-reservada? e)) (nombre-variable-valido? (name e))) (cond
+                                                                                                     (variable-float? e) 0
+                                                                                                     (variable-integer? e) 0
+                                                                                                     (variable-string? e) "")
+         :else e))
+     expr)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; desambiguar: recibe un expresion y la retorna sin los + unarios,
