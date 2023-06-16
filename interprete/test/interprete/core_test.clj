@@ -475,6 +475,10 @@
       (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 5}]]
              (evaluar '(LET X = 5) ['() [:ejecucion-inmediata 0] [] [] [] 0 '{X 4}]))))))
 
+(deftest flatten-primer-nivel-tests
+  (testing "flatten-primer-nivel"
+    (is (= '(10 PRINT X PRINT Y) (flatten-primer-nivel '(10 (PRINT X) (PRINT Y)))))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; ERROR 1: no se puede llamar a una funcion dentro de una funcion

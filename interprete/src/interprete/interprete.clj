@@ -55,6 +55,7 @@
 (declare expandir-solo-nexts-primera-linea)
 (declare extraer-data-sentencia)
 (declare extraer-data-linea)
+(declare flatten-primer-nivel)
 
 (defn -main
   [& args]
@@ -616,12 +617,11 @@
       
       ; LIST (do (prn (get amb 0)) (flush) [:sin-errores amb])
       LIST (do (run! println
-                     (map (partial apply str) 
-                          (map butlast 
-                               (map rest 
-                                    (map str 
-                                         (map #(conj (fnext %) (first %)) 
-                                              (get amb 0))))))) 
+                     (map (partial apply str)
+                          (map butlast
+                               (map rest
+                                    (map str
+                                         (map flatten-primer-nivel (get amb 0)))))))
                (flush) 
                [:sin-errores amb])
       
@@ -1231,5 +1231,17 @@
                   :else (str " " n))
     (= n nil) nil
     :else (str n)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; flatten-primer-nivel: remueve los parentesis al primer nivel
+; unicamente de una secuencia util para preparar las lineas a
+; mostrar por LIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn flatten-primer-nivel
+  ([arg] (flatten-primer-nivel () arg))
+  ([acum arg] (cond
+                (empty? arg) (reverse acum)
+                (seq? (first arg)) (flatten-primer-nivel (reduce (fn [procesado e] (conj procesado e)) acum (first arg)) (rest arg))
+                :else (flatten-primer-nivel (conj acum (first arg)) (rest arg)))))
 
 true

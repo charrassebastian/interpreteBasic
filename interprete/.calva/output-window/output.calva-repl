@@ -10,7 +10,7 @@
 ;   - See https://calva.io/connect-sequences/
 ; 
 ; Starting Jack-in Terminal: pushd c:\Users\sebas\Projects\interpreteBasic\interprete & cmd.exe /d /c lein update-in :dependencies conj [nrepl,"1.0.0"] -- update-in :plugins conj [cider/cider-nrepl,"0.28.5"] -- update-in [:repl-options,:nrepl-middleware] conj '["cider.nrepl/cider-middleware"]' -- repl :headless & popd
-; Using host:port 127.0.0.1:63067 ...
+; Using host:port 127.0.0.1:49856 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -26,6 +26,195 @@ clj꞉interprete.interprete꞉>  ; Use `alt+enter` to evaluate
 clj꞉interprete.interprete꞉> 
 ; Jack-in done.
 clj꞉interprete.interprete꞉> 
+#'interprete.interprete/evaluar
+clj꞉interprete.interprete꞉> 
+#'interprete.interprete/evaluar
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+QUIT
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (interprete.clj:624:61).
+; Unable to resolve symbol: amb in this context
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1lineas: ()
+primer procesamiento: ()
+; 267 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.interprete꞉> 
+; Syntax error compiling at (interprete.clj:624:61).
+; Unable to resolve symbol: amb in this context
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+lineas: ((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+primer procesamiento: ((10 PRINT X) (15 X = X + 1) (20 NEXT I , J))
+10 PRINT X
+15 X = X + 1
+20 NEXT I , J
+[:sin-errores [((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 -1] [] [] [] 0 {}]]
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+lineas: ((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+primer procesamiento: (10 (PRINT X) (PRINT Y) 15 (X = X + 1) 20 (NEXT I , J))
+
+PRINT X
+PRINT Y
+
+X = X + 1
+
+NEXT I , J
+[:sin-errores [((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 -1] [] [] [] 0 {}]]
+clj꞉interprete.core-test꞉> 
+(partial apply concat)
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+lineas: ((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+primer procesamiento: ((; Execution error (IllegalArgumentException) at interprete.interprete/spy (interprete.clj:715).
+; Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+lineas: ((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+primer procesamiento: ((() 10 (PRINT X) (PRINT Y)) (() 15 (X = X + 1)) (() 20 (NEXT I , J)))
+segundo procesamiento: ((; Execution error (IllegalArgumentException) at interprete.interprete/spy (interprete.clj:715).
+; Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core-test꞉> 
+[((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 -1] [] [] [] 0 {}]
+clj꞉interprete.core-test꞉> 
+; Error printing return value (ClassCastException) at clojure.core/conj (core.clj:82).
+; class java.lang.Long cannot be cast to class clojure.lang.IPersistentCollection (java.lang.Long is in module java.base of loader 'bootstrap'; clojure.lang.IPersistentCollection is in unnamed module of loader 'app')
+clj꞉interprete.core-test꞉> 
+; Error printing return value (ClassCastException) at clojure.core/conj (core.clj:82).
+; class java.lang.Long cannot be cast to class clojure.lang.IPersistentCollection (java.lang.Long is in module java.base of loader 'bootstrap'; clojure.lang.IPersistentCollection is in unnamed module of loader 'app')
+clj꞉interprete.core-test꞉> 
+((() 10 (PRINT X) (PRINT Y)) (() 15 (X = X + 1)) (() 20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+([10 (PRINT X) (PRINT Y)] [15 (X = X + 1)] [20 (NEXT I , J)])
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+lineas: ((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+primer procesamiento: ((() 10 (PRINT X) (PRINT Y)) (() 15 (X = X + 1)) (() 20 (NEXT I , J)))
+; Syntax error (IllegalArgumentException) compiling at (core_test.clj:478:1).
+; Don't know how to create ISeq from: java.lang.Long
+segundo procesamiento: ((; Evaluation of file core_test.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J)))
+clj꞉interprete.core-test꞉> 
+(10 (PRINT X) (PRINT Y))
+clj꞉interprete.core-test꞉> 
+(10 (PRINT X) (PRINT Y))
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+(((PRINT Y) (PRINT X) 10))
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+(((PRINT Y) (PRINT X) 10))
+clj꞉interprete.core-test꞉> 
+(((PRINT Y) (PRINT X) 10))
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+(((PRINT Y) (PRINT X) 10))
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+(((PRINT Y) (PRINT X) 10))
+clj꞉interprete.core-test꞉> 
+(((PRINT Y) (PRINT X) 10))
+clj꞉interprete.core-test꞉> 
+((10 (PRINT X) (PRINT Y)))
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+; Syntax error compiling at (core_test.clj:566:16).
+; Unable to resolve symbol: linea in this context
+clj꞉interprete.core-test꞉> 
+; Error printing return value (IllegalArgumentException) at clojure.lang.RT/seqFrom (RT.java:553).
+; Don't know how to create ISeq from: java.lang.Long
+clj꞉interprete.core-test꞉> 
+((PRINT Y) (PRINT X) 10)
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+((PRINT Y) (PRINT X) 10)
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+QUIT
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+(X PRINT)
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+(X PRINT)
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+(PRINT Y)
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+(10)
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+QUIT
+clj꞉interprete.core-test꞉> 
+#'interprete.core-test/flatten-primer-nivel
+clj꞉interprete.core-test꞉> 
+(10 PRINT X PRINT Y)
+clj꞉interprete.core-test꞉> 
+((10 PRINT X PRINT Y) (15 X = X + 1) (20 NEXT I , J))
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+; Syntax error compiling at (interprete.clj:624:97).
+; Unable to resolve symbol: arg in this context
+; Evaluation of file interprete.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+segundo procesamiento: ((10 PRINT X PRINT Y) (15 X = X + 1) (20 NEXT I , J))
+10 PRINT X PRINT Y
+15 X = X + 1
+20 NEXT I , J
+[:sin-errores [((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 -1] [] [] [] 0 {}]]
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/evaluar-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1segundo procesamiento: ()
+; 267 tests finished, all passing 👍, ns: 1, vars: 26
+clj꞉interprete.core-test꞉> 
 ; Evaluating file: interprete.clj
 true
 clj꞉interprete.interprete꞉> 
@@ -33,5 +222,31 @@ clj꞉interprete.interprete꞉> 
 #'interprete.core-test/evaluar-tests
 clj꞉interprete.core-test꞉> 
 ; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 267 tests finished, all passing 👍, ns: 1, vars: 26
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1amb: ()
+; 267 tests finished, all passing 👍, ns: 1, vars: 26
 clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+10 PRINT X PRINT Y
+15 X = X + 1
+20 NEXT I , J
+[:sin-errores [((10 (PRINT X) (PRINT Y)) (15 (X = X + 1)) (20 (NEXT I , J))) [20 -1] [] [] [] 0 {}]]
+clj꞉interprete.core-test꞉> 
+true
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/flatten-primer-nivel-tests
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/flatten-primer-nivel-tests
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 268 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 268 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.interprete꞉> 
