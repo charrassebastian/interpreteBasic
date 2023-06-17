@@ -751,7 +751,7 @@
 ; (IF X nil * Y < 12 THEN LET nil X = 0)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn anular-invalidos [sentencia]
-  (map (fn [e] (if (or (= "?" e) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (name e)) (= ";" (name e)) (= "." (name e)) (= "(" (name e)) (= ")" (name e))) e nil)) sentencia))
+  (map (fn [e] (if (or (= "?" e) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (str e)) (= ";" (str e)) (= "." (str e)) (= "(" (str e)) (= ")" (str e))) e nil)) sentencia))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; cargar-linea: recibe una linea de codigo y un ambiente y retorna
@@ -859,8 +859,10 @@
 ; false
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn variable-float? [x]
-  (let [v (name x)]
-    (and (not= \% (last v)) (not= \$ (last v)) (nombre-variable-valido? v))))
+  (if (symbol? x)
+    (let [v (name x)]
+      (and (not= \% (last v)) (not= \$ (last v)) (nombre-variable-valido? v)))
+    false))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-integer?: predicado para determinar si un identificador
@@ -873,8 +875,10 @@
 ; false
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn variable-integer? [x]
-  (let [v (name x)]
-    (and (= (last v) \%) (nombre-variable-valido? v))))
+  (if (symbol? x)
+    (let [v (name x)]
+      (and (= (last v) \%) (nombre-variable-valido? v)))
+    false))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-string?: predicado para determinar si un identificador
@@ -887,8 +891,10 @@
 ; false
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn variable-string? [x]
-  (let [v (name x)]
-    (and (= (last v) \$) (nombre-variable-valido? v))))
+  (if (symbol? x)
+    (let [v (name x)]
+      (and (= (last v) \$) (nombre-variable-valido? v)))
+    false))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; contar-sentencias: recibe un numero de linea y un ambiente y
@@ -1091,8 +1097,8 @@
 ; (MID3$ ( 1 , -u 2 + K , 3 ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn desambiguar
-  [expr] (seq (desambiguar-comas (desambiguar-mas-menos (desambiguar-mid expr)))))
-
+  [expr] (seq (desambiguar-comas (desambiguar-mas-menos (desambiguar-mid expr)))))                                                                                                                                                            
+      
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; precedencia: recibe un token y retorna el valor de su
 ; precedencia, por ejemplo:
