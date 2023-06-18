@@ -56,6 +56,7 @@
 (declare extraer-data-sentencia)
 (declare extraer-data-linea)
 (declare flatten-primer-nivel)
+(declare insertar-separadores-sentencias)
 
 (defn -main
   [& args]
@@ -621,7 +622,7 @@
                           (map butlast
                                (map rest
                                     (map str
-                                         (map flatten-primer-nivel (get amb 0)))))))
+                                         (map flatten-primer-nivel (map insertar-separadores-sentencias (get amb 0))))))))
                (flush)
                [:sin-errores amb])
 
@@ -1254,5 +1255,15 @@
                 (empty? arg) (reverse acum)
                 (seq? (first arg)) (flatten-primer-nivel (reduce (fn [procesado e] (conj procesado e)) acum (first arg)) (rest arg))
                 :else (flatten-primer-nivel (conj acum (first arg)) (rest arg)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; insertar-separadores-sentencias: inserta separadores entre
+; sentencias de una linea
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn insertar-separadores-sentencias 
+  ([sentencias] (insertar-separadores-sentencias (reverse (take 2 sentencias)) (drop 2 sentencias)))
+  ([acum pend] (cond
+                 (empty? pend) (reverse acum)
+                 :else (insertar-separadores-sentencias (conj (conj acum (symbol ":")) (first pend)) (rest pend)))))
 
 true
