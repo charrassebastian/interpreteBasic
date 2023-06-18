@@ -69,7 +69,9 @@
     (is (= '(PRINT 5) (anular-invalidos '(PRINT 5))))
     (is (= '(LET P = .) (anular-invalidos '(LET P = .))))
     (is (= '(PRINT "HOLA") (anular-invalidos '(PRINT "HOLA"))))
-    (is (= (list 'LET 'X '= 'LEN (symbol "(") "HOLA" (symbol ")")) (anular-invalidos (list 'LET 'X '= 'LEN (symbol "(") "HOLA" (symbol ")")))))))
+    (is (= (list 'LET 'X '= 'LEN (symbol "(") "HOLA" (symbol ")")) (anular-invalidos (list 'LET 'X '= 'LEN (symbol "(") "HOLA" (symbol ")")))))
+    (is (= '(REM COMENTARIO) (anular-invalidos '(REM COMENTARIO))))
+    (is (= (list 'REM (symbol "ESTE COMENTARIO")) (anular-invalidos (list 'REM (symbol "ESTE COMENTARIO")))))))
 
 (deftest variable-float?-tests
   (testing "variable-float?"
@@ -548,4 +550,4 @@
 ; modificar el codigo del profe, o modificar la/s funcion/es 
 ; responsable/s de este problema
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

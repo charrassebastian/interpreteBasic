@@ -9,8 +9,8 @@
 ; You can make Calva auto-select this.
 ;   - See https://calva.io/connect-sequences/
 ; 
-; Starting Jack-in Terminal: pushd c:\Users\sebas\Projects\interpreteBasic\interprete & cmd.exe /d /c lein update-in :dependencies conj [nrepl,"1.0.0"] -- update-in :plugins conj [cider/cider-nrepl,"0.28.5"] -- update-in [:repl-options,:nrepl-middleware] conj '["cider.nrepl/cider-middleware"]' -- repl :headless & popd
-; Using host:port 127.0.0.1:64043 ...
+; Starting Jack-in Terminal: pushd /home/sebastian/Documents/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
+; Using host:port 127.0.0.1:36631 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -33,175 +33,30 @@ clj꞉interprete.interprete꞉> 
 #'interprete.core-test/flatten-primer-nivel-tests
 clj꞉interprete.core-test꞉> 
 ; Running all project tests…
-sentencia: (IF X & * Y < 12 THEN LET ! X = 0)
-e: IF
-e: X
-x: X
-e: &
-x: &
-e: *
-e: Y
-x: Y
-e: <
-e: 12
-e: THEN
-e: LET
-e: !
-x: !
-e: X
-x: X
-e: =
-e: 0
-sentencia: (PRINT 5)
-e: PRINT
-e: 5
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1sentencia: (DATA 10)
+sentencia: (END)
+sentencia: (READ X)
+sentencia: (READ X)
+sentencia: (RESTORE)
+sentencia: (CLEAR)
+sentencia: (LIST)
+sentencia: (LET X 4)
+sentencia: (LET X = PRINT)
+sentencia: (LET X = 5)
+sentencia: (LET X = 5)
 sentencia: (LET P = .)
-e: LET
-e: P
-x: P
-e: =
-e: .
-x: .
-sentencia: (PRINT "HOLA")
-e: PRINT
-e: "HOLA"
-sentencia: (LET X = LEN ( "HOLA" ))
-e: LET
-e: X
-x: X
-e: =
-e: LEN
-e: (
-x: (
-e: "HOLA"
-e: )
-x: )
-?RETURN WITHOUT GOSUB  ERROR IN 20x: Z$
-x: Z
-?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1x: X
-x: X%
-x: X$
-x: X1
-; 271 tests finished, all passing 👍, ns: 1, vars: 27
+sentencia: (PRINT)
+; 273 tests finished, all passing 👍, ns: 1, vars: 27
 clj꞉interprete.core-test꞉> 
-sentencia: (FOR I = 1 TO L)
-e: FOR
-e: I
-x: I
-e: =
-e: 1
-e: TO
-e: L
-x: L
-x: I
-x: L
-sentencia: (PRINT MID$ (N$ , I))
-e: PRINT
-e: MID$
-e: (N$ , I)
-x: (N$ , I)
-; Execution error (ClassCastException) at interprete.interprete/variable-integer? (interprete.clj:880).
-; class clojure.lang.PersistentList cannot be cast to class clojure.lang.Named (clojure.lang.PersistentList and clojure.lang.Named are in unnamed module of loader 'app')
+(REM ESTE COMENTARIO)
 clj꞉interprete.core-test꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Evaluating file: core_test.clj
-sentencia: (FOR I = 1 TO L)
-e: FOR
-e: I
-x: I
-e: =
-e: 1
-e: TO
-e: L
-x: L
-x: I
-x: L
-sentencia: (PRINT MID$ (N$ , I))
-e: PRINT
-e: MID$
-e: (N$ , I)
-x: (N$ , I)
-; Syntax error (ClassCastException) compiling at (core_test.clj:490:1).
-; class clojure.lang.PersistentList cannot be cast to class clojure.lang.Named (clojure.lang.PersistentList and clojure.lang.Named are in unnamed module of loader 'app')
-; Evaluation of file core_test.clj failed: class clojure.lang.Compiler$CompilerException
+(REM ESTE COMENTARIO)
 clj꞉interprete.core-test꞉> 
-; Evaluating file: core_test.clj
-sentencia: (FOR I = 1 TO L)
-e: FOR
-e: I
-x: I
-e: =
-e: 1
-e: TO
-e: L
-x: L
-x: I
-x: L
-sentencia: (PRINT MID$ (N$ , I))
-e: PRINT
-e: MID$
-e: (N$ , I)
-x: (N$ , I)
-; Syntax error (ClassCastException) compiling at (core_test.clj:490:1).
-; class clojure.lang.PersistentList cannot be cast to class clojure.lang.Named (clojure.lang.PersistentList and clojure.lang.Named are in unnamed module of loader 'app')
-; Evaluation of file core_test.clj failed: class clojure.lang.Compiler$CompilerException
+(REM ESTE COMENTARIO)
 clj꞉interprete.core-test꞉> 
-sentencia: (FOR I = 1 TO L)
-e: FOR
-e: I
-x: I
-e: =
-e: 1
-e: TO
-e: L
-x: L
-x: I
-x: L
-sentencia: (PRINT MID$ (N$ , I))
-e: PRINT
-e: MID$
-e: (N$ , I)
-x: (N$ , I)
-; Execution error (ClassCastException) at interprete.interprete/anular-invalidos$fn (interprete.clj:755).
-; class clojure.lang.PersistentList cannot be cast to class clojure.lang.Named (clojure.lang.PersistentList and clojure.lang.Named are in unnamed module of loader 'app')
+(nil)
 clj꞉interprete.core-test꞉> 
-"()"
-clj꞉interprete.interprete꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-sentencia: (FOR I = 1 TO L)
-e: FOR
-e: I
-x: I
-e: =
-e: 1
-e: TO
-e: L
-x: L
-x: I
-x: L
-sentencia: (PRINT MID$ (N$ , I))
-e: PRINT
-e: MID$
-e: (N$ , I)
-x: (N$ , I)
-?SYNTAX  ERROR IN 50[nil
- [((40 (FOR I = 1 TO L))
-   (50 (PRINT MID$ (N$ , I)))
-   (60 (NEXT I))
-   (70 (FOR I = L TO 1 STEP - 1))
-   (80 (PRINT MID$ (N$ , I)))
-   (90 (NEXT I))
-   (100 (PRINT) (PRINT "GOODBYE " ; N$)))
-  [50 1]
-  []
-  [[I 0 1 [40 1]]]
-  []
-  0
-  {I 1}]]
+(REM ESTE COMENTARIO)
 clj꞉interprete.core-test꞉> 
 ; Evaluating file: interprete.clj
 true
@@ -209,6 +64,225 @@ clj꞉interprete.interprete꞉> 
 ; Evaluating file: core_test.clj
 #'interprete.core-test/flatten-primer-nivel-tests
 clj꞉interprete.core-test꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 271 tests finished, all passing 👍, ns: 1, vars: 27
+(REM ESTE COMENTARIO)
 clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+parametro sentencia de anular-invalidos: (IF X & * Y < 12 THEN LET ! X = 0)
+IF
+X
+&
+*
+Y
+<
+12
+THEN
+LET
+!
+X
+=
+0
+parametro sentencia de anular-invalidos: (PRINT 5)
+PRINT
+5
+parametro sentencia de anular-invalidos: (LET P = .)
+LET
+P
+=
+.
+parametro sentencia de anular-invalidos: (PRINT "HOLA")
+PRINT
+"HOLA"
+parametro sentencia de anular-invalidos: (LET X = LEN ( "HOLA" ))
+LET
+X
+=
+LEN
+(
+"HOLA"
+)
+parametro sentencia de anular-invalidos: (REM COMENTARIO)
+REM
+COMENTARIO
+parametro sentencia de anular-invalidos: (REM ESTE COMENTARIO)
+REM
+ESTE
+COMENTARIO
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1sentencia: (DATA 10)
+sentencia: (END)
+sentencia: (READ X)
+sentencia: (READ X)
+sentencia: (RESTORE)
+sentencia: (CLEAR)
+sentencia: (LIST)
+sentencia: (LET X 4)
+sentencia: (LET X = PRINT)
+sentencia: (LET X = 5)
+sentencia: (LET X = 5)
+sentencia: (LET P = .)
+sentencia: (PRINT)
+; 273 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.interprete꞉> 
+este comentairo
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+parametro sentencia de anular-invalidos: (IF X & * Y < 12 THEN LET ! X = 0)
+IF
+X
+&
+*
+Y
+<
+12
+THEN
+LET
+!
+X
+=
+0
+parametro sentencia de anular-invalidos: (PRINT 5)
+PRINT
+5
+parametro sentencia de anular-invalidos: (LET P = .)
+LET
+P
+=
+.
+parametro sentencia de anular-invalidos: (PRINT "HOLA")
+PRINT
+"HOLA"
+parametro sentencia de anular-invalidos: (LET X = LEN ( "HOLA" ))
+LET
+X
+=
+LEN
+(
+"HOLA"
+)
+parametro sentencia de anular-invalidos: (REM COMENTARIO)
+REM
+COMENTARIO
+parametro sentencia de anular-invalidos: (REM ESTE COMENTARIO)
+REM
+ESTE
+COMENTARIO
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1sentencia: (DATA 10)
+sentencia: (END)
+sentencia: (READ X)
+sentencia: (READ X)
+sentencia: (RESTORE)
+sentencia: (CLEAR)
+sentencia: (LIST)
+sentencia: (LET X 4)
+sentencia: (LET X = PRINT)
+sentencia: (LET X = 5)
+sentencia: (LET X = 5)
+sentencia: (LET P = .)
+sentencia: (PRINT)
+; 273 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+parametro sentencia de anular-invalidos: (IF X & * Y < 12 THEN LET ! X = 0)
+IF
+X
+&
+*
+Y
+<
+12
+THEN
+LET
+!
+X
+=
+0
+parametro sentencia de anular-invalidos: (PRINT 5)
+PRINT
+5
+parametro sentencia de anular-invalidos: (LET P = .)
+LET
+P
+=
+.
+parametro sentencia de anular-invalidos: (PRINT "HOLA")
+PRINT
+"HOLA"
+parametro sentencia de anular-invalidos: (LET X = LEN ( "HOLA" ))
+LET
+X
+=
+LEN
+(
+"HOLA"
+)
+parametro sentencia de anular-invalidos: (REM COMENTARIO)
+REM
+COMENTARIO
+parametro sentencia de anular-invalidos: (REM ESTE COMENTARIO)
+REM
+ESTE
+COMENTARIO
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1sentencia: (DATA 10)
+sentencia: (END)
+sentencia: (READ X)
+sentencia: (READ X)
+sentencia: (RESTORE)
+sentencia: (CLEAR)
+sentencia: (LIST)
+sentencia: (LET X 4)
+sentencia: (LET X = PRINT)
+sentencia: (LET X = 5)
+sentencia: (LET X = 5)
+sentencia: (LET P = .)
+sentencia: (PRINT)
+; 273 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 273 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/flatten-primer-nivel-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; FAIL in interprete.core-test/anular-invalidos-tests (core_test.clj:74):
+; anular-invalidos
+; expected:
+(REM ESTE COMENTARIO)
+
+; actual:
+(REM ESTE COMENTARIO)
+
+; 273 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 27
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/flatten-primer-nivel-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 273 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/flatten-primer-nivel-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 273 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 273 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.interprete꞉> 

@@ -512,7 +512,7 @@
 ; actualizado
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn evaluar [sentencia amb]
-  (if (or (contains? (set sentencia) nil) (and (palabra-reservada? (first sentencia)) (= (second sentencia) '=)))
+  (if (or (contains? (set sentencia) nil) (and (palabra-reservada? (first sentencia)) (= (second sentencia) '=))) 
     (do (dar-error 16 (amb 1)) [nil amb])  ; Syntax error  
     (case (first sentencia)
       PRINT (let [args (next sentencia), resu (imprimir args amb)]
@@ -614,7 +614,7 @@
       ; LIST: muestra el listado de sentencias del programa, 
       ; devuelve un vector con dos elementos, :sin-errores y el
       ; ambiente
-      
+
       ; LIST (do (prn (get amb 0)) (flush) [:sin-errores amb])
       LIST (do (run! println
                      (map (partial apply str)
@@ -622,19 +622,19 @@
                                (map rest
                                     (map str
                                          (map flatten-primer-nivel (get amb 0)))))))
-               (flush) 
+               (flush)
                [:sin-errores amb])
-      
+
       ; LET/=: hace la asignacion de un valor a una variable,
       ; devuelve un vector con dos elementos, :sin-errores y el
       ; ambiente actualizado
       LET (let [valor-expresion (calcular-expresion (drop 3 sentencia) amb)
-                  var-mem-viejo (get amb 6)
-                  var-mem-nuevo (assoc var-mem-viejo (fnext sentencia) valor-expresion)
-                  amb-nuevo (assoc amb 6 var-mem-nuevo)]
-              (if (or (not= '= (nth sentencia 2)) (and (not (number? valor-expresion)) (not (string? valor-expresion)))) 
-                [:error-parcial amb]
-                [:sin-errores amb-nuevo]))
+                var-mem-viejo (get amb 6)
+                var-mem-nuevo (assoc var-mem-viejo (fnext sentencia) valor-expresion)
+                amb-nuevo (assoc amb 6 var-mem-nuevo)]
+            (if (or (not= '= (nth sentencia 2)) (and (not (number? valor-expresion)) (not (string? valor-expresion))))
+              [:error-parcial amb]
+              [:sin-errores amb-nuevo]))
       ; hasta aqui
       (if (= (second sentencia) '=)
         (let [resu (ejecutar-asignacion sentencia amb)]
@@ -750,8 +750,10 @@
 ; user=> (anular-invalidos '(IF X & * Y < 12 THEN LET ! X = 0))
 ; (IF X nil * Y < 12 THEN LET nil X = 0)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn anular-invalidos [sentencia]
-  (map (fn [e] (if (or (= "?" e) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (str e)) (= ";" (str e)) (= "." (str e)) (= "(" (str e)) (= ")" (str e))) e nil)) sentencia))
+(defn anular-invalidos [sentencia] 
+  (if (and (seq? sentencia) (= 'REM (first sentencia)))
+    sentencia
+    (map (fn [e] (if (or (= "?" e) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (str e)) (= ";" (str e)) (= "." (str e)) (= "(" (str e)) (= ")" (str e))) e nil)) sentencia)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; cargar-linea: recibe una linea de codigo y un ambiente y retorna
@@ -1114,7 +1116,8 @@
 ; 8
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn precedencia [token]
-  (let [jerarquia {'OR 1,
+  (let [jerarquia {(symbol ",") 0,
+                   'OR 1,
                    'AND 2,
                    'NOT 3,
                    '<> 4,
