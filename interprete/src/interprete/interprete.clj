@@ -513,11 +513,11 @@
 ; actualizado
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn evaluar [sentencia amb]
-  (if (or (contains? (set sentencia) nil) (and (palabra-reservada? (first sentencia)) (= (second sentencia) '=))) 
+  (if (or (contains? (set sentencia) nil) (and (palabra-reservada? (first sentencia)) (= (second sentencia) '=)))
     (do (dar-error 16 (amb 1)) [nil amb])  ; Syntax error  
     (case (first sentencia)
       PRINT (let [args (next sentencia), resu (imprimir args amb)]
-              (if (nil? args) (println) nil)
+              (if (nil? args) (println) nil) ; Agregado para que funcione PRINT sin argumentos
               (if (and (nil? resu) (some? args))
                 [nil amb]
                 [:sin-errores amb]))
@@ -1101,7 +1101,8 @@
 ; (MID3$ ( 1 , -u 2 + K , 3 ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn desambiguar
-  [expr] (seq (desambiguar-comas (desambiguar-mas-menos (desambiguar-mid expr)))))                                                                                                                                                            
+  [expr] 
+  (seq (desambiguar-comas (desambiguar-mas-menos (desambiguar-mid expr)))))                                                                                                                                                            
       
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; precedencia: recibe un token y retorna el valor de su
@@ -1140,6 +1141,7 @@
                    'LOG 8,
                    'LEN 8,
                    'MID$ 8,
+                   'MID3$ 8,
                    'ASC 8,
                    'CHR$ 8,
                    'STR$ 8}]

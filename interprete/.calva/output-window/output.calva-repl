@@ -10,7 +10,7 @@
 ;   - See https://calva.io/connect-sequences/
 ; 
 ; Starting Jack-in Terminal: pushd /home/sebastian/Documents/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
-; Using host:port 127.0.0.1:34879 ...
+; Using host:port 127.0.0.1:42495 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -26,63 +26,9 @@ clj꞉interprete.interprete꞉>  ; Use `alt+enter` to evaluate
 clj꞉interprete.interprete꞉> 
 ; Jack-in done.
 clj꞉interprete.interprete꞉> 
-#'interprete.interprete/ej
-clj꞉interprete.interprete꞉> 
-((PRINT Y) (PRINT Z))
-clj꞉interprete.interprete꞉> 
-#'interprete.interprete/insertar-separadores-sentencias
-clj꞉interprete.interprete꞉> 
-(((PRINT X) 10) : (PRINT X) 10)
-clj꞉interprete.interprete꞉> 
-(((PRINT X) 10) : (PRINT X) 10)
-clj꞉interprete.interprete꞉> 
-(10 (PRINT X) : ((PRINT X) 10))
-clj꞉interprete.interprete꞉> 
-#'interprete.interprete/insertar-separadores-sentencias
-clj꞉interprete.interprete꞉> 
-(10 (PRINT X) : (10))
-clj꞉interprete.interprete꞉> 
-#'interprete.interprete/insertar-separadores-sentencias
-clj꞉interprete.interprete꞉> 
-((10) : (PRINT X) 10)
-clj꞉interprete.interprete꞉> 
-#'interprete.interprete/insertar-separadores-sentencias
-clj꞉interprete.interprete꞉> 
-; Execution error (StackOverflowError) at java.lang.String/indexOf (String.java:1578).
-; null
-clj꞉interprete.interprete꞉> 
-#'interprete.interprete/insertar-separadores-sentencias
-clj꞉interprete.interprete꞉> 
-(10 (PRINT X) : (PRINT Y) : (PRINT Z))
-clj꞉interprete.interprete꞉> 
-#'interprete.interprete/insertar-separadores-sentencias
-clj꞉interprete.interprete꞉> 
-(10 (PRINT X) : (PRINT Y) : (PRINT Z))
-clj꞉interprete.interprete꞉> 
 ; Evaluating file: interprete.clj
 true
 clj꞉interprete.interprete꞉> 
-; Evaluating file: core_test.clj
-#'interprete.core-test/flatten-primer-nivel-tests
-clj꞉interprete.core-test꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 273 tests finished, all passing 👍, ns: 1, vars: 27
-clj꞉interprete.core-test꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Evaluating file: core_test.clj
-#'interprete.core-test/flatten-primer-nivel-tests
-clj꞉interprete.core-test꞉> 
-; Running all project tests…
-?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1; 273 tests finished, all passing 👍, ns: 1, vars: 27
-clj꞉interprete.core-test꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
-; Evaluating file: core_test.clj
-#'interprete.core-test/flatten-primer-nivel-tests
-clj꞉interprete.core-test꞉> 
 ; Evaluating file: core_test.clj
 #'interprete.core-test/flatten-primer-nivel-tests
 clj꞉interprete.core-test꞉> 
