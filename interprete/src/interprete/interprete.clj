@@ -517,6 +517,7 @@
     (do (dar-error 16 (amb 1)) [nil amb])  ; Syntax error  
     (case (first sentencia)
       PRINT (let [args (next sentencia), resu (imprimir args amb)]
+              (if (nil? args) (println) nil)
               (if (and (nil? resu) (some? args))
                 [nil amb]
                 [:sin-errores amb]))
