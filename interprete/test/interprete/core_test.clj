@@ -488,32 +488,3 @@
 (deftest flatten-primer-nivel-tests
   (testing "flatten-primer-nivel"
     (is (= '(10 PRINT X PRINT Y) (flatten-primer-nivel '(10 (PRINT X) (PRINT Y)))))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; ERROR 1: print con una funcion no funciona
-
-; ej: PRINT LEN("HOLA")
-
-; EXPLICACION DEL PROBLEMA
-
-; El codigo escrito por el profe llama a calcular-expresion
-; pasandole solo una parte de la expresion
-
-; PASOS PARA DEPURAR
-
-; (evaluar (list 'PRINT 'LEN (symbol "(") "HOLA" (symbol ")")) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])
-; (evaluar (list 'PRINT (symbol "(") 'LEN (symbol "(") "HOLA" (symbol ")") (symbol ")")) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])
-
-; colocar spies en la funcion imprimir para expresiones, amb,
-; lista-expr y el otro amb (para su segunda definicion). Se
-; pueden agregar mas spies en cada llamado, especialmente 
-; el segundo
-
-; deberia llamarse desdeimprimir a calclular expresion de una manera similar a esta
-; (calcular-expresion (list 'LEN (symbol "(") "HOLA" (symbol ")")) [() [] [] [] [] 0 {}])
-;; => 4
-
-; identifica variable? a LEN como variable, lo cual esta mal
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
