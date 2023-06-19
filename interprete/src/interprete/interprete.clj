@@ -869,7 +869,8 @@
          (or (Character/isUpperCase (last v))
              (Character/isDigit (last v))
              (= \% (last v))
-             (= \$ (last v))))))
+             (= \$ (last v)))
+         (not (palabra-reservada? v)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-float?: predicado para determinar si un identificador
