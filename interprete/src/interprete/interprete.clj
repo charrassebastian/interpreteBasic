@@ -354,7 +354,13 @@
 ; 7
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn calcular-expresion [expr amb]
-  (calcular-rpn (shunting-yard (desambiguar (preprocesar-expresion expr amb))) (amb 1)))
+  (println "spy para calcular-expresion")
+  (spy "expr por preprocesar" expr)
+  (spy "amb para calcular-expresion" amb)
+  (spy "calculada" (calcular-rpn 
+   (spy "en rpn" (shunting-yard 
+    (spy "desambiguada" (desambiguar 
+     (spy "expresion preprocesada" (preprocesar-expresion expr amb)))))) (amb 1))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; desambiguar-mas-menos: recibe una expresion y la retorna sin
@@ -461,7 +467,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn imprimir
   ([v]
+   (println "spy para primera definicion de imprimir")
    (let [expresiones (v 0), amb (v 1)]
+     (spy "expresiones" expresiones)
+     (spy "amb" amb)
      (cond
        (empty? expresiones) (do (prn) (flush) :sin-errores)
        (and (empty? (next expresiones)) (= (first expresiones) (list (symbol ";")))) (do (pr) (flush) :sin-errores)
@@ -473,6 +482,7 @@
                  resu
                  (do (print resu) (flush) (recur [(next expresiones) amb])))))))
   ([lista-expr amb]
+   (println "spy para segunda definicion de imprimir")
    (let [nueva (cons (conj [] (first lista-expr)) (rest lista-expr)),
          variable? #(or (variable-integer? %) (variable-float? %) (variable-string? %)),
          funcion? #(and (> (aridad %) 0) (not (operador? %))),
@@ -481,6 +491,12 @@
                            (conj (conj %1 (symbol ";")) %2) (conj %1 %2)) nueva),
          ex (partition-by #(= % (symbol ",t")) (desambiguar-comas interc)),
          expresiones (apply concat (map #(partition-by (fn [x] (= x (symbol ";"))) %) ex))]
+     (spy "lista-expr" lista-expr)
+     (spy "amb" amb)
+     (spy "nueva" nueva)
+     (spy "interc" interc)
+     (spy "ex" ex)
+     (spy "expresiones" expresiones)
      (imprimir [expresiones amb]))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
