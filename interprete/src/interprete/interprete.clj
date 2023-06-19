@@ -354,7 +354,10 @@
 ; 7
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn calcular-expresion [expr amb]
-  (calcular-rpn (shunting-yard (desambiguar (preprocesar-expresion expr amb))) (amb 1)))
+  (calcular-rpn 
+   (shunting-yard 
+    (desambiguar 
+     (preprocesar-expresion expr amb))) (amb 1)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; desambiguar-mas-menos: recibe una expresion y la retorna sin
@@ -476,9 +479,17 @@
    (let [nueva (cons (conj [] (first lista-expr)) (rest lista-expr)),
          variable? #(or (variable-integer? %) (variable-float? %) (variable-string? %)),
          funcion? #(and (> (aridad %) 0) (not (operador? %))),
-         interc (reduce #(if (and (or (number? (last %1)) (string? (last %1)) (variable? (last %1)) (= (symbol ")") (last %1)))
-                                  (or (number? %2) (string? %2) (variable? %2) (funcion? %2) (= (symbol "(") %2)))
-                           (conj (conj %1 (symbol ";")) %2) (conj %1 %2)) nueva),
+         interc (reduce #(if (and (or (number? (last %1)) 
+                                      (string? (last %1)) 
+                                      (variable? (last %1))
+                                      (= (symbol ")") (last %1)))
+                                  (or (number? %2) 
+                                      (string? %2) 
+                                      (variable? %2) 
+                                      (funcion? %2) 
+                                      (= (symbol "(") %2)))
+                           (conj (conj %1 (symbol ";")) %2) 
+                           (conj %1 %2)) nueva),
          ex (partition-by #(= % (symbol ",t")) (desambiguar-comas interc)),
          expresiones (apply concat (map #(partition-by (fn [x] (= x (symbol ";"))) %) ex))]
      (imprimir [expresiones amb]))))
@@ -822,6 +833,7 @@
                      (str " IN " prog-ptrs)
                      ""))]
     (str main-msg location)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; dar-error: recibe un error (codigo o mensaje) y el puntero de 
 ; programa, muestra el error correspondiente {'OR 1, 'AND 2, '* 6, '-u 7, 'MID$ 8}y retorna nil, por
@@ -853,7 +865,8 @@
          (or (Character/isUpperCase (last v))
              (Character/isDigit (last v))
              (= \% (last v))
-             (= \$ (last v))))))
+             (= \$ (last v)))
+         (not (palabra-reservada? (symbol v))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-float?: predicado para determinar si un identificador
