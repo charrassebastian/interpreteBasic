@@ -491,39 +491,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; ERROR 1: no se puede llamar a una funcion dentro de una funcion
-
-; ej: LET X = MID$(MID$("HOLA", 2), 2)
-
-; EXPLICACION DEL PROBLEMA
-
-; para ejecutar esta asignacion, se pasa la expresion
-; a la derecha del igual a calcular-expresion
-; esta funcion llama, entre otras, a shunting yard
-; shunting yard sirve para calculos matematicos,
-; pero para arreglar el problema de tener funciones dentro de funciones, no anda
-
-; PASOS PARA DEPURAR
-
-; (evaluar (list 'LET 'X '= 'MID$ (symbol "(") 'MID$ (symbol "(") "HOLA" (symbol ",") 2 (symbol ")") (symbol ",") 2 (symbol ")")) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])
-
-; se pueden poner spies para los tokens recibidos 
-; por shunting-yard, rpn, pila y token
-
-; POSIBLE SOLUCION
-
-; crear una funcion que 
-; se encargue de crear la rpn para las funciones
-; o estudiar algun caso que funcione y aplicarlo aqui
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; ERROR 2: print con una funcion no funciona
+; ERROR 1: print con una funcion no funciona
 
 ; ej: PRINT LEN("HOLA")
-; ej: PRINT(LEN("HOLA"))
 
 ; EXPLICACION DEL PROBLEMA
 
@@ -539,15 +509,5 @@
 ; lista-expr y el otro amb (para su segunda definicion). Se
 ; pueden agregar mas spies en cada llamado, especialmente 
 ; el segundo
-
-; POSIBLE SOLUCION
-
-; Luego de verificar que rama/s es/son usada/s en estos casos
-; (porque parece que si se hace (PRINT LEN("HOLA")) usa una 
-; rama y si hace (PRINT (LEN("HOLA"))) usa otra rama), revisar
-; bien cada argumento y llamado a funcion relevante. Luego pensar
-; en una solucion, puede ser en eliminar-cero-entero para no
-; modificar el codigo del profe, o modificar la/s funcion/es 
-; responsable/s de este problema
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

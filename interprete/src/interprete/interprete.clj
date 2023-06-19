@@ -753,7 +753,7 @@
 ; (IF X nil * Y < 12 THEN LET nil X = 0)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn anular-invalidos [sentencia] 
-  (if (and (seq? sentencia) (= 'REM (first sentencia)))
+  (if (and (seq? sentencia) (or (= 'REM (first sentencia)) (= 'DATA (first sentencia))))
     sentencia
     (map (fn [e] (if (or (= "?" e) (palabra-reservada? e) (operador? e) (number? e) (string? e) (variable-float? e) (variable-integer? e) (variable-string? e) (= "," (str e)) (= ";" (str e)) (= "." (str e)) (= "(" (str e)) (= ")" (str e))) e nil)) sentencia)))
 
