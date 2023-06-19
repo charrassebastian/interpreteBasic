@@ -163,3 +163,90 @@ en rpn: ("HOLA" LEN)
 calculada: 4
 4
 clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Running all project tests…
+spy para calcular-expresion
+expr por preprocesar: (5)
+amb para calcular-expresion: [((10 (PRINT X))) [10 1] [] [] [] 0 {}]
+expresion preprocesada: (5)
+desambiguada: (5)
+en rpn: (5)
+calculada: 5
+spy para calcular-expresion
+expr por preprocesar: (5)
+amb para calcular-expresion: [((10 (PRINT X))) [10 1] [] [] [] 0 {X 2}]
+expresion preprocesada: (5)
+desambiguada: (5)
+en rpn: (5)
+calculada: 5
+spy para calcular-expresion
+expr por preprocesar: (X + 1)
+amb para calcular-expresion: [((10 (PRINT X))) [10 1] [] [] [] 0 {X 2}]
+expresion preprocesada: (2 + 1)
+desambiguada: (2 + 1)
+en rpn: (2 1 +)
+calculada: 3
+spy para calcular-expresion
+expr por preprocesar: (X$ + " MUNDO")
+amb para calcular-expresion: [((10 (PRINT X))) [10 1] [] [] [] 0 {X$ "HOLA"}]
+expresion preprocesada: ("HOLA" + " MUNDO")
+desambiguada: ("HOLA" + " MUNDO")
+en rpn: ("HOLA" " MUNDO" +)
+calculada: "HOLA MUNDO"
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1spy para calcular-expresion
+expr por preprocesar: ()
+amb para calcular-expresion: [() [:ejecucion-inmediata 0] [] [] [] 0 {}]
+expresion preprocesada: ()
+desambiguada: (nil)
+en rpn: (nil)
+calculada: nil
+spy para calcular-expresion
+expr por preprocesar: (PRINT)
+amb para calcular-expresion: [() [:ejecucion-inmediata 0] [] [] [] 0 {}]
+expresion preprocesada: (PRINT)
+desambiguada: (PRINT)
+en rpn: (PRINT)
+calculada: PRINT
+spy para calcular-expresion
+expr por preprocesar: (5)
+amb para calcular-expresion: [() [:ejecucion-inmediata 0] [] [] [] 0 {}]
+expresion preprocesada: (5)
+desambiguada: (5)
+en rpn: (5)
+calculada: 5
+spy para calcular-expresion
+expr por preprocesar: (5)
+amb para calcular-expresion: [() [:ejecucion-inmediata 0] [] [] [] 0 {X 4}]
+expresion preprocesada: (5)
+desambiguada: (5)
+en rpn: (5)
+calculada: 5
+spy para calcular-expresion
+expr por preprocesar: (.)
+amb para calcular-expresion: [() [:ejecucion-inmediata 0] [] [] [] 0 {}]
+expresion preprocesada: (0)
+desambiguada: (0)
+en rpn: (0)
+calculada: 0
+spy para segunda definicion de imprimir
+lista-expr: nil
+amb: [() [:ejecucion-inmediata 0] [] [] [] 0 {}]
+nueva: ([nil])
+interc: [nil]
+ex: ((nil))
+expresiones: ((nil))
+spy para primera definicion de imprimir
+expresiones: ((nil))
+amb: [() [:ejecucion-inmediata 0] [] [] [] 0 {}]
+spy para calcular-expresion
+expr por preprocesar: (nil)
+amb para calcular-expresion: [() [:ejecucion-inmediata 0] [] [] [] 0 {}]
+expresion preprocesada: nil
+desambiguada: (nil)
+en rpn: (nil)
+calculada: nil
+
+; 273 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.interprete꞉> 
