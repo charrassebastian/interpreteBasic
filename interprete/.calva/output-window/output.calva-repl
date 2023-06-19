@@ -26,3 +26,16 @@ clj꞉interprete.interprete꞉>  ; Use `alt+enter` to evaluate
 clj꞉interprete.interprete꞉> 
 ; Jack-in done.
 clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/flatten-primer-nivel-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1
+; 273 tests finished, all passing 👍, ns: 1, vars: 27
+clj꞉interprete.core-test꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 

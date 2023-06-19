@@ -590,9 +590,12 @@
       NEXT (if (<= (count (next sentencia)) 1)
              (retornar-al-for amb (fnext sentencia))
              (do (dar-error 16 (amb 1)) [nil amb]))  ; Syntax error
-      ; desde aqui empece a completar
+      ; completado
       DATA [:omitir-restante amb]
-      END [:sin-errores amb] ; [(prog-mem)  [prog-ptrs]  [gosub-return-stack]  [for-next-stack]  [data-mem]  data-ptr  {var-mem}]
+      END (vector :omitir-restante 
+                  (let [amb-base ['() [:ejecucion-inmediata 0] [] [] [] 0 '{}]
+                        amb-nuevo (assoc amb-base 0 (get amb 0))]
+                    amb-nuevo)) ; [(prog-mem)  [prog-ptrs]  [gosub-return-stack]  [for-next-stack]  [data-mem]  data-ptr  {var-mem}]
       ; READ: actualiza la variable en el ambiente, aumenta el puntero
       ; y si no hay mas datos, muestra el ?OUT OF DATA ERROR
       READ (let [data-ptr-viejo (get amb 5)
@@ -993,12 +996,12 @@
 ; user=> (continuar-linea [(list '(10 (PRINT X)) '(15 (GOSUB 100) (X = X + 1)) (list 20 (list 'NEXT 'I (symbol ",") 'J))) [20 3] [[15 2]] [] [] 0 {}])
 ; [:omitir-restante [((10 (PRINT X)) (15 (GOSUB 100) (X = X + 1)) (20 (NEXT I , J))) [15 1] [] [] [] 0 {}]]
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn continuar-linea [amb] 
+(defn continuar-linea [amb]
   (if (empty? (amb 2))
     (vector (dar-error 22 (amb 1)) amb)
     (let [amb-con-puntero-actualizado (assoc amb 1 (vector (ffirst (amb 2)) (dec (second (first (amb 2))))))
-            amb-completamente-actualizado (assoc amb-con-puntero-actualizado 2 (into [] (rest (amb-con-puntero-actualizado 2))))]
-        (vector :omitir-restante amb-completamente-actualizado))))
+          amb-completamente-actualizado (assoc amb-con-puntero-actualizado 2 (into [] (rest (amb-con-puntero-actualizado 2))))]
+      (vector :omitir-restante amb-completamente-actualizado))))
 
 
 
