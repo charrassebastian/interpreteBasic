@@ -510,4 +510,8 @@
 ; pueden agregar mas spies en cada llamado, especialmente 
 ; el segundo
 
+; deberia llamarse desdeimprimir a calclular expresion de una manera similar a esta
+; (calcular-expresion (list 'LEN (symbol "(") "HOLA" (symbol ")")) [() [] [] [] [] 0 {}])
+;; => 4
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

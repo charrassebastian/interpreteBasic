@@ -140,3 +140,26 @@ clj꞉interprete.interprete꞉> 
 ; Evaluating file: interprete.clj
 true
 clj꞉interprete.interprete꞉> 
+spy para calcular-expresion
+expr por preprocesar: (LEN (symbol "(") "HOLA" (symbol ")"))
+amb para calcular-expresion: [() [] [] [] [] 0 {}]
+expresion preprocesada: (; Execution error (ClassCastException) at interprete.interprete/preprocesar-expresion$fn (interprete.clj:1101).
+; class clojure.lang.PersistentList cannot be cast to class clojure.lang.Named (clojure.lang.PersistentList and clojure.lang.Named are in unnamed module of loader 'app')
+clj꞉interprete.core-test꞉> 
+spy para calcular-expresion
+expr por preprocesar: (LEN (symbol "(") "HOLA" (symbol ")"))
+amb para calcular-expresion: [() [] [] [] [] 0 {}]
+expresion preprocesada: (; Execution error (ClassCastException) at interprete.interprete/preprocesar-expresion$fn (interprete.clj:1101).
+; class clojure.lang.PersistentList cannot be cast to class clojure.lang.Named (clojure.lang.PersistentList and clojure.lang.Named are in unnamed module of loader 'app')
+clj꞉interprete.core-test꞉> 
+(LEN (symbol "(") "HOLA" (symbol ")"))
+clj꞉interprete.core-test꞉> 
+spy para calcular-expresion
+expr por preprocesar: (LEN ( "HOLA" ))
+amb para calcular-expresion: [() [] [] [] [] 0 {}]
+expresion preprocesada: (LEN ( "HOLA" ))
+desambiguada: (LEN ( "HOLA" ))
+en rpn: ("HOLA" LEN)
+calculada: 4
+4
+clj꞉interprete.core-test꞉> 
