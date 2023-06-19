@@ -442,9 +442,9 @@
         (is (= [:omitir-restante ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
                (evaluar '(DATA 10) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
     (testing "END"
-      (testing "debe retornar una dupla con :sin-errores y el ambiente"
-        (is (= [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
-               (evaluar '(END) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}])))))
+      (testing "debe retornar una dupla con :omitir-restante y un ambiente que solo conserve las sentencias"
+        (is (= [:omitir-restante ['(10 (PRINT X) (PRINT Y)) [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+               (evaluar '(END) ['(10 (PRINT X) (PRINT Y)) [10 1] [] [] [] 0 '{X 3, Y 4}])))))
     (testing "READ"
       (testing "debe retornar una dupla con :error-parcial y el ambiente si no hay mas datos"
         (is (= [:error-parcial ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]

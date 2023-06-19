@@ -5,12 +5,18 @@
 ; Happy coding! ♥️
 
 ; Jacking in...
+; Connecting using "undefined" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Aborting jack-in. No project type selected.
+; Jacking in...
 ; Connecting using "Leiningen" project type.
 ; You can make Calva auto-select this.
 ;   - See https://calva.io/connect-sequences/
 ; 
-; Starting Jack-in Terminal: pushd /home/sebastian/Documents/Projects/interpreteBasic/interprete ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless ; popd
-; Using host:port 127.0.0.1:39811 ...
+; Starting Jack-in Terminal: pushd c:\Users\sebas\Projects\interpreteBasic\interprete & cmd.exe /d /c lein update-in :dependencies conj [nrepl,"1.0.0"] -- update-in :plugins conj [cider/cider-nrepl,"0.28.5"] -- update-in [:repl-options,:nrepl-middleware] conj '["cider.nrepl/cider-middleware"]' -- repl :headless & popd
+; Using host:port 127.0.0.1:57744 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -34,8 +40,25 @@ clj꞉interprete.interprete꞉> 
 clj꞉interprete.core-test꞉> 
 ; Running all project tests…
 ?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1
+; FAIL in interprete.core-test/evaluar-tests (core_test.clj:446):
+; evaluar END debe retornar una dupla con :sin-errores y el ambiente
+; expected:
+(=
+ [:sin-errores ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+ (evaluar '(END) ['() [:ejecucion-inmediata 0] [] [] [] 0 {}]))
+
+; actual:
+(not
+ (=
+  [:sin-errores [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]
+  [:omitir-restante [() [:ejecucion-inmediata 0] [] [] [] 0 {}]]))
+
+; 273 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 27
+clj꞉interprete.core-test꞉> 
+; Evaluating file: core_test.clj
+#'interprete.core-test/flatten-primer-nivel-tests
+clj꞉interprete.core-test꞉> 
+; Running all project tests…
+?RETURN WITHOUT GOSUB  ERROR IN 20?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?DIVISION BY ZERO  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?TYPE MISMATCH  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1?ILLEGAL QUANTITY  ERROR IN 1
 ; 273 tests finished, all passing 👍, ns: 1, vars: 27
 clj꞉interprete.core-test꞉> 
-; Evaluating file: interprete.clj
-true
-clj꞉interprete.interprete꞉> 
