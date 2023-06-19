@@ -871,14 +871,16 @@
 ; nombre de variale valido
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn nombre-variable-valido? [v]
+  (spy "recibido por nombre-variable-valido?" v)
   (if (= 1 (count v))
-    (Character/isUpperCase (first v))
-    (and (= (dec (count v)) (count (first (re-seq #"[A-Z][A-Z0-9]*" (apply str (butlast v))))))
-         (or (Character/isUpperCase (last v))
-             (Character/isDigit (last v))
-             (= \% (last v))
-             (= \$ (last v)))
-         (not (palabra-reservada? v)))))
+    (spy "res rama 1" (Character/isUpperCase (first v)))
+    (spy "res rama 2"
+         (and (= (dec (count v)) (count (first (re-seq #"[A-Z][A-Z0-9]*" (apply str (butlast v))))))
+              (or (Character/isUpperCase (last v))
+                  (Character/isDigit (last v))
+                  (= \% (last v))
+                  (= \$ (last v)))
+              (spy "not palabra-reservada?" (not (palabra-reservada? (symbol v))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; variable-float?: predicado para determinar si un identificador

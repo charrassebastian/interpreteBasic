@@ -514,4 +514,6 @@
 ; (calcular-expresion (list 'LEN (symbol "(") "HOLA" (symbol ")")) [() [] [] [] [] 0 {}])
 ;; => 4
 
+; identifica variable? a LEN como variable, lo cual esta mal
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

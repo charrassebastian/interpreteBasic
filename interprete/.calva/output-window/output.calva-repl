@@ -250,3 +250,31 @@ calculada: nil
 
 ; 273 tests finished, all passing 👍, ns: 1, vars: 27
 clj꞉interprete.interprete꞉> 
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+true
+clj꞉interprete.interprete꞉> 
+true
+clj꞉interprete.interprete꞉> 
+#'interprete.interprete/nombre-variable-valido?
+clj꞉interprete.interprete꞉> 
+recibido por nombre-variable-valido?: LEN
+; Execution error (UnsupportedOperationException) at interprete.interprete/nombre-variable-valido? (form-init5006662955125648949.clj:875).
+; count not supported on this type: Symbol
+clj꞉interprete.interprete꞉> 
+recibido por nombre-variable-valido?: "LEN"
+res rama 2: true
+true
+clj꞉interprete.interprete꞉> 
+; Evaluating file: interprete.clj
+recibido por nombre-variable-valido?: "LEN"
+not palabra-reservada?: false
+res rama 2: false
+true
+clj꞉interprete.interprete꞉> 
+recibido por nombre-variable-valido?: "LEN"
+not palabra-reservada?: false
+res rama 2: false
+false
+clj꞉interprete.interprete꞉> 
