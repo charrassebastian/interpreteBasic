@@ -527,8 +527,9 @@
   (if (or (contains? (set sentencia) nil) (and (palabra-reservada? (first sentencia)) (= (second sentencia) '=)))
     (do (dar-error 16 (amb 1)) [nil amb])  ; Syntax error  
     (case (first sentencia)
-      PRINT (let [args (next sentencia), resu (imprimir args amb)]
-              (if (nil? args) (println) nil) ; Agregado para que funcione PRINT sin argumentos
+      PRINT (let [args (next sentencia), resu (if (nil? args)
+                                                (do (println) nil)
+                                                (imprimir args amb))]
               (if (and (nil? resu) (some? args))
                 [nil amb]
                 [:sin-errores amb]))
@@ -825,15 +826,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn generar-msg-error [cod prog-ptrs]
   (let [main-msg (if (string? cod) cod (buscar-mensaje cod)),
-        location (if (vector? prog-ptrs)
-                   (if (number? (first prog-ptrs))
-                     (str " IN " (first prog-ptrs))
-                     "")
-                   (if (number? prog-ptrs)
-                     (str " IN " prog-ptrs)
-                     ""))]
+        extracted-line-number (if (vector? prog-ptrs) (first prog-ptrs) prog-ptrs)
+        location (if (number? extracted-line-number) (str " IN " extracted-line-number) "")]
     (str main-msg location)))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; dar-error: recibe un error (codigo o mensaje) y el puntero de 
 ; programa, muestra el error correspondiente {'OR 1, 'AND 2, '* 6, '-u 7, 'MID$ 8}y retorna nil, por
@@ -1227,7 +1222,15 @@
 ; A
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn eliminar-cero-decimal [n]
-  (if (= 1.0 n) 1 n))
+  (cond 
+    (symbol? n) n
+    (int? n) n
+    (string? n) n
+    (= (* 1.0 (int n)) n) (int n) 
+    (rational? n) (double n)
+    :else n))
+;; (defn eliminar-cero-decimal [n]
+;;   (if (= 1.0 n) 1 n))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; eliminar-cero-entero: recibe un simbolo y lo retorna convertido
